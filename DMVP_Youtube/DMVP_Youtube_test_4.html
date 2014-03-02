@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+<div id="player"></div> 
+
+ <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+		height: '390',
+        width: '640',
+		videoId: 't-FAePvFujg',
+		playerVars: {
+               html5: 1,
+               controls: 1,
+            } ,
+		  events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+     console.log("player ready?");
+	  function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+	console.log("yes,player ready");
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+	  
+      var done = false;
+      function onPlayerStateChange(event) {
+      }
+	  
+    </script>
+	<style>
+
+	table,th,td
+	{
+	font-family: "calibri";
+	border-collapse:collapse;
+	vertical-align:center;
+	position: relative;
+	}
+	td{
+	background-color:rgb(240,240,250);
+	}
+	th{
+	background-color:rgb(250,250,240);
+	}
+	</style>
+	
+<table border="1">
+	<caption>Video Controls</caption>
+	<tr>
+		<td>First Frame</td>
+		<td>Previous Frame</td>
+		<td>Play</td>
+		<td>Pause</td>
+		<td>Next Frame</td>
+		<td>Last Frame</td>
+		<td>Be Careful with this</td>
+	</tr>
+	<tr>
+		<th><input type="button" value="{{" name="beginning" onclick="player.currentTime = 0" /></th>
+		<th><input type="button" value="{" name="skipToPrev" onclick="prevFrame()" /></th>
+		<th><input type="button" value=">" name="playVid" onclick='play()' /></th>
+		<th><input type="button" value="||" name="pauseVid" onclick='pause()' /></th>
+		<th><input type="button" value="}" name="skipToNext" onclick="fwdFrame()" /></th>
+		<th><input type="button" value="}}" name="end" onclick="myPlayer.currentTime = my_video_1.duration" /></th>
+		<th><input type="button" value="dont click me" name="skipToNext" onclick='alert("why did you click me?")' </th>
+		<th><input type="button" value="hai!" name="hallo" onclick="seek()" </th>
+	</tr>
+		
+</table>
+	
+<script>
+	function fwdFrame(){
+		//player.pauseVideo();
+		player.seekTo(player.getCurrentTime()+(1/30));
+		//player.playVideo();
+		setTimeout(pause(), 1);
+	}
+	function prevFrame(){
+		//player.pauseVideo();
+		player.seekTo(player.getCurrentTime()-(1/30));
+		//player.playVideo();
+		setTimeout(pause(), 1);
+	}
+	function pause(){
+		player.pauseVideo();
+	}
+	function play(){
+		player.playVideo();
+	}
+	function seek(){
+		pause();
+		player.seekTo(10);
+	}
+</script>
+</body>
+	
+	
+	
+
+</html>
