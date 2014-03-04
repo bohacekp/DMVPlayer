@@ -97,11 +97,12 @@
 </table>
 	
 <script>
+var framerate = 27;
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
 		console.log(thisFrame);
-		seek((1/30)*(thisFrame)+(1/30));
+		seek((1/framerate)*(thisFrame)+(1/framerate));
 		pause();
 		console.log("go to frame:"+thisFrame);
 	}
@@ -114,7 +115,7 @@
 	//}
 	function prevFrame(){
 		pause();
-		player.currentTime=player.currentTime-(1/30);
+		player.currentTime=player.currentTime-(1/framerate);
 		//play();
 		//console.log("prev frame");
 		//player.playVideo();
@@ -141,9 +142,9 @@
 	function fwdFrame(){
 		//play();
 		pause();
-		player.currentTime=player.currentTime+(1/30);
+		player.currentTime=player.currentTime+(1/framerate);
 		//setTimeout(function() {player.pause()}, (100/3));
-		console.log("fwd frame"+player.currentTime);
+		console.log("fwd frame, time: "+player.currentTime);
 	}
 	window.addEventListener('keydown',this.check,false);
 	function check(e) {
