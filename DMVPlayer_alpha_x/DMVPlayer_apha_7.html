@@ -45,7 +45,7 @@
 </table>
 	
 <script>
-var framerate = 27;
+var framerate = 30;
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
@@ -61,7 +61,7 @@ var framerate = 27;
 		pause();
 		player.currentTime=player.currentTime-(1/framerate);
 		//play();
-		//console.log("prev frame");
+		console.log("prev frame");
 		//player.playVideo();
 		//pause();
 		//setTimeout(pause(), 1);
@@ -76,7 +76,7 @@ var framerate = 27;
 	
 	function pause(){
 		player.pause();
-		console.log("play");
+		console.log("pause");
 	}
 	function play(){
 		player.play();
@@ -92,10 +92,10 @@ var framerate = 27;
 		console.log("goToTime:" + time);
 	}
 	function fwdFrame(){
-		//play();
-		pause();
-		player.currentTime=player.currentTime+(1/framerate);
-		//setTimeout(function() {player.pause()}, (100/3));
+		play();
+		//pause();
+		//player.currentTime=player.currentTime+(1/framerate);
+		setTimeout(function() {player.pause()}, (990/framerate));
 		console.log("fwd frame, time: "+player.currentTime);
 	}
 	window.addEventListener('keydown',this.check,false);
