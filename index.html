@@ -35,53 +35,11 @@
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <!--<div id="player"></div> -->
-<video id="my_video_1" width="640" height="360" preload="auto" poster>
-<source src="test2.mp4" id="movie" type="video/mp4">
-  <source src="https://dl.dropboxusercontent.com/u/29885430/spinfalling.mp4" id="movie" type="video/mp4">
-  <source src="https://dl.dropboxusercontent.com/u/29885430/test2.ogg" type="video/ogg">
+<video id="my_video_1" width="1280" height="720" preload="auto" poster>
+  <source src="https://dl.dropboxusercontent.com/u/21775654/spin%20falling.mp4" id="movie" type="video/mp4">
 </video>
  <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
       
-	  /*var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-		height: '390',
-        width: '640',
-		videoId: 't-FAePvFujg',
-		playerVars: {
-               html5: 1,
-               controls: 1,
-            } ,
-		  events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-     console.log("player ready?");
-	  function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-	console.log("yes,player ready");
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-	  
-      var done = false;
-      function onPlayerStateChange(event) {
-      }
-	  */
 	  var player = document.getElementById('my_video_1');
     </script>
 	<style>
@@ -101,35 +59,25 @@
 	}
 	</style>
 	
-<table border="1">
-	<caption>Video Controls</caption>
+<table width ="1280" border="0">
+
 	<tr>
-		<td>First Frame</td>
-		<td>Previous Frame</td>
-		<td>Play</td>
-		<td>Pause</td>
-		<td>Next Frame</td>
-	<!--	<td>Last Frame</td> -->
-		<td>Go To Frame</td>
-		<td>Be Careful with this</td>
-	</tr>
-	<tr>
-		<th><input type="button" value="    {{    " name="beginning" onclick="goToTime(0)" /></th>
-		<th><input type="button" value="    {     " name="skipToPrev" onclick="prevFrame()" /></th>
-		<th><input type="button" value="    >     " name="playVid" onclick='play()' /></th>
-		<th><input type="button" value="    ||    " name="pauseVid" onclick='pause()' /></th>
-		<th><input type="button" value="    }     " name="skipToNext" onclick="fwdFrame()" /></th>
-		<!-- <th><input type="button" value="    }}    " name="end" onclick="myPlayer.currentTime = my_video_1.duration" /></th> -->
+		<th><input type="button" value="    |<<    " name="beginning" onclick="goToTime(0)" /></th>
+		<th><input type="button" value="    |<     " name="skipToPrev" onclick="prevFrame()" /></th>
+		<th><input type="button" value="    >/||     " name="playPause" onclick='playPause()' /></th>
+		<!--<th><input type="button" value="    ||    " name="pauseVid" onclick='pause()' /></th> -->
+		<th><input type="button" value="    >|     " name="skipToNext" onclick="fwdFrame()" /></th>
+		<!-- <th><input type="button" value="    >>|    " name="end" onclick="myPlayer.currentTime = my_video_1.duration" /></th> -->
 		<th><input type="text" id="FrameJump" size="1"/>
 		<input type="button" value="Go!" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
-		<th><input type="button" value="dont click me" name="skipToNext" onclick='alert("why did you click me?")' </th>
+		<!--<th><input type="button" value="dont click me" name="skipToNext" onclick='alert("why did you click me?")' </th> -->
 		<!--<th><input type="button" value="hi!" name="hallo" onclick="seek(5)" </th>-->
 	</tr>
 		
 </table>
 	
 <script>
-var framerate = 29.97;
+var framerate = 30;
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
@@ -140,16 +88,9 @@ var framerate = 29.97;
 	}
 	
 	
-	//function fwdFrame_(){
-		//player.pauseVideo();
-		//player.playVideo();
-		//player.playVideo();
-	//}
+
 	function prevFrame(){
 		pause();
-		//play();
-		//player.currentTime=player.currentTime-(2/framerate);
-		//setTimeout(function(){player.pause()},(1/framerate));
 		player.currentTime=player.currentTime-(1/framerate);
 		//play();
 		console.log("prev frame");
@@ -157,6 +98,14 @@ var framerate = 29.97;
 		//pause();
 		//setTimeout(pause(), 1);
 	}
+	
+	function playPause(){ 
+		if (player.paused) 
+ 		 play(); 
+		else 
+  		 pause(); 
+	} 
+	
 	function pause(){
 		player.pause();
 		console.log("pause");
@@ -175,12 +124,10 @@ var framerate = 29.97;
 		console.log("goToTime:" + time);
 	}
 	function fwdFrame(){
-		//play();
 		play();
-		setTimeout(function(){player.pause()}, 990/framerate);
 		//pause();
 		//player.currentTime=player.currentTime+(1/framerate);
-		//setTimeout(function() {player.pause()}, (100/3));
+		setTimeout(function() {player.pause()}, (990/framerate));
 		console.log("fwd frame, time: "+player.currentTime);
 	}
 	window.addEventListener('keydown',this.check,false);
@@ -194,7 +141,7 @@ var framerate = 29.97;
 			fwdFrame();
 		//Spacebar pressed
 		if (code == 32)
-			pause();
+			playPause();
 	}
 </script>
 </body>
