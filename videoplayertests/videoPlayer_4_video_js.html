@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <link href="http://vjs.zencdn.net/4.3/video-js.css" rel="stylesheet">
+ <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+  <title>Sample styled page</title>
+  <script src="video-js/video.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="video-js/video-js.css" type="text/css" media="screen" title="Video JS" charset="utf-8">
+ </head>
+ <body>
+  <h1>Sample styled page</h1>
+  <p>This page is just a demo.</p>
+  <video id="current_video" class="video-js" width="400" height="300" controls="controls" preload="auto">
+    <source src="pr6.webm" type='video/webm; codecs="vp8, vorbis"' />
+  
+  <script>
+$(document).keydown(function(e){ // bind to left & right arrow keys
+
+if (e.keyCode == 37) { 
+  // get a reference to your player
+  var myPlayer = document.getElementById("current_video");
+
+   // decrement the video time by 1/30 of a second
+   myPlayer.currentTime(myPlayer.currentTime() - .033);
+   return false;
+}
+else if (e.keyCode == 39) {
+
+  // get a reference to your player
+  var myPlayer = document.getElementById("current_video");
+
+   // decrement the video time by 1/30 of a second
+   myPlayer.currentTime(myPlayer.currentTime() + .033);
+   return false;
+}
+});
+</video>
+</script>
+ </body>
+</html>
