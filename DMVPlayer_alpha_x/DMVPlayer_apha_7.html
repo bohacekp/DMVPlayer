@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <body>
+ <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <!--<div id="player"></div> -->
 <video id="my_video_1" width="1280" height="720" preload="auto" poster>
@@ -33,6 +33,7 @@
 		<th><input type="button" value="    |<<    " name="beginning" onclick="goToTime(0)" /></th>
 		<th><input type="button" value="    |<     " name="skipToPrev" onclick="prevFrame()" /></th>
 		<th><input type="button" value="    >/||     " name="playPause" onclick='playPause()' /></th>
+		<!--<th><button type="button" id="playPause" onclick=playPause()>></button></th>-->
 		<!--<th><input type="button" value="    ||    " name="pauseVid" onclick='pause()' /></th> -->
 		<th><input type="button" value="    >|     " name="skipToNext" onclick="fwdFrame()" /></th>
 		<!-- <th><input type="button" value="    >>|    " name="end" onclick="myPlayer.currentTime = my_video_1.duration" /></th> -->
@@ -43,7 +44,6 @@
 	</tr>
 		
 </table>
-	
 <script>
 var framerate = 30;
 	function goToEnteredFrame(){
@@ -69,9 +69,11 @@ var framerate = 30;
 	
 	function playPause(){ 
 		if (player.paused) 
- 		 play(); 
+ 		 play();
+		 //document.getElementByName("playPause").innerHTML="||";
 		else 
-  		 pause(); 
+  		 pause();
+		// document.getElementByName("playPause").innerHTML=">";
 	} 
 	
 	function pause(){
