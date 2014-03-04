@@ -80,7 +80,7 @@
 		<th><input type="button" value="    {     " name="skipToPrev" onclick="prevFrame()" /></th>
 		<th><input type="button" value="    >     " name="playVid" onclick='player.playVideo()' /></th>
 		<th><input type="button" value="    ||    " name="pauseVid" onclick='player.pauseVideo()' /></th>
-		<th><input type="button" value="    }     " name="skipToNext" onclick="fwdFrame_()" /></th>
+		<th><input type="button" value="    }     " name="skipToNext" onclick="fwdFrame()" /></th>
 		<!-- <th><input type="button" value="    }}    " name="end" onclick="myPlayer.currentTime = my_video_1.duration" /></th> -->
 		<th><input type="text" id="FrameJump" size="1"/>
 		<input type="button" value="Go!" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
@@ -138,7 +138,7 @@
 		player.seekTo(time);
 		console.log("goToTime:" + time);
 	}
-	function fwdFrame_(){
+	function fwdFrame(){
 		player.playVideo();
 		setTimeout(function() {player.pauseVideo()}, (100/3));
 		console.log("fwd frame");
@@ -148,15 +148,15 @@
 		var code = e.keyCode;
 		//Left arrow pressed
 		if (code == 37)
-			pause();
-			player.seekTo(player.getCurrentTime()-(1/30));
+			
+			prevFrame();
 		//Right arrow pressed
 		if (code == 39)
-			pause();
-			player.seekTo(player.getCurrentTime()+(1/30));
+			
+			fwdFrame();
 		//Spacebar pressed
 		if (code == 32)
-			player.pauseVideo();
+			pause();
 	}
 </script>
 </body>
