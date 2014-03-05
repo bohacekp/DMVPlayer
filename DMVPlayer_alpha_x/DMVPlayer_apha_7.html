@@ -3,11 +3,12 @@
  <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <!--<div id="player"></div> -->
-<video id="my_video_1" width="1280" height="720" preload="auto" poster>
+<video id="my_video_1" width="100%" preload="auto" poster>
   <source src="https://dl.dropboxusercontent.com/u/21775654/spin%20falling.mp4" id="movie" type="video/mp4">
-</video>
+
+ </video>
  <script>
-      
+document.getElementById("my_video_1").style.maxWidth="980px";
 	  var player = document.getElementById('my_video_1');
     </script>
 	<style>
@@ -27,7 +28,7 @@
 	}
 	</style>
 	
-<table width ="1280" border="0">
+<table id="button_table_1" width ="100%" border="0">
 
 	<tr>
 		<th><input type="button" value="    |<<    " name="beginning" onclick="goToTime(0)" /></th>
@@ -45,6 +46,7 @@
 		
 </table>
 <script>
+document.getElementById("button_table_1").style.maxWidth="980px";
 var framerate = 30;
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
@@ -108,6 +110,12 @@ var framerate = 30;
 			prevFrame();
 		//Right arrow pressed
 		if (code == 39)
+			fwdFrame();
+		//Down arrow pressed
+		if (code == 40)
+			prevFrame();
+		//Up arrow pressed
+		if (code == 38)
 			fwdFrame();
 		//Spacebar pressed
 		if (code == 32)
