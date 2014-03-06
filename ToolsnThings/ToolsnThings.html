@@ -1,44 +1,75 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="myCanvas" width="578" height="200"></canvas>
-    <script>
-      function writeMessage(canvas, message) {
-        var context = canvas.getContext('2d');
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.font = '18pt Calibri';
-        context.fillStyle = 'black';
-        context.fillText(message, 10, 25);
-      }
-      function getMousePos(canvas, evt) {
-        var rect = canvas.getBoundingClientRect();
-        return {
-          x: evt.clientX - rect.left,
-          y: evt.clientY - rect.top
-        };
-      }
-      var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
+<head>
+<script>
+window.onload = function() {
+    drawCircle(circle);
+    element = document.getElementById('canvas');
+    element.addEventListener('mousedown', startDragging, false);
+    element.addEventListener('mousemove', drag, false);
+    element.addEventListener('mouseup', stopDragging, false);
+    element.addEventListener('mouseout', stopDragging, false);
+}
 
-      canvas.addEventListener('mousemove', function(evt) {
-        var mousePos = getMousePos(canvas, evt);
-        var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-        writeMessage(canvas, message);
-      }, false);
-	  context.beginPath();
-      context.arc(mousePos.x, mousePos.y, radius, 0, 2 * Math.PI, false);
-      context.fillStyle = 'green';
-      context.fill();
-      context.lineWidth = 5;
-      context.strokeStyle = '#003300';
-      context.stroke();
-    </script>
-  </body>
+function mouseX(e) {
+return e.clientX - element.offsetLeft;
+}
+
+function mouseY(e) {
+return e.clientY - element.offsetTop;
+}
+
+var Point = function (x, y) {
+    this.x = x;
+    this.y = y;
+    return this;
+}
+
+var Circle = function (point, radius) {
+    this.point = point;
+    this.radius = radius;
+    this.isInside = function (pt) {
+        return Math.pow(pt.x - point.x, 2) + Math.pow(pt.y - point.y, 2) <
+                                                          Math.pow(radius, 2); 
+    };
+    return this;
+}
+
+function startDragging(e) {
+    var p = new Point(e.offsetX, e.offsetY);
+    if(circle.isInside(p)) {
+        deltaCenter = new Point(p.x - circle.point.x, p.y - circle.point.y);
+    }
+}
+
+function drag(e) {
+    if(deltaCenter != null) {
+        circle.point.x = (mouseX(e) - deltaCenter.x);
+        circle.point.y = (mouseY(e) - deltaCenter.y);   
+        drawCircle(circle);
+    }
+}
+
+function stopDragging(e) {
+    deltaCenter = null;
+}
+
+function drawCircle(circle) {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.arc(circle.point.x, circle.point.y, circle.radius, 0, Math.PI*2, true);
+    ctx.fill();
+}
+
+var circle = new Circle(new Point(30, 40), 25);
+var deltaCenter = null;
+var element;
+
+</script>
+</head>
+<body>
+<canvas id="canvas" width="400" height="300"></canvas>
+</body>
 </html>
