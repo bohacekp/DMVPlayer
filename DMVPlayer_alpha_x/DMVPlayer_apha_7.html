@@ -6,11 +6,38 @@
 <video id="my_video_1" width="100%" preload="auto" poster>
   <source src="https://dl.dropboxusercontent.com/u/21775654/spin%20falling.mp4" id="movie" type="video/mp4">
  </video>
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+
+<div id="scrubber">
+    <div id="progress"></div>
+</div>
+ 
  <script>
 document.getElementById("my_video_1").style.maxWidth="980px";
 var player = document.getElementById('my_video_1');
     </script>
 <head>
+<style type="text/css">
+    #vid {
+        width: 640px;
+        height: 360px;
+    }
+
+    #scrubber {
+        position: relative;
+        width: 980px;
+        height: 20px;
+        background-color: black;
+    }
+
+    #progress {
+        width: 0;
+        height: 20px;
+        background-color: blue;
+    }
+</style>
 <style>
 
 table,th,td
@@ -117,12 +144,16 @@ player.currentTime=time;
 console.log("goToTime:" + time);
 }
 function fwdFrame(){
+pause(); //this section of code works on all browsers, but skips
+player.currentTime=player.currentTime+(1/framerate);
+
+/*  This section of code works well on chrome, but not on other browsers
 play();
-//pause();
-//player.currentTime=player.currentTime+(1/framerate);
 setTimeout(function() {player.pause()}, (990/framerate));
 console.log("fwd frame, time: "+player.currentTime);
+*/
 }
+
 window.addEventListener('keydown',this.check,false);
 function check(e) {
 var code = e.keyCode;
@@ -219,6 +250,42 @@ playPause();
 
 </script>
 </body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+		// the $ says that it can use the jquery functions, it is purely cosmetic, these variables do not need a $, but it is an easy way to keep track of which variables are which
+        var $video = $("#my_video_1"); //like getElementById(vid) but the returned object is passed to a jquery function
+		
+        var $scrubber = $("#scrubber");
+        var $progress = $("#progress");
+        
+        $video.bind("timeupdate", videoTimeUpdateHandler);
+        $scrubber.bind("mousedown", scrubberMouseDownHandler);
+        
+        function videoTimeUpdateHandler(e) {
+            var video = $video.get(0);
+            var percent = video.currentTime / video.duration;
+            updateProgressWidth(percent);
+        }
+        
+        function scrubberMouseDownHandler(e) {
+            var $this = $(this);
+            var x = e.pageX - $this.offset().left;
+            var percent = x / $this.width();
+            updateProgressWidth(percent);
+            updateVideoTime(percent);
+        }
+        
+        function updateProgressWidth(percent) {
+            $progress.width((percent * 100) + "%");
+        }
+        
+        function updateVideoTime(percent) {
+            var video = $video.get(0);
+            video.currentTime = percent * video.duration;
+        }
+    });
+</script>
 </html>
 
 
