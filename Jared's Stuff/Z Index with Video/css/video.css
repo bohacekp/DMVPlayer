@@ -1,6 +1,18 @@
+body, html 
+{
+	height: 100%;
+}
 
+div.wrapper 
+{
+	height: 100%;
+	overflow: hidden;
+}
 
-
+body
+{
+	overflow: hidden;
+}
 
 /* Type stuff ---------------------------------- */
 
