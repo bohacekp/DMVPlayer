@@ -4,8 +4,9 @@
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <!--<div id="player"></div> -->
 <video id="my_video_1" width="100%" preload="auto" poster>
-  <source src="spin_falling.mp4" id="movie" type="video/mp4">
- </video>
+  <source src="http://DMVPlayer.wsp197.org/spin_falling.mp4" id="movie" type="video/mp4">
+ <source src="http://DMVPlayer.wsp197.org/spin_falling.ogv" id="movie" type="video/ogg">
+  </video>
 
  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 
@@ -101,7 +102,7 @@ function goToEnteredFrame(){
 console.log("Going To Frame:");
 var thisFrame = document.getElementById("FrameJump").value;
 console.log(thisFrame);
-seek((1/framerate)*(thisFrame)+(1/framerate));
+seek((1/framerate)*(thisFrame)+(1/framerate)).toPrecision(5);
 pause();
 console.log("go to frame:"+thisFrame);
 }
@@ -110,7 +111,8 @@ console.log("go to frame:"+thisFrame);
 
 function prevFrame(){
 pause();
-player.currentTime=player.currentTime-(1/framerate);
+vid.currentTime -=(1/30);
+//player.currentTime=player.currentTime-(1/framerate).toPrecision(5);
 //play();
 console.log("prev frame");
 //player.playVideo();
@@ -146,7 +148,7 @@ console.log("goToTime:" + time);
 }
 function fwdFrame(){
 pause(); //this section of code works on all browsers, but skips
-player.currentTime=player.currentTime+(1/framerate);
+player.currentTime=player.currentTime+(1/framerate).toPrecision(5);
 
 /*  This section of code works well on chrome, but not on other browsers
 play();
@@ -179,7 +181,7 @@ playPause();
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
 		console.log(thisFrame);
-		seek((1/framerate)*(thisFrame)+(1/framerate));
+		seek((1/framerate)*(thisFrame)+(1/framerate)).toPrecision(5);
 		pause();
 		console.log("go to frame:"+thisFrame);
 	}
@@ -188,7 +190,8 @@ playPause();
 
 	function prevFrame(){
 		pause();
-		player.currentTime=player.currentTime-(1/framerate);
+		player.currentTime -=(1/30).toPrecision(5);
+		//player.currentTime=player.currentTime-(1/framerate);
 		//play();
 		console.log("prev frame");
 		//player.playVideo();
