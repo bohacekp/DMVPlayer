@@ -1,46 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>Dmvplayer by bohacekp</title>
-  </head>
-
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Dmvplayer</h1>
-        <h2>Video player built for use with Direct Measurement Videos.</h2>
-        <a href="https://github.com/bohacekp/DMVPlayer" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-<!DOCTYPE html>
-<html>
-  <body>
+ <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <!--<div id="player"></div> -->
-<video id="my_video_1" width="1280" height="720" preload="auto" poster>
-  <source src="https://dl.dropboxusercontent.com/u/21775654/spin%20falling.mp4" id="movie" type="video/mp4">
-</video>
+<video id="my_video_1" width="100%" preload="auto" poster>
+  <source src="http://DMVPlayer.wsp197.org/spin_falling.mp4" id="movie" type="video/mp4">
+ <source src="http://DMVPlayer.wsp197.org/spin_falling.ogv" id="movie" type="video/ogg">
+  </video>
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
+
+<div id="scrubber">
+    <div id="progress"></div>
+</div>
+ 
  <script>
-      
-	  var player = document.getElementById('my_video_1');
+document.getElementById("my_video_1").style.maxWidth="980px";
+document.getElementById("my_video_1").style.minWidth="600px";
+document.getElementById("scrubber").style.maxWidth="980px";
+var player = document.getElementById('my_video_1');
+    </script>
+<head>
+
+<style type="text/css">
+    #vid {
+        width: 640px;
+        height: 360px;
+    }
+
+    #scrubber {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        background-color: rgb(200,200,200);
+    }
+
+    #progress {
+        width: 0;
+        height: 20px;
+        background-color: rgb(180,110,40);
+    }
+</style>
+<style>
+
+table,th,td
+{
+font-family: "calibri";
+border-collapse:collapse;
+vertical-align:center;
+position: relative;
+}
+td{
+background-color:rgb(200,200,200);
+}
+th{
+background-color:rgb(230,230,230);
+}
+</style>
+
+<table id="button_table_1" width ="100%" border="0">
+
+
+<th><input type="button" value=" |<< " name="beginning" onclick="goToTime(0)" /></th>
+<th><input type="button" value=" |< " name="skipToPrev" onclick="prevFrame()" /></th>
+<th><input type="button" value=" >/|| " name="playPause" onclick='playPause()' /></th>
+<!--<th><button type="button" id="playPause" onclick=playPause()>></button></th>-->
+<!--<th><input type="button" value=" || " name="pauseVid" onclick='pause()' /></th> -->
+<th><input type="button" value=" >| " name="skipToNext" onclick="fwdFrame()" /></th>
+<!-- <th><input type="button" value=" >>| " name="end" onclick="myPlayer.currentTime = my_video_1.duration" /></th> -->
+<th><input type="text" id="FrameJump" size="1"/>
+<input type="button" value="Go!" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
+<!--<th><input type="button" value="dont click me" name="skipToNext" onclick='alert("why did you click me?")' </th> -->
+<!--<th><input type="button" value="hi!" name="hallo" onclick="seek(5)" </th>-->
+
+
+
     </script>
 	<style>
 
@@ -58,54 +93,78 @@
 	background-color:rgb(230,230,230);
 	}
 	</style>
-	
-<table width ="1280" border="0">
 
-	<tr>
-		<th><input type="button" value="    |<<    " name="beginning" onclick="goToTime(0)" /></th>
-		<th><input type="button" value="    |<     " name="skipToPrev" onclick="prevFrame()" /></th>
-		<th><input type="button" value="    >/||     " name="playPause" onclick='playPause()' /></th>
-		<!--<th><input type="button" value="    ||    " name="pauseVid" onclick='pause()' /></th> -->
-		<th><input type="button" value="    >|     " name="skipToNext" onclick="fwdFrame()" /></th>
-		<!-- <th><input type="button" value="    >>|    " name="end" onclick="myPlayer.currentTime = my_video_1.duration" /></th> -->
-		<th><input type="text" id="FrameJump" size="1"/>
-		<input type="button" value="Go!" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
-		<!--<th><input type="button" value="dont click me" name="skipToNext" onclick='alert("why did you click me?")' </th> -->
-		<!--<th><input type="button" value="hi!" name="hallo" onclick="seek(5)" </th>-->
-	</tr>
-		
+
 </table>
-	
+<form>
+<input id = "Chrome" type="radio" name="sex" value="Chrome" checked>Chrome<br>
+<input id = "Otherbrowser" type="radio" name="sex" value="Other browser">Other Browser
+</form>
+
 <script>
+document.getElementById("button_table_1").style.maxWidth="980px";
 var framerate = 30;
+
+function goToEnteredFrame(){
+console.log("Going To Frame:");
+var thisFrame = document.getElementById("FrameJump").value;
+console.log(thisFrame);
+seek((1/framerate)*(thisFrame)+(1/framerate)).toPrecision(5);
+pause();
+console.log("go to frame:"+thisFrame);
+}
+
+window.addEventListener('keydown',this.check,false);
+function check(e) {
+var code = e.keyCode;
+//Left arrow pressed
+if (code == 37)
+prevFrame();
+//Right arrow pressed
+if (code == 39)
+fwdFrame();
+//Down arrow pressed
+if (code == 40)
+prevFrame();
+//Up arrow pressed
+if (code == 38)
+fwdFrame();
+//Spacebar pressed
+if (code == 32)
+playPause();
+}
+
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
 		console.log(thisFrame);
-		seek((1/framerate)*(thisFrame)+(1/framerate));
+		seek((1/framerate)*(thisFrame)+(1/framerate)).toPrecision(5);
 		pause();
 		console.log("go to frame:"+thisFrame);
 	}
-	
-	
+
+
 
 	function prevFrame(){
 		pause();
-		player.currentTime=player.currentTime-(1/framerate);
+		player.currentTime -=(1/30).toPrecision(5);
+		//player.currentTime=player.currentTime-(1/framerate);
 		//play();
 		console.log("prev frame");
 		//player.playVideo();
 		//pause();
 		//setTimeout(pause(), 1);
 	}
-	
+
 	function playPause(){ 
 		if (player.paused) 
- 		 play(); 
+ 		 play();
+		 //document.getElementByName("playPause").innerHTML="||";
 		else 
-  		 pause(); 
+  		 pause();
+		// document.getElementByName("playPause").innerHTML=">";
 	} 
-	
+
 	function pause(){
 		player.pause();
 		console.log("pause");
@@ -124,11 +183,18 @@ var framerate = 30;
 		console.log("goToTime:" + time);
 	}
 	function fwdFrame(){
-		play();
-		//pause();
-		//player.currentTime=player.currentTime+(1/framerate);
-		setTimeout(function() {player.pause()}, (990/framerate));
-		console.log("fwd frame, time: "+player.currentTime);
+		//
+		if (document.getElementById("Chrome").checked){
+			play();
+			setTimeout(function() {player.pause()}, (990/framerate));
+			console.log("fwd frame Chrome, time: "+player.currentTime);
+			}
+		else{
+			pause();
+			player.currentTime=player.currentTime+(1/framerate);
+			console.log("fwd frame other browser, time: "+player.currentTime);
+		}
+	//	console.log("fwd frame , time: "+player.currentTime);
 	}
 	window.addEventListener('keydown',this.check,false);
 	function check(e) {
@@ -139,65 +205,53 @@ var framerate = 30;
 		//Right arrow pressed
 		if (code == 39)
 			fwdFrame();
+		//Down arrow pressed
+		if (code == 40)
+			prevFrame();
+		//Up arrow pressed
+		if (code == 38)
+			fwdFrame();
 		//Spacebar pressed
 		if (code == 32)
 			playPause();
 	}
+
 </script>
 </body>
-	
-	
-	
 
-</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+		// the $ says that it can use the jquery functions, it is purely cosmetic, these variables do not need a $, but it is an easy way to keep track of which variables are which
+        var $video = $("#my_video_1"); //like getElementById(vid) but the returned object is passed to a jquery function
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/bohacekp/DMVPlayer/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/bohacekp/DMVPlayer/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/bohacekp/DMVPlayer"></a> is maintained by <a href="https://github.com/bohacekp">bohacekp</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
+        var $scrubber = $("#scrubber");
+        var $progress = $("#progress");
+        
+        $video.bind("timeupdate", videoTimeUpdateHandler);
+        $scrubber.bind("mousedown", scrubberMouseDownHandler);
+        
+        function videoTimeUpdateHandler(e) {
+            var video = $video.get(0);
+            var percent = video.currentTime / video.duration;
+            updateProgressWidth(percent);
+        }
+        
+        function scrubberMouseDownHandler(e) {
+            var $this = $(this);
+            var x = e.pageX - $this.offset().left;
+            var percent = x / $this.width();
+            updateProgressWidth(percent);
+            updateVideoTime(percent);
+        }
+        
+        function updateProgressWidth(percent) {
+            $progress.width((percent * 100) + "%");
+        }
+        
+        function updateVideoTime(percent) {
+            var video = $video.get(0);
+            video.currentTime = percent * video.duration;
+        }
+    });
+</script>
 </html>
