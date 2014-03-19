@@ -17,10 +17,12 @@
  
  <script>
 document.getElementById("my_video_1").style.maxWidth="980px";
+document.getElementById("my_video_1").style.minWidth="600px";
 document.getElementById("scrubber").style.maxWidth="980px";
 var player = document.getElementById('my_video_1');
     </script>
 <head>
+
 <style type="text/css">
     #vid {
         width: 640px;
@@ -94,6 +96,11 @@ background-color:rgb(230,230,230);
 
 
 </table>
+<form>
+<input id = "Chrome" type="radio" name="sex" value="Chrome" checked>Chrome<br>
+<input id = "Otherbrowser" type="radio" name="sex" value="Other browser">Other Browser
+</form>
+
 <script>
 document.getElementById("button_table_1").style.maxWidth="980px";
 var framerate = 30;
@@ -176,11 +183,18 @@ playPause();
 		console.log("goToTime:" + time);
 	}
 	function fwdFrame(){
-		//play();
-		pause();
-		player.currentTime=player.currentTime+(1/framerate);
-		//setTimeout(function() {player.pause()}, (990/framerate));
-		console.log("fwd frame, time: "+player.currentTime);
+		//
+		if (document.getElementById("Chrome").checked){
+			play();
+			setTimeout(function() {player.pause()}, (990/framerate));
+			console.log("fwd frame Chrome, time: "+player.currentTime);
+			}
+		else{
+			pause();
+			player.currentTime=player.currentTime+(1/framerate);
+			console.log("fwd frame other browser, time: "+player.currentTime);
+		}
+	//	console.log("fwd frame , time: "+player.currentTime);
 	}
 	window.addEventListener('keydown',this.check,false);
 	function check(e) {
