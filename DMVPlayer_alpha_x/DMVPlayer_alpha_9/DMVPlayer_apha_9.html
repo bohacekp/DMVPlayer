@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+<!--<div id="player"></div> -->
+
+<video id="my_video_1" width="100%" preload="auto" poster>
+	<source src="http://DMVPlayer.wsp197.org/spin_falling.mp4" id="movie" type="video/mp4">
+	<source src="http://DMVPlayer.wsp197.org/spin_falling.ogv" id="movie" type="video/ogg">
+</video>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script src="playerControls.js"></script>
+<script src="scrubber.js"></script>
+<div id="scrubber">
+    <div id="progress"></div>
+</div>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script>
+	document.getElementById("my_video_1").style.maxWidth="980px";
+	document.getElementById("my_video_1").style.minHeight="400px";
+	document.getElementById("scrubber").style.maxWidth="980px";
+	var player = document.getElementById('my_video_1');
+</script>
+
+
+<head>
+<table id="button_table_1" width ="100%" border="0">
+	<th><input type="button" value=" |<< " name="beginning" onclick="goToTime(0)" /></th>
+	<th><input type="button" value=" |< " name="skipToPrev" onclick="prevFrame()" /></th>
+	<th><input type="button" value=" >/|| " name="playPause" onclick='playPause()' /></th>
+	<th><input type="button" value=" >| " name="skipToNext" onclick="fwdFrame()" /></th>
+	<th><input type="text" id="FrameJump" size="10"/>
+	<input type="button" value="Go!" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
+</table>
+<script>
+document.getElementById("button_table_1").style.maxWidth="980px";
+</script>
+<form>
+	<input id = "Chrome" type="radio" name="sex" value="Chrome" checked>Chrome<br>
+	<input id = "Otherbrowser" type="radio" name="sex" value="Other browser">Webkit/other
+</form>
+
+</body>
+
+
+</html>
