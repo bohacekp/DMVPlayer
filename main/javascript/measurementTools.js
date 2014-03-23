@@ -1,4 +1,4 @@
 $(document).ready(function(){
-	$('#over').draggable({ containment: "parent" });
+	$('#over').draggable({ containment: "parent" }).resizable();
 	//$('#under').draggable();
 });
