@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+
+		<title>HTML5 Video - Z-Index test</title>
+
+		<!--CSS Files-->
+		<link rel="stylesheet" href="css/DMVPlayer.css" type="text/css"/>
+		<link rel="stylesheet" href="css/jquery-ui.css" type="text/css"/>
+		
+		<!--jQuery JavaScript Libraries-->
+		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+		<script src="javascript/jquery.ui.touch-punch.min.js"></script>
+
+		<!--DMVPlayer JavaScript Files-->
+		<script src="javascript/videoScript.js"></script>
+		<!--<script src="javascript/measurementTools.js"></script>-->
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<section class="intro">
+			
+			<h1>DMV Player</h1>
+			<h2></h2>
+			
+			</section>
+
+			<section id="zindexTest">
+				<div id="player">
+					<video id="my_video_1" width="400px" preload="auto" poster>
+					<source src="https://dl.dropboxusercontent.com/u/21775654/spin%20falling.mp4" id="movie" type="video/mp4">
+					</video>
+
+					<table id="button_table_1" width ="400px" border="0">
+						<tr>
+							<th><input id='beginning' type="button" value="    |<<    " name="beginning"/></th>
+
+							<th><input id='skipToPrev' type="button" value="    |<     " name="skipToPrev"/></th>
+
+							<th><input id='playPause' type="button" value="    >/||     " name="playPause" onclick="javascript: playPause();"/></th>
+							
+							<th><input id='skipToNext' type="button" value="    >|     " name="skipToNext"/></th>
+							
+							<th><input type="text" id="FrameJump" size="1"/>
+							
+							<input id='goToFrame' type="button" value="Go!" name="goToFrameButton"/></th>
+						</tr>
+					</table>
+				</div>
+
+				<div id="over">
+
+					<h4>This is over the video</h4>	
+
+				</div>
+			</section>
+		</div>
+	</body>
+</html>
