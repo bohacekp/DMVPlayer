@@ -100,6 +100,8 @@
     //$( "#amount" ).html( value );
     
 	
-	console.log(document.getElementById("slider").offsetWidth);
+	console.log(document.getElementById("slider").offsetWidth);	
+	console.log(document.getElementById("button_table_1").offsetWidth);
+
   });
   
