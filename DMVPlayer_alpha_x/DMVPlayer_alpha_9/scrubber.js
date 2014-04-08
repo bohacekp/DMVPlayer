@@ -102,4 +102,3 @@
 	
 	console.log(document.getElementById("slider").offsetWidth);
   });
-  
