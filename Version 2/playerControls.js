@@ -33,7 +33,7 @@
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
 		console.log(thisFrame);
-		seek((1/framerate)*(thisFrame)+(1/framerate)).toPrecision(5);
+		seek(Math.round(((1/framerate)*(thisFrame)+(1/framerate))*100000)/100000);
 		pause();
 		console.log("go to frame:"+thisFrame);
 	}
@@ -84,13 +84,13 @@
 			console.log("You are using chrome, I will skip by playing");
 			play();
 			setTimeout(function() {player.pause()}, (1000/framerate));
-			console.log("fwd frame Chrome, time: "+player.currentTime);
+			//console.log("fwd frame Chrome, time: "+player.currentTime);
 			}
 		else{
 			console.log("Skip by setting time");
 			pause();
 			player.currentTime=player.currentTime+(1/framerate);
-			console.log("fwd frame other browser, time: "+player.currentTime);
+			//console.log("fwd frame other browser, time: "+player.currentTime);
 		}
 	//	console.log("fwd frame , time: "+player.currentTime);
 	}
