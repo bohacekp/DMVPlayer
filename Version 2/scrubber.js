@@ -83,7 +83,7 @@
        // $( "#amount" ).html( ui.value );
 		var value = $( "#slider" ).slider( "value" );
 		//var percent =  $( "#amount" ).html($( "#slider" ).slider( "value" ));
-        console.log(value);
+       // console.log(value);
 		player.currentTime=player.duration*(value/100000);
       }
     });
@@ -93,7 +93,7 @@
 		//updateProgressWidth(percent);
 		//$("slider").val(percent*100000);
 		$( "#slider" ).slider( "option", "value", percent*100000 );
-		console.log("update");
+		console.log("slider update");
      }
     // Set the initial slider amount in the #amount div element
     var value = $( "#slider" ).slider( "value" );

@@ -79,12 +79,15 @@
 	}
 	function fwdFrame(){
 		//
-		if (document.getElementById("Chrome").checked){
+		//document.getElementById("my_video_1").focus();
+		if (isChrome){
+			console.log("You are using chrome, I will skip by playing");
 			play();
 			setTimeout(function() {player.pause()}, (1000/framerate));
 			console.log("fwd frame Chrome, time: "+player.currentTime);
 			}
 		else{
+			console.log("Skip by setting time");
 			pause();
 			player.currentTime=player.currentTime+(1/framerate);
 			console.log("fwd frame other browser, time: "+player.currentTime);

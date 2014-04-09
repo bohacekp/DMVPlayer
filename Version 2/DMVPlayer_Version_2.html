@@ -18,9 +18,14 @@
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <link rel="stylesheet" href="css/DMVPlayer.css" type="text/css"/>
   <!--<script src="scrubber.js"></script>-->
- 
+ <script src="browserDetect.js"></script>
+  <script>
+		if(isIE){
+			alert("Internet explorer does not support DMVPlayer");
+		}
+	</script>
   <script src="scrubber.js"></script>
-
+  
   <!-- MeasurementTool javascript -->
   <!--
   <script src="javascript/measurementTools.js"></script>
@@ -32,7 +37,6 @@
   
 <meta charset="utf-8">
   
-
 
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
 <!--<div id="player"></div> -->
@@ -82,10 +86,7 @@
 document.getElementById("button_table_1").style.maxWidth="980px";
 </script>
 
-<form>
-	<input id = "Chrome" type="radio" name="sex" value="chrome" checked>Chrome<br>
-	<input id = "Otherbrowser" type="radio" name="sex" value="Other browser">Webkit/other
-</form>
+
 
 <!--
 <div id="over" class="rulerClass" >
