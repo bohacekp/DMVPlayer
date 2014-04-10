@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <link rel="stylesheet" href="css/DMVPlayer.css" type="text/css"/>
   <!--<script src="scrubber.js"></script>-->
+   <script src="browserDetect.js"></script>
   <script src="scrubber.js"></script>
 
   <!-- MeasurementTool javascript -->
@@ -39,6 +40,9 @@
 	<source src="http://DMVPlayer.wsp197.org/toy car 4b clean.ogv" id="movie" type="video/ogg">
 </video>
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>-->
+<script>
+	var framerate = 30;
+</script>
 <script src="playerControls.js"></script>
 
 <div id="slider" style="margin-top:0px;"></div>
@@ -67,20 +71,16 @@
 
 <table id="button_table_1" width ="100%" border="0" style="margin-top:5px;">
 	<th><input type="button" value=" |<< " name="beginning" onclick="goToTime(0)" /></th>
-	<th><input type="button" value=" |< " name="skipToPrev" onclick="prevFrame()" /></th>
-	<th><input type="button" value=" >/|| " name="playPause" onclick='playPause()' /></th>
-	<th><input type="button" value=" >| " name="skipToNext" onclick="fwdFrame()" /></th>
+	<th><input type="button" value=" |< " id="frameprev" name="skipToPrev" onclick="prevFrame()" /></th>
+	<th><input type="button" value=" >/|| " id="playorpause" name="playPause" onclick='playPause()' /></th>
+	<th><input type="button" value=" >| " id = "framefwd" name="skipToNext" onclick="fwdFrame()" /></th>
 	<th><input type="text" id="FrameJump" size="10"/>
-	<input type="button" value="Go!" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
+	<input type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
 </table>
 <script>
 document.getElementById("button_table_1").style.maxWidth="980px";
 </script>
 
-<form>
-	<input id = "Chrome" type="radio" name="sex" value="chrome" checked>Chrome<br>
-	<input id = "Otherbrowser" type="radio" name="sex" value="Other browser">Webkit/other
-</form>
 
 
 <div id="over" class="rulerClass" >
