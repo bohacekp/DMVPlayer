@@ -1,4 +1,4 @@
-	var framerate = 30;
+	
 
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
@@ -41,6 +41,7 @@
 
 
 	function prevFrame(){
+		document.getElementById("frameprev").focus();
 		pause();
 		player.currentTime -=(1/30).toPrecision(5);
 		//player.currentTime=player.currentTime-(1/framerate);
@@ -52,6 +53,8 @@
 	}
 
 	function playPause(){ 
+		document.getElementById("gotoframe").focus();
+		document.getElementById("gotoframe").blur();
 		if (player.paused) 
  		 play();
 		 //document.getElementByName("playPause").innerHTML="||";
@@ -79,7 +82,7 @@
 	}
 	function fwdFrame(){
 		//
-		//document.getElementById("my_video_1").focus();
+		document.getElementById("framefwd").focus();
 		if (isChrome){
 			console.log("You are using chrome, I will skip by playing");
 			play();
@@ -93,23 +96,4 @@
 			//console.log("fwd frame other browser, time: "+player.currentTime);
 		}
 	//	console.log("fwd frame , time: "+player.currentTime);
-	}
-	window.addEventListener('keydown',this.check,false);
-	function check(e) {
-		var code = e.keyCode;
-		//Left arrow pressed
-		if (code == 37)
-			prevFrame();
-		//Right arrow pressed
-		if (code == 39)
-			fwdFrame();
-		//Down arrow pressed
-		if (code == 40)
-			prevFrame();
-		//Up arrow pressed
-		if (code == 38)
-			fwdFrame();
-		//Spacebar pressed
-		if (code == 32)
-			playPause();
 	}

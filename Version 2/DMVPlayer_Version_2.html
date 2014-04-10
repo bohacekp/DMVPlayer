@@ -42,6 +42,9 @@
 	<source src="http://DMVPlayer.wsp197.org/spin_falling_clean.mp4" id="movie" type="video/mp4">
 	<source src="http://DMVPlayer.wsp197.org/spin_falling_clean.ogv" id="movie" type="video/ogg">
 </video>
+<script>
+	var framerate = 30;
+</script>
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>-->
 
 
@@ -72,11 +75,11 @@
  <script src="playerControls.js"></script>
 <table id="button_table_1" width ="100%" border="0" style="margin-top:5px;">
 	<th><input type="button" value=" |<< " name="beginning" onclick="goToTime(0)" /></th>
-	<th><input type="button" value=" |< " name="skipToPrev" onclick="prevFrame()" /></th>
-	<th><input type="button" value=" >/|| " name="playPause" onclick='playPause()' /></th>
-	<th><input type="button" value=" >| " name="skipToNext" onclick="fwdFrame()" /></th>
+	<th><input type="button" value=" |< " id="frameprev" name="skipToPrev" onclick="prevFrame()" /></th>
+	<th><input type="button" value=" >/|| " id="playorpause" name="playPause" onclick='playPause()' /></th>
+	<th><input type="button" value=" >| " id = "framefwd" name="skipToNext" onclick="fwdFrame()" /></th>
 	<th><input type="text" id="FrameJump" size="10"/>
-	<input type="button" value="Go!" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
+	<input type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
 </table>
 <script>
 document.getElementById("button_table_1").style.maxWidth="980px";
