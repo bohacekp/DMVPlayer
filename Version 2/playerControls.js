@@ -50,6 +50,7 @@
 		//player.playVideo();
 		//pause();
 		//setTimeout(pause(), 1);
+		document.getElementById("frameprev").blur();
 	}
 
 	function playPause(){ 
@@ -95,5 +96,6 @@
 			player.currentTime=player.currentTime+(1/framerate);
 			//console.log("fwd frame other browser, time: "+player.currentTime);
 		}
+		document.getElementById("framefwd").blur();
 	//	console.log("fwd frame , time: "+player.currentTime);
 	}
