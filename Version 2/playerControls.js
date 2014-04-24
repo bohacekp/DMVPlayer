@@ -41,6 +41,7 @@
 
 
 	function prevFrame(){
+		mousePos=0;
 		document.getElementById("frameprev").focus();
 		pause();
 		player.currentTime -=(1/30).toPrecision(5);
@@ -54,14 +55,22 @@
 	}
 
 	function playPause(){ 
+		doingSomethingElse=1;
 		document.getElementById("gotoframe").focus();
 		document.getElementById("gotoframe").blur();
-		if (player.paused) 
- 		 play();
+		if (player.paused) {
+ 		 
+		 play();
+		doingSomethingElse=0;
+		 }
 		 //document.getElementByName("playPause").innerHTML="||";
-		else 
+		else {
   		 pause();
+		 doingSomethingElse=0;
 		// document.getElementByName("playPause").innerHTML=">";
+		//doingSomethingElse=0;
+		}
+		
 	} 
 
 	function pause(){
@@ -83,18 +92,25 @@
 	}
 	function fwdFrame(){
 		//
+		doingSomethingElse=1;
+		mousePos=0;
+		sliding = 0;
 		document.getElementById("framefwd").focus();
 		if (isChrome){
 			console.log("You are using chrome, I will skip by playing");
 			play();
 			setTimeout(function() {player.pause()}, (1000/framerate));
 			//console.log("fwd frame Chrome, time: "+player.currentTime);
+			doingSomethingElse=0;
+
 			}
 		else{
 			console.log("Skip by setting time");
 			pause();
 			player.currentTime=player.currentTime+(1/framerate);
 			//console.log("fwd frame other browser, time: "+player.currentTime);
+			doingSomethingElse=0;
+
 		}
 		document.getElementById("framefwd").blur();
 	//	console.log("fwd frame , time: "+player.currentTime);
