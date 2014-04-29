@@ -1,5 +1,5 @@
 	
-
+var oldVal;
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
@@ -26,6 +26,8 @@
 			fwdFrame();
 		//Spacebar pressed
 		if (code == 32)
+			//document.getElementById("gotoframe").focus();
+			//document.getElementById("gotoframe").blur();
 			playPause();
 		}
 
@@ -41,7 +43,8 @@
 
 
 	function prevFrame(){
-		mousePos=0;
+		++oldVal;
+		//mousePos=0;
 		document.getElementById("frameprev").focus();
 		pause();
 		player.currentTime -=(1/30).toPrecision(5);
@@ -55,22 +58,27 @@
 	}
 
 	function playPause(){ 
-		doingSomethingElse=1;
-		document.getElementById("gotoframe").focus();
-		document.getElementById("gotoframe").blur();
+		//doNotUpdate=1;
+		//document.getElementById("playorpause").blur();
 		if (player.paused) {
- 		 
-		 play();
-		doingSomethingElse=0;
-		 }
+ 	
+		//doNotUpdate=1;	
+		
+		//player.currentTime=player.duration*(value/100000);
+		play();
+		
+
+		}
 		 //document.getElementByName("playPause").innerHTML="||";
 		else {
-  		 pause();
-		 doingSomethingElse=0;
+			doNotUpdate=1;
+			pause();
+		//	value = $( "#slider" ).slider( "value" );
+		//	player.currentTime=player.duration*(value/100000);
 		// document.getElementByName("playPause").innerHTML=">";
 		//doingSomethingElse=0;
 		}
-		
+
 	} 
 
 	function pause(){
@@ -91,11 +99,14 @@
 		console.log("goToTime:" + time);
 	}
 	function fwdFrame(){
+		++oldVal;
 		//
+		//value = $( "#slider" ).slider( "value" );
+		//player.currentTime=player.duration*(value/100000);
 		doingSomethingElse=1;
 		mousePos=0;
 		sliding = 0;
-		document.getElementById("framefwd").focus();
+		//document.getElementById("framefwd").focus();
 		if (isChrome){
 			console.log("You are using chrome, I will skip by playing");
 			play();
