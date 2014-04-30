@@ -1,11 +1,17 @@
-	
+var percent;
 var oldVal;
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
 		console.log(thisFrame);
-		seek((1/framerate)*(thisFrame)+(1/framerate)).toPrecision(5);
+		seek(Math.round(((1/framerate)*(thisFrame)+(1/framerate))*100000)/100000);
 		pause();
+		
+		//percent = video.currentTime / video.duration;
+			//updateProgressWidth(percent);
+			//$("slider").val(percent*100000);
+		//$( "#slider" ).slider( "option", "value", percent*100000 );
+		++oldVal;
 		console.log("go to frame:"+thisFrame);
 	}
 
@@ -30,16 +36,15 @@ var oldVal;
 			//document.getElementById("gotoframe").blur();
 			playPause();
 		}
-
+/*
 	function goToEnteredFrame(){
-		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
 		console.log(thisFrame);
 		seek(Math.round(((1/framerate)*(thisFrame)+(1/framerate))*100000)/100000);
 		pause();
 		console.log("go to frame:"+thisFrame);
 	}
-
+*/
 
 
 	function prevFrame(){

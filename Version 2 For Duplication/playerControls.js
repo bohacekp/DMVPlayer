@@ -1,11 +1,17 @@
-	
-
+var percent;
+var oldVal;
 	function goToEnteredFrame(){
 		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
 		console.log(thisFrame);
-		seek((1/framerate)*(thisFrame)+(1/framerate)).toPrecision(5);
+		seek(Math.round(((1/framerate)*(thisFrame)+(1/framerate))*100000)/100000);
 		pause();
+		
+		//percent = video.currentTime / video.duration;
+			//updateProgressWidth(percent);
+			//$("slider").val(percent*100000);
+		//$( "#slider" ).slider( "option", "value", percent*100000 );
+		++oldVal;
 		console.log("go to frame:"+thisFrame);
 	}
 
@@ -26,22 +32,24 @@
 			fwdFrame();
 		//Spacebar pressed
 		if (code == 32)
+			//document.getElementById("gotoframe").focus();
+			//document.getElementById("gotoframe").blur();
 			playPause();
 		}
-
+/*
 	function goToEnteredFrame(){
-		console.log("Going To Frame:");
 		var thisFrame = document.getElementById("FrameJump").value;
 		console.log(thisFrame);
 		seek(Math.round(((1/framerate)*(thisFrame)+(1/framerate))*100000)/100000);
 		pause();
 		console.log("go to frame:"+thisFrame);
 	}
-
+*/
 
 
 	function prevFrame(){
-		mousePos=0;
+		++oldVal;
+		//mousePos=0;
 		document.getElementById("frameprev").focus();
 		pause();
 		player.currentTime -=(1/30).toPrecision(5);
@@ -55,19 +63,23 @@
 	}
 
 	function playPause(){ 
-		playPauseClicked=1;
-		document.getElementById("gotoframe").focus();
-		document.getElementById("gotoframe").blur();
+		//doNotUpdate=1;
+		//document.getElementById("playorpause").blur();
 		if (player.paused) {
- 		playPauseClicked=0;	
+ 	
+		//doNotUpdate=1;	
+		
+		//player.currentTime=player.duration*(value/100000);
 		play();
-			 
+		
+
 		}
 		 //document.getElementByName("playPause").innerHTML="||";
 		else {
-  		 playPauseClicked=0;
-		 pause();
-		
+			doNotUpdate=1;
+			pause();
+		//	value = $( "#slider" ).slider( "value" );
+		//	player.currentTime=player.duration*(value/100000);
 		// document.getElementByName("playPause").innerHTML=">";
 		//doingSomethingElse=0;
 		}
@@ -92,11 +104,14 @@
 		console.log("goToTime:" + time);
 	}
 	function fwdFrame(){
+		++oldVal;
 		//
+		//value = $( "#slider" ).slider( "value" );
+		//player.currentTime=player.duration*(value/100000);
 		doingSomethingElse=1;
 		mousePos=0;
 		sliding = 0;
-		document.getElementById("framefwd").focus();
+		//document.getElementById("framefwd").focus();
 		if (isChrome){
 			console.log("You are using chrome, I will skip by playing");
 			play();

@@ -141,13 +141,12 @@ document.onmousedown = function() {
 	});
 	console.log(document.getElementById("slider").offsetWidth);
 	var newVal=$( "#slider" ).slider( "value" );
-	oldVal;
 	function videoTimeUpdateHandler(e) {
 		if((newVal!=oldVal)||!(player.paused)){
 	
 		// if(doNotUpdate==0){
 			value = $( "#slider" ).slider( "value" );
-			var percent = video.currentTime / video.duration;
+			percent = video.currentTime / video.duration;
 			//updateProgressWidth(percent);
 			//$("slider").val(percent*100000);
 			$( "#slider" ).slider( "option", "value", percent*100000 );
