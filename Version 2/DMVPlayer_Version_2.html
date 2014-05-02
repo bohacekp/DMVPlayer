@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id="DMVPlayer">
  <head>
  
   <!-- Load jQuery and jQuery UI -->
@@ -84,14 +84,20 @@
 	<input type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
 </table>
 -->	
-
+<!--
+<script>
+  $(function() {
+    $( document ).tooltip();
+  });
+  </script>
+  -->
 <table id="button_table_1" width ="100%" border="0" style="margin-top:5px;">
-	<th><input type="button" value=" |<< " name="beginning" onclick="goToTime(0)" /></th>
-	<th><input type="button" value=" |< " id="frameprev" name="skipToPrev" onclick="prevFrame()" /></th>
-	<th><input type="button" value=" >/|| " id="playorpause" name="playPause" onclick="playPause()" /></th>
-	<th><input type="button" value=" >| " id = "framefwd" name="skipToNext" onclick="fwdFrame()" /></th>
-	<th><input type="text" id="FrameJump" size="10"/>
-	<input type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
+	<th><input title="Rewind the video" type="button" title="rewind" value=" |<< " name="beginning" onclick="goToTime(0)" /></th>
+	<th><button><img src="prevFrame.png"  style="height; width: 18px" title="Previous frame (left or down arrow button)" id="frameprev" onclick='prevFrame()' /></button></th>
+	<th><button><img src="playbut.png" style="height; width: 18px" title="Play or pause the video (spacebar)" id="playorpause" onclick='playPause()' /></button></th>
+	<th><button><img src="fwdFrame.png" style="height; width: 18px" title="Next frame (right or up arrow button)"id = "framefwd" onclick="fwdFrame()" /></button></th>
+	<th><input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
+	<input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
 </table>
 
 <script>
