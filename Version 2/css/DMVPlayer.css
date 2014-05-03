@@ -108,6 +108,7 @@ a {
 .rulerClass
 {
   background-color: rgba(0,0,0,0);
+  position: absolute;
 }
 
 img 
