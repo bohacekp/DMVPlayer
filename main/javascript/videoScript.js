@@ -1,9 +1,5 @@
 //This is the script for the video player
 $(document).ready(function(){
-	$('#over').draggable();
-	$('#under').draggable();
-
-
 	$('#my_video_1').get(0).style.maxWidth="1000px";
 	var player = $('#my_video_1').get(0);
 	// player.load();

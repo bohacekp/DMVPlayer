@@ -21,10 +21,12 @@ body, html
   height: 100%;
 }
 
-div.wrapper 
+div.DMVplayer 
 {
   height: 100%;
+  width: 100%;
   overflow: hidden;
+  background-color:rgb(0, 128, 128); 
 }
 
 body
@@ -83,21 +85,10 @@ a {
   padding: 10px;
   margin: 0;
 }
-#zindexTest #under {
-  position: absolute;
-  top:80px;
-  left: 10px;
-  background: #fff;
-  width: 500px;
-  text-align: left;
-  margin: 0;
-  padding: 0;
-  color: #000;
-}
 #zindexTest #over {
   position: absolute;
-  left: 10px; 
-  top:10px;
+/*  left: 10px; 
+  top:10px;*/
   background: rgba(22,33,66,0.8);
   width: 150px;
   text-align: left;
