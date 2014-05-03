@@ -109,14 +109,14 @@ a {
 /*To change the size of the ruler set the height and width values.*/
 .horizontalRulerClass
 {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(255,255,255,0.5);
   position: absolute;
   /*Position*/
   left: 50px;
   top: 50px;
   /*Size*/
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 150px;
 }
 
 img 
