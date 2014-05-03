@@ -82,7 +82,7 @@
 		//
 		if (document.getElementById("Chrome").checked){
 			play();
-			setTimeout(function() {player.pause()}, (990/framerate));
+			setTimeout(function() {player.pause()}, (1000/framerate));
 			console.log("fwd frame Chrome, time: "+player.currentTime);
 			}
 		else{

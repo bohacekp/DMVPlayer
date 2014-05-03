@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en" id="zindex">
+<head>
+	<meta charset="UTF-8" />
+
+	<title>HTML5 Video - Z-Index test</title>
+
+	<link rel="stylesheet" href="css/video.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/jquery-ui.css" type="text/css"/>
+	
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+	<script src="jquery.ui.touch-punch.min.js"></script>
+	<script src="script.js"></script>
+
+</head>
+
+<body>
+
+	<div class="wrapper">	
+
+	<section class="intro">
+		
+		<h1>HTML5 video test</h1>
+		<h2>Playing with the stack order</h2>
+	
+		<p></p>
+	
+	</section>
+
+
+ 	<section id="zindexTest">
+	
+
+	<!-- <video preload controls width="340" title="Day Sleeper">
+	
+		<source src="https://dl.dropboxusercontent.com/u/21775654/spin%20falling.mp4" id="movie" type="video/mp4">
+		
+		<p><a href="video/day_sleeper.m4v">Download movie</a></p>
+	
+	</video> -->
+
+	<div id="player">
+  <video id="my_video_1" width="400px" preload="auto" poster>
+    <source src="https://dl.dropboxusercontent.com/u/21775654/spin%20falling.mp4" id="movie" type="video/mp4">
+   </video>
+   <script>
+  document.getElementById("my_video_1").style.maxWidth="1000px";
+  	  var player = document.getElementById('my_video_1');
+      </script>
+  	<style>
+
+  	table,th,td
+  	{
+  	font-family: "calibri";
+  	border-collapse:collapse;
+  	vertical-align:center;
+  	position: relative;
+  	}
+  	td{
+  	background-color:rgb(200,200,200);
+  	}
+  	th{
+  	background-color:rgb(230,230,230);
+  	}
+  	</style>
+  	
+  <table id="button_table_1" width ="400px" border="0">
+
+  	<tr>
+  		<th><input type="button" value="    |<<    " name="beginning" onclick="goToTime(0)" /></th>
+  		<th><input type="button" value="    |<     " name="skipToPrev" onclick="prevFrame()" /></th>
+  		<th><input type="button" value="    >/||     " name="playPause" onclick='playPause()' /></th>
+  		<!--<th><button type="button" id="playPause" onclick=playPause()>></button></th>-->
+  		<!--<th><input type="button" value="    ||    " name="pauseVid" onclick='pause()' /></th> -->
+  		<th><input type="button" value="    >|     " name="skipToNext" onclick="fwdFrame()" /></th>
+  		<!-- <th><input type="button" value="    >>|    " name="end" onclick="myPlayer.currentTime = my_video_1.duration" /></th> -->
+  		<th><input type="text" id="FrameJump" size="1"/>
+  		<input type="button" value="Go!" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
+  		<!--<th><input type="button" value="dont click me" name="skipToNext" onclick='alert("why did you click me?")' </th> -->
+  		<!--<th><input type="button" value="hi!" name="hallo" onclick="seek(5)" </th>-->
+  	</tr>
+  		
+  </table>
+
+</div>
+
+<script>
+document.getElementById("button_table_1").style.maxWidth="980px";
+var framerate = 30;
+	function goToEnteredFrame(){
+		console.log("Going To Frame:");
+		var thisFrame = document.getElementById("FrameJump").value;
+		console.log(thisFrame);
+		seek((1/framerate)*(thisFrame)+(1/framerate));
+		pause();
+		console.log("go to frame:"+thisFrame);
+	}
+	
+	
+
+	function prevFrame(){
+		pause();
+		player.currentTime=player.currentTime-(1/framerate);
+		//play();
+		console.log("prev frame");
+		//player.playVideo();
+		//pause();
+		//setTimeout(pause(), 1);
+	}
+	
+	function playPause(){ 
+		if (player.paused) 
+ 		 play();
+		 //document.getElementByName("playPause").innerHTML="||";
+		else 
+  		 pause();
+		// document.getElementByName("playPause").innerHTML=">";
+	} 
+	
+	function pause(){
+		player.pause();
+		console.log("pause");
+	}
+	function play(){
+		player.play();
+		console.log("play");
+	}
+	function seek(time){
+		pause();
+		player.currentTime=time;
+		console.log("seek");
+	}
+	function goToTime(time){
+		player.currentTime=time;
+		console.log("goToTime:" + time);
+	}
+	function fwdFrame(){
+		play();
+		//pause();
+		//player.currentTime=player.currentTime+(1/framerate);
+		setTimeout(function() {player.pause()}, (990/framerate));
+		console.log("fwd frame, time: "+player.currentTime);
+	}
+	window.addEventListener('keydown',this.check,false);
+	function check(e) {
+		var code = e.keyCode;
+		//Left arrow pressed
+		if (code == 37)
+			prevFrame();
+		//Right arrow pressed
+		if (code == 39)
+			fwdFrame();
+		//Down arrow pressed
+		if (code == 40)
+			prevFrame();
+		//Up arrow pressed
+		if (code == 38)
+			fwdFrame();
+		//Spacebar pressed
+		if (code == 32)
+			playPause();
+	}
+	</script>
+
+
+	<div id="over" class="ruler">
+		<img src="http://dmvplayer.wsp197.org/ruler.png" style="border:2px solid black">
+
+	</div>
+
+	<div id="drag_resize" class="resizeTest"><img src="http://farm4.static.flickr.com/3412/3497578869_b8078711bd_b.jpg"/></div>
+
+
+	<!-- <div id="under">
+
+		<h4>This is under the video</h4>	
+
+	</div> -->
+
+
+	</section>
+
+<!--<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-90152-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
+
+</script>-->
+
+</div>
+
+</body>
+</html>
