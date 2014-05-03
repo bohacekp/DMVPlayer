@@ -105,10 +105,12 @@ a {
   padding: 0;
 }
 
-.rulerClass
+.horizontalRulerClass
 {
   background-color: rgba(0,0,0,0);
   position: absolute;
+  left: 50px;
+  top: 50px;
 }
 
 img 
