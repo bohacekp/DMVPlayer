@@ -63,6 +63,8 @@ var oldVal;
 	}
 
 	function playPause(){ 
+		document.getElementById("gotoframe").focus();
+		document.getElementById("gotoframe").blur();
 		//doNotUpdate=1;
 		//document.getElementById("playorpause").blur();
 		if (player.paused) {
@@ -102,6 +104,10 @@ var oldVal;
 	function goToTime(time){
 		player.currentTime=time;
 		console.log("goToTime:" + time);
+	}
+	function firstFrame(){
+		++oldVal;
+		goToTime(0);
 	}
 	function fwdFrame(){
 		++oldVal;

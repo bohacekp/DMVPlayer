@@ -36,8 +36,8 @@
 <div>
 
 <video id="my_video_1" width="100%" preload="auto" poster>
-	<source src="http://DMVPlayer.wsp197.org/spin_falling_clean.mp4" id="movie" type="video/mp4">
-	<source src="http://DMVPlayer.wsp197.org/spin_falling_clean.ogv" id="movie" type="video/ogg">
+	<source src="http://DMVPlayer.wsp197.org/spin_falling.mp4" id="movie" type="video/mp4">
+	<source src="http://DMVPlayer.wsp197.org/spin_falling.ogv" id="movie" type="video/ogg">
 </video>
 	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>-->
 
@@ -92,10 +92,10 @@
   </script>
   -->
 <table id="button_table_1" width ="100%" border="0" style="margin-top:5px;">
-	<th><input title="Rewind the video" type="button" title="rewind" value=" |<< " name="beginning" onclick="goToTime(0)" /></th>
-	<th><button><img src="prevFrame.png"  style="height; width: 18px" title="Previous frame (left or down arrow button)" id="frameprev" onclick='prevFrame()' /></button></th>
-	<th><button><img src="playbut.png" style="height; width: 18px" title="Play or pause the video (spacebar)" id="playorpause" onclick='playPause()' /></button></th>
-	<th><button><img src="fwdFrame.png" style="height; width: 18px" title="Next frame (right or up arrow button)"id = "framefwd" onclick="fwdFrame()" /></button></th>
+	<th><button title="Rewind the video" type="button" title="rewind" value=" |<< " name="beginning" onclick="firstFrame()"/><img src="firstframe.png" style="height: 18px; width: 25px"></th>
+	<th><button title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()' ><img src="frame back.png"  style="height:18px; width: 18px"  /></button></th>
+	<th><button title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'><img src="playpause2.png" style="height:18px; width: 28px" /></button></th>
+	<th><button title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" ><img src="frame advance.png" style="height:18px; width: 18px"/></button></th>
 	<th><input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
 	<input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/></th>
 </table>
