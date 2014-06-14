@@ -141,8 +141,8 @@ $(document).ready(function(){
 	var mp4_video = document.getElementById("mp4_video");
 	var ogg_video = document.getElementById("ogg_video");
 	
-	console.log("dmv_player.canPlayType('video/ogg') = " + dmv_player.canPlayType("video/ogg"));
-	console.log("dmv_player.canPlayType('video/mp4') = " + dmv_player.canPlayType("video/mp4"));
+//	console.log("dmv_player.canPlayType('video/ogg') = " + dmv_player.canPlayType("video/ogg"));
+//	console.log("dmv_player.canPlayType('video/mp4') = " + dmv_player.canPlayType("video/mp4"));
 	
 	//Setting the video sources
 	if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {

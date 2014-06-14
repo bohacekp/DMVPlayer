@@ -1,16 +1,44 @@
 $(document).ready(function(){
-	//Constants
-	var rulerSizeReduction = 8;
-	//var containX = 600;
-	//var containY = 800;
-	var ruler = $('#horizontalRulerID');
-	//ruler.height($( window ).height() / rulerSizeReduction);
-	//ruler.width($( window ).width() / rulerSizeReduction);
-//	ruler.resizable({aspectRatio:true});
-	ruler.resizable();
-	//does not allow ruler to be moved outside of the window, this fixes the scrolling problem that is caused by dragging the ruler offscreen
-//	ruler.draggable({containment:"body"});
-	ruler.draggable();
+	//Setting up the different tools
+	//Options are in the toolsArray array
+	var index = 0;
+	var tool;
+	var tool_jQuery;
+	for(elements in toolsArray){
+		//Getting the tool
+		tool_jQuery = $(document.getElementById(toolsArray[index][0]));
+		tool = document.getElementById(toolsArray[index][0]);
+		
+		//Setting the default location for the tool
+		tool.style.left = toolsArray[index][1];
+		tool.style.top = toolsArray[index][2];
+		
+		//Setting the default size of the tool
+		tool.style.height = toolsArray[index][3];
+		tool.style.width = toolsArray[index][4];
+		
+		//Show the tool?
+		if(!toolsArray[index][5]){
+			tool_jQuery.css("display", "none");
+		}
+		
+		//Draggable?
+		if(toolsArray[index][6]){
+			if(toolsArray[index][8]){
+				tool_jQuery.draggable({containment:"body"});
+			}
+			else{
+				tool_jQuery.draggable();
+			}
+		}
+		
+		//Resizable?
+		if(toolsArray[index][7]){
+			tool_jQuery.resizable({aspectRatio:toolsArray[index][9]});
+		}
+		
+		index++;
+	}
 });
 
 function resetTools(){

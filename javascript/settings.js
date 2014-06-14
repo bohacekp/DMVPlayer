@@ -6,6 +6,7 @@ var videoSelection = true;
 var nudgeButtons = true;
 //Reset Button
 var resetButton = true;
+//
 
 //Video Selection Array
 /*
@@ -36,7 +37,12 @@ toolsArray[n] = [
 	"Pos Left",
 	"Pos Top",
 	"Size Height",
-	"Size Width"
+	"Size Width",
+	"Show true/false",
+	"Draggable true/false",
+	"Resizable true/false",
+	"Contained true/false",
+	"Aspect Ratio Locked true/false"
 ];
 */
 var toolsArray = new Array();
@@ -45,5 +51,10 @@ toolsArray[0] = [
 	"250px",
 	"250px",
   	"60px",
-	"300px"
+	"300px",
+	true,
+	true,
+	true,
+	false,
+	false
 ];
