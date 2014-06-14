@@ -137,11 +137,6 @@ $(document).ready(function(){
 		"videos/ppb_4_clean.ogv",
 		"videos/ppb_4_clean.mp4"
 	];
-	videoArray[2] = [
-		"Ping Pong Ball 2",
-		"videos/ppb_4_clean.ogv",
-		"videos/ppb_4_clean.mp4"
-	];
 	
 	//Setting up the options in the video selection
 	var index = 0;
