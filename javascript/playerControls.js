@@ -119,16 +119,36 @@ function fwdFrame(){
 }
 
 $(document).ready(function(){
+	
+//	$('.ui-slider-handle').backgroundColor("#FF0000"); 
+	
+	//Drop down for the different videos
+	var video_selector = $("#video_selection");
+	
 	//Video Selection
 	var videoArray = new Array();
 	videoArray[0] = [
+		"Wheel Falling",
 		"videos/spin_falling.ogv",
 		"videos/spin_falling.mp4"
 	];
 	videoArray[1] = [
+		"Ping Pong Ball",
 		"videos/ppb_4_clean.ogv",
 		"videos/ppb_4_clean.mp4"
 	];
+	videoArray[2] = [
+		"Ping Pong Ball 2",
+		"videos/ppb_4_clean.ogv",
+		"videos/ppb_4_clean.mp4"
+	];
+	
+	//Setting up the options in the video selection
+	var index = 0;
+	for(element in videoArray){
+		var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][0]));
+		index++;
+	}
 	
 	//Drop down for the different videos
 	var video_selector = $("#video_selection");

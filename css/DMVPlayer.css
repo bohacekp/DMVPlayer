@@ -59,7 +59,7 @@ a
 
 #under { z-index: 100 }
 
-#over { z-index: 300 }
+#horizontalRulerID { z-index: 300 }
 
 #my_video_1 { z-index: 200 }
 
@@ -78,7 +78,7 @@ a
   padding: 0;
   color: #000;
 }
-#zindexTest #over {
+#zindexTest #horizontalRulerID {
   position: absolute;
   left: 10px; 
   top:10px;
@@ -89,9 +89,18 @@ a
   padding: 0;
 }
 
-.rulerClass
+/*To change location of the ruler set the left and top values.*/
+/*To change the size of the ruler set the height and width values.*/
+.horizontalRulerClass
 {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(255,255,255,0.5);
+  position: absolute;
+  /*Position*/
+  left: 250px;
+  top: 250px;
+  /*Size*/
+  height: 60px;
+  width: 300px;
 }
 
 img 
@@ -111,8 +120,9 @@ img
 	height: 20px;
 }
 
-.ui-slider-range { background: #003bff; }
-.ui-widget-content { background: #00a7ff; }
+/*Changing the Slider's colors*/
+/*.ui-slider-range { background: #003bff; }*/
+/*.ui-widget-content { background: #00a7ff; }*/
 
 #progress {
 	width: 0;
