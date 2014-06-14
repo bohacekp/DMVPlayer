@@ -149,7 +149,7 @@ $(document).ready(function(){
 		$(ogg_video).attr('src', videoArray[0][1]);
 	}
 	else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-		$(mp4_video).attr('src', videoArray[0][1]);
+		$(mp4_video).attr('src', videoArray[0][2]);
 	}
 	
 	//Reload the dmv video
@@ -164,16 +164,16 @@ $(document).ready(function(){
 	
 	//If the drop down changes
 	video_selector.change(function(){
-		var video_index = document.getElementById("video_selection").selectedIndex;
+		var video_index = document.getElementById("video_selector").selectedIndex;
 		var dmv_player = document.getElementById("dmv_video");
 		var mp4_video = document.getElementById("mp4_video");
 		var ogg_video = document.getElementById("ogg_video");
 		
 		//Setting the video sources
-		if(dmv_player.canPlayType("video/ogg")) {
+		if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
 			$(ogg_video).attr('src', videoArray[video_index][1]);
 		}
-		else if(dmv_player.canPlayType("video/mp4")) {
+		else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
 			$(mp4_video).attr('src', videoArray[video_index][2]);
 		}
 		
