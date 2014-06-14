@@ -13,12 +13,6 @@ $(document).ready(function(){
 	ruler.draggable();
 });
 
-var toolsArray = new Array();
-toolsArray[0] = [/*Element ID*/ "horizontalRulerID", 
-				 /*Pos Left*/ "250px",
-				 /*Pos Top*/ "250px",
-  				 /*Size Height*/ "60px",
-				 /*Size Width*/ "300px"];
 function resetTools(){
 	var index = 0;
 	for(element in toolsArray){
