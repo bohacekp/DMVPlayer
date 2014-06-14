@@ -122,6 +122,11 @@ $(document).ready(function(){
 	
 //	$('.ui-slider-handle').backgroundColor("#FF0000"); 
 	
+	//Removing the reset tools buttons if it is turned off
+	if(!resetButton){
+		$("#resetTools").css("display", "none");
+	}
+	
 	//Drop down for the different videos
 	var video_selection = $("#video_selection");
 	var video_selector = $("#video_selector");
