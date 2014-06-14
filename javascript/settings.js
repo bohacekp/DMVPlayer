@@ -1,6 +1,11 @@
 //Settings for the page
 //Flags
-//
+//Video Selection
+var videoSelection = true;
+//Nudging Buttons
+var nudgeButtons = true;
+//Reset Button
+var resetButton = true;
 
 //Video Selection Array
 /*

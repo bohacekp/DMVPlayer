@@ -123,7 +123,13 @@ $(document).ready(function(){
 //	$('.ui-slider-handle').backgroundColor("#FF0000"); 
 	
 	//Drop down for the different videos
-	var video_selector = $("#video_selection");
+	var video_selection = $("#video_selection");
+	var video_selector = $("#video_selector");
+	
+	//Removing the Video Selector if it is turned off
+	if(!videoSelection){
+		video_selection.css("display", "none");
+	}
 	
 	//Setting the default video
 	var dmv_player = document.getElementById("dmv_video");
@@ -151,8 +157,6 @@ $(document).ready(function(){
 		index++;
 	}
 	
-	//Drop down for the different videos
-	var video_selector = $("#video_selection");
 	//If the drop down changes
 	video_selector.change(function(){
 		var video_index = document.getElementById("video_selection").selectedIndex;
