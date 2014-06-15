@@ -60,17 +60,45 @@ function resetTools(){
 	}
 }
 
-function nudgeUp(){
-	console.log('nudgeUp()');
+//Nudging the measurement tool with the WASD keys
+window.addEventListener('keydown',this.nudgeTool,false); 
+function nudgeTool(e){
+	//Current selected tool
 	var tool = document.getElementById(selectedTool);
-	tool.style.top = parseInt(tool.style.top) - 5 + "px";
+	//Checking to see if the tool is visible
+	if($("#" + selectedTool).is(":visible")){
+		//Current key's code
+		var keyCode = e.keyCode;
+		//W
+		if(keyCode == 87){
+			tool.style.top = parseInt(tool.style.top) - 5 + "px";
+		}
+		//S
+		if(keyCode == 83){
+			tool.style.top = parseInt(tool.style.top) + 5 + "px";
+		}
+		//A
+		if(keyCode == 65){
+			tool.style.left = parseInt(tool.style.left) - 5 + "px";
+		}
+		//D
+		if(keyCode == 68){
+			tool.style.left = parseInt(tool.style.left) + 5 + "px";
+		}
+	}
 }
 
-function nudgeDown(){
-	console.log('nudgeDown()');
-	var tool = document.getElementById(selectedTool);
-	tool.style.top = parseInt(tool.style.top) + 5 + "px";
-}
+//function nudgeUp(){
+//	console.log('nudgeUp()');
+//	var tool = document.getElementById(selectedTool);
+//	tool.style.top = parseInt(tool.style.top) - 5 + "px";
+//}
+//
+//function nudgeDown(){
+//	console.log('nudgeDown()');
+//	var tool = document.getElementById(selectedTool);
+//	tool.style.top = parseInt(tool.style.top) + 5 + "px";
+//}
 
 //Hide Tool
 function hideTool(tool){
