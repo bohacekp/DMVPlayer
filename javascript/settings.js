@@ -47,11 +47,23 @@ toolsArray[n] = [
 */
 var toolsArray = new Array();
 toolsArray[0] = [
-	"horizontalRulerID", 
+	"horizontalRuler", 
 	"250px",
 	"250px",
   	"60px",
 	"300px",
+	true,
+	true,
+	true,
+	false,
+	false
+];
+toolsArray[1] = [
+	"verticalRuler", 
+	"50px",
+	"50px",
+  	"300px",
+	"100px",
 	true,
 	true,
 	true,

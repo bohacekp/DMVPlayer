@@ -57,11 +57,11 @@ a
   text-decoration: none;
 }
 
-#under { z-index: 100 }
+#under { z-index: 10 }
 
-#horizontalRulerID { z-index: 300 }
+/*#horizontalRuler { z-index: 30 }*/
 
-#my_video_1 { z-index: 200 }
+#my_video_1 { z-index: 20 }
 
 #zindexTest h4 {
   padding: 10px;
@@ -78,7 +78,7 @@ a
   padding: 0;
   color: #000;
 }
-#zindexTest #horizontalRulerID {
+#zindexTest #horizontalRuler {
   position: absolute;
   left: 10px; 
   top:10px;
@@ -89,18 +89,12 @@ a
   padding: 0;
 }
 
-/*To change location of the ruler set the left and top values.*/
-/*To change the size of the ruler set the height and width values.*/
-.horizontalRulerClass
+.measurementToolClass
 {
   background-color: rgba(255,255,255,0.5);
   position: absolute;
-  /*Position*/
-  left: 250px;
-  top: 250px;
-  /*Size*/
-  height: 60px;
-  width: 300px;
+  border:1px solid black;
+  z-index: 30
 }
 
 img 

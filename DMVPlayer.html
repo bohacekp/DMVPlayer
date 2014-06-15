@@ -40,8 +40,11 @@
 			
 		  	<!-- TOOLS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<!--Horizontal Ruler-->
-			<div id="horizontalRulerID" class="horizontalRulerClass">
-				<img id="rulerImg" src="images/hruler.png" style="border:1px solid black">
+			<div id="horizontalRuler" class="measurementToolClass" onclick="moveToTop(this.id)">
+				<img id="hRulerImg" src="images/hruler.png">
+			</div>
+			<div id="verticalRuler" class="measurementToolClass" onclick="moveToTop(this.id)">
+				<img id="vRulerImg" src="images/vruler.png">
 			</div>
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			
@@ -91,7 +94,10 @@
 				<!-- Measure Tools  -->
 				<table id="button_table_2" width ="100%" border="0" style="margin-top:5px;">
 					<th>
-						<input type="button" value="Horizontal Ruler" id="horiRuler" onclick="hideTool(horizontalRulerID)"/>
+						<input type="button" value="Horizontal Ruler" id="horiRuler" onclick="hideTool(horizontalRuler)"/>
+					</th>
+					<th>
+						<input type="button" value="Vertical Ruler" id="vertRuler" onclick="hideTool(verticalRuler)"/>
 					</th>
 					<th>
 						<input type="button" value="Reset Tools" id="resetTools" onclick="resetTools()"/>
