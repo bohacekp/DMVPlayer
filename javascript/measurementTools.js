@@ -88,18 +88,6 @@ function nudgeTool(e){
 	}
 }
 
-//function nudgeUp(){
-//	console.log('nudgeUp()');
-//	var tool = document.getElementById(selectedTool);
-//	tool.style.top = parseInt(tool.style.top) - 5 + "px";
-//}
-//
-//function nudgeDown(){
-//	console.log('nudgeDown()');
-//	var tool = document.getElementById(selectedTool);
-//	tool.style.top = parseInt(tool.style.top) + 5 + "px";
-//}
-
 //Hide Tool
 function hideTool(tool){
 //	$(tool).css("display", "none");
@@ -118,7 +106,6 @@ function moveToTop(tool){
 	$("#"+selectedTool).css("border", "2px solid red");
 	
 	//Moving the selected tool to the top
-//	console.log(currentMaxZIndex);
 	$("#"+tool).css("z-index", currentMaxZIndex);
 	currentMaxZIndex++;
 }
