@@ -64,3 +64,9 @@ function nudgeDown(){
 	var tool = document.getElementById("horizontalRulerID");
 	tool.style.top = parseInt(tool.style.top) + 5 + "px";
 }
+
+//Hide Tool
+function hideTool(tool){
+//	$(tool).css("display", "none");
+	$(tool).toggle("show");
+}
