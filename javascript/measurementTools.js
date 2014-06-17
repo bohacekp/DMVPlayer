@@ -69,21 +69,29 @@ function nudgeTool(e){
 	if($("#" + selectedTool).is(":visible")){
 		//Current key's code
 		var keyCode = e.keyCode;
+		//Default value to nudge by
+		var nudgeValue = 10;
+		//Checking if one of the Shift keys are down
+		if(e.shiftKey){
+			//If the shift key is down change the nudging value
+			nudgeValue = 1;
+		}
+		//WASD keys
 		//W
 		if(keyCode == 87){
-			tool.style.top = parseInt(tool.style.top) - 5 + "px";
+			tool.style.top = parseInt(tool.style.top) - nudgeValue + "px";
 		}
 		//S
 		if(keyCode == 83){
-			tool.style.top = parseInt(tool.style.top) + 5 + "px";
+			tool.style.top = parseInt(tool.style.top) + nudgeValue + "px";
 		}
 		//A
 		if(keyCode == 65){
-			tool.style.left = parseInt(tool.style.left) - 5 + "px";
+			tool.style.left = parseInt(tool.style.left) - nudgeValue + "px";
 		}
 		//D
 		if(keyCode == 68){
-			tool.style.left = parseInt(tool.style.left) + 5 + "px";
+			tool.style.left = parseInt(tool.style.left) + nudgeValue + "px";
 		}
 	}
 }
