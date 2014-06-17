@@ -118,6 +118,11 @@ img
 /*.ui-slider-range { background: #003bff; }*/
 /*.ui-widget-content { background: #00a7ff; }*/
 
+#slider .ui-slider-handle {
+      background: url(../images/blue_square.png) no-repeat;
+      border: none;
+}
+
 #progress {
 	width: 0;
 	height: 20px;
