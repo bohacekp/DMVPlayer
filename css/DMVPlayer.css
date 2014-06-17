@@ -57,11 +57,11 @@ a
   text-decoration: none;
 }
 
-#under { z-index: 100 }
+#under { z-index: 10 }
 
-#over { z-index: 300 }
+/*#horizontalRuler { z-index: 30 }*/
 
-#my_video_1 { z-index: 200 }
+#my_video_1 { z-index: 20 }
 
 #zindexTest h4 {
   padding: 10px;
@@ -78,7 +78,7 @@ a
   padding: 0;
   color: #000;
 }
-#zindexTest #over {
+#zindexTest #horizontalRuler {
   position: absolute;
   left: 10px; 
   top:10px;
@@ -89,9 +89,12 @@ a
   padding: 0;
 }
 
-.rulerClass
+.measurementToolClass
 {
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(255,255,255,0.5);
+  position: absolute;
+  border:1px solid black;
+  z-index: 30
 }
 
 img 
@@ -111,8 +114,14 @@ img
 	height: 20px;
 }
 
-.ui-slider-range { background: #003bff; }
-.ui-widget-content { background: #00a7ff; }
+/*Changing the Slider's colors*/
+/*.ui-slider-range { background: #003bff; }*/
+/*.ui-widget-content { background: #00a7ff; }*/
+
+#slider .ui-slider-handle {
+      background: url(../images/blue_square.png) no-repeat;
+      border: none;
+}
 
 #progress {
 	width: 0;

@@ -21,6 +21,8 @@
 		<script src="javascript/measurementTools.js"></script>
 		<!-- PlayerControl Javascript -->
 		<script src="javascript/playerControls.js"></script>
+		<!-- Variables -->
+		<script src="javascript/settings.js"></script>
  	</head>
 	
  	<body>
@@ -28,61 +30,88 @@
 		<div>
 			<!-- this video tag is the video window that is shown on the player, it says where to get the video and tells it what codec to look for-->
 			<video id="dmv_video" width="100%" preload="auto" poster>
-				<source id="mp4_video" src="videos/spin_falling.mp4" id="movie" type="video/mp4">
-				<source id="ogg_video" src="videos/spin_falling.ogv" id="movie" type="video/ogg">
+				<source id="mp4_video" src="" id="movie" type="video/mp4">
+				<source id="ogg_video" src="" id="movie" type="video/ogg">
 			</video>
-		<script>
-			//the framerate variable is used in frame skipping
-			var framerate = 30;  
-		</script>
-			
-		<!-- set the amount of whitespace above the slider-->
-		<div id="slider" style="margin-top:0px;"></div> 
-			<script> 
-				document.getElementById("dmv_video").style.maxWidth="980px";
-				document.getElementById("dmv_video").style.minHeight="400px";
-				document.getElementById("slider").style.maxWidth="980px";
-				//creates an instance of the video player called 'player' anytime you see player.blah, it is telling the video player to do something
-				var player = document.getElementById('dmv_video'); 
-			</script>
-			
-			<!-- this table tag creates the table which contains all of the buttons, all of the <th> tags create new columns, and the idntifiers like onClick, src, and id are used to set certain properties of the buttons-->
-			<!-- width=100% says that the sidth of the table should be 100% of the window and the margin says how much white space should be above the table-->
-			<table id="button_table_1" width ="100%" border="0" style="margin-top:5px;"> 
-				<th>
-					<button title="Rewind the video" type="button" title="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
-						<img src="images/firstframe.png" style="height: 18px; width: 25px">
-					</button>
-				</th>
-				<th>
-					<button title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
-						<img src="images/frame back.png"  style="height:18px; width: 18px"  />
-					</button>
-				</th>
-				<th>
-					<button title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
-						<img src="images/playpause2.png" style="height:18px; width: 28px" />
-					</button>
-				</th>
-				<th>
-					<button title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
-						<img src="images/frame advance.png" style="height:18px; width: 18px"/>
-					</button>
-				</th>
-				<th>
-					<input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
-					<input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
-				</th>
-				<th>Pick a Video:
-					<select id="video_selection">
-						<option value="0">Wheel</option>
-  						<option value="1">Ping Pong</option>
-					</select>
-				</th>
-			</table>
-
 			<script>
-				document.getElementById("button_table_1").style.maxWidth="980px";
+				//the framerate variable is used in frame skipping
+				var framerate = 30;  
 			</script>
-		</div>
-	</body>
+			
+		  	<!-- TOOLS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+			<!--Horizontal Ruler-->
+			<div id="horizontalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
+				<img id="hRulerImg" src="images/hruler.png">
+			</div>
+			<div id="verticalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
+				<img id="vRulerImg" src="images/vruler.png">
+			</div>
+			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+			
+			<!-- set the amount of whitespace above the slider-->
+			<div id="slider" style="margin-top:0px;"></div> 
+				<script> 
+					document.getElementById("dmv_video").style.maxWidth="980px";
+					document.getElementById("dmv_video").style.minHeight="400px";
+					document.getElementById("slider").style.maxWidth="980px";
+					//creates an instance of the video player called 'player' anytime you see player.blah, it is telling the video player to do something
+					var player = document.getElementById('dmv_video'); 
+				</script>
+
+				<!-- this table tag creates the table which contains all of the buttons, all of the <th> tags create new columns, and the idntifiers like onClick, src, and id are used to set certain properties of the buttons-->
+				<!-- width=100% says that the sidth of the table should be 100% of the window and the margin says how much white space should be above the table-->
+				<table id="button_table_1" width ="100%" border="0" style="margin-top:5px;"> 
+					<th>
+						<button title="Rewind the video" type="button" title="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
+							<img src="images/firstframe.png" style="height: 18px; width: 25px">
+						</button>
+					</th>
+					<th>
+						<button title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
+							<img src="images/frame back.png"  style="height:18px; width: 18px"  />
+						</button>
+					</th>
+					<th>
+						<button title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
+							<img src="images/playpause2.png" style="height:18px; width: 28px" />
+						</button>
+					</th>
+					<th>
+						<button title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
+							<img src="images/frame advance.png" style="height:18px; width: 18px"/>
+						</button>
+					</th>
+					<th>
+						<input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
+						<input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
+					</th>
+					<th id="video_selection">Pick a Video:
+						<select id="video_selector">
+						</select>
+					</th>
+				</table>
+			
+				<!-- Measure Tools  -->
+				<table id="button_table_2" width ="100%" border="0" style="margin-top:5px;">
+					<th>
+						<input type="button" value="Horizontal Ruler" id="horiRuler" onclick="hideTool(horizontalRuler)"/>
+					</th>
+					<th>
+						<input type="button" value="Vertical Ruler" id="vertRuler" onclick="hideTool(verticalRuler)"/>
+					</th>
+					<th>
+						<input type="button" value="Reset Tools" id="resetTools" onclick="resetTools()"/>
+					</th>
+<!--
+					<th>
+						<input type="button" value="Nudge Up" id="nudgeUp" onclick="nudgeUp()"/>
+					</th>
+-->
+				</table>
+
+				<script>
+					document.getElementById("button_table_1").style.maxWidth="980px";
+					document.getElementById("button_table_2").style.maxWidth="980px";
+				</script>
+			</div>
+		</body>

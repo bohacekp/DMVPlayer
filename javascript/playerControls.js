@@ -119,29 +119,63 @@ function fwdFrame(){
 }
 
 $(document).ready(function(){
-	//Video Selection
-	var videoArray = new Array();
-	videoArray[0] = [
-		"videos/spin_falling.ogv",
-		"videos/spin_falling.mp4"
-	];
-	videoArray[1] = [
-		"videos/ppb_4_clean.ogv",
-		"videos/ppb_4_clean.mp4"
-	];
+	
+//	$('.ui-slider-handle').backgroundColor("#FF0000"); 
+	
+	//Removing the reset tools buttons if it is turned off
+	if(!resetButton){
+		$("#resetTools").css("display", "none");
+	}
 	
 	//Drop down for the different videos
-	var video_selector = $("#video_selection");
+	var video_selection = $("#video_selection");
+	var video_selector = $("#video_selector");
+	
+	//Removing the Video Selector if it is turned off
+	if(!videoSelection){
+		video_selection.css("display", "none");
+	}
+	
+	//Setting the default video
+	var dmv_player = document.getElementById("dmv_video");
+	var mp4_video = document.getElementById("mp4_video");
+	var ogg_video = document.getElementById("ogg_video");
+	
+//	console.log("dmv_player.canPlayType('video/ogg') = " + dmv_player.canPlayType("video/ogg"));
+//	console.log("dmv_player.canPlayType('video/mp4') = " + dmv_player.canPlayType("video/mp4"));
+	
+	//Setting the video sources
+	if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
+		$(ogg_video).attr('src', videoArray[0][1]);
+	}
+	else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
+		$(mp4_video).attr('src', videoArray[0][2]);
+	}
+	
+	//Reload the dmv video
+	dmv_player.load();
+	
+	//Setting up the options in the video selection
+	var index = 0;
+	for(element in videoArray){
+		var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][0]));
+		index++;
+	}
+	
 	//If the drop down changes
 	video_selector.change(function(){
-		var video_index = document.getElementById("video_selection").selectedIndex;
+		var video_index = document.getElementById("video_selector").selectedIndex;
 		var dmv_player = document.getElementById("dmv_video");
 		var mp4_video = document.getElementById("mp4_video");
 		var ogg_video = document.getElementById("ogg_video");
 		
 		//Setting the video sources
-		$(mp4_video).attr('src', videoArray[video_index][1]);
-		$(ogg_video).attr('src', videoArray[video_index][0]);
+		if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
+			$(ogg_video).attr('src', videoArray[video_index][1]);
+		}
+		else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
+			$(mp4_video).attr('src', videoArray[video_index][2]);
+		}
 		
 		//Reload the dmv video
 		dmv_player.load();
