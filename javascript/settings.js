@@ -29,20 +29,6 @@ videoArray[1] = [
 	"videos/spin_falling.mp4"
 ];
 
-//All Tools Array
-//This array holds all the id's for the measuring tools
-//Do NOT remove tools from this array
-//Template
-//allToolsArrayn[n] = [
-//"ID of the tool", 
-//"ID of the tools button"
-//];
-var allToolsArray = new Array();
-allToolsArray[0] = ["horizontalRuler", 
-					"horiRulerButton"];
-allToolsArray[1] = ["verticalRuler", 
-					"vertRulerButton"];
-
 //Tools Array
 /*
 Template for the toolArray values
@@ -58,23 +44,27 @@ toolsArray[n] = [
 	8"Contained true/false",
 	9"Aspect Ratio Locked true/false",
 	10"Measure Tool Button"
+	11"Z-Index",
+	12"Color"
 ];
 */
 var toolsArray = new Array();
-toolsArray[0] = [
-	"horizontalRuler", 
-	"250px",
-	"250px",
-  	"60px",
-	"300px",
-	true,
-	true,
-	true,
-	false,
-	false,
-	"horiRulerButton"
-];
-toolsArray[1] = [
+//toolsArray.push([
+//	"horizontalRuler", 
+//	"250px",
+//	"250px",
+//  	"60px",
+//	"300px",
+//	true,
+//	true,
+//	true,
+//	false,
+//	false,
+//	"horiRulerButton",
+//	30,
+//	"rgba(255,255,255,0.5)"
+//]);
+toolsArray.push([
 	"verticalRuler", 
 	"50px",
 	"50px",
@@ -85,5 +75,7 @@ toolsArray[1] = [
 	true,
 	false,
 	false,
-	"vertRulerButton"
-];
+	"vertRulerButton",
+  30,
+  "rgba(255,255,255,0.5)"
+]);

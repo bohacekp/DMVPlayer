@@ -63,10 +63,6 @@ a
 
 #my_video_1 { z-index: 20 }
 
-#zindexTest h4 {
-  padding: 10px;
-  margin: 0;
-}
 #zindexTest #under {
   position: absolute;
   top:80px;
@@ -87,14 +83,6 @@ a
   text-align: left;
   margin: 0;
   padding: 0;
-}
-
-.measurementToolClass
-{
-  background-color: rgba(255,255,255,0.5);
-  position: absolute;
-  border:1px solid black;
-  z-index: 30
 }
 
 img 
