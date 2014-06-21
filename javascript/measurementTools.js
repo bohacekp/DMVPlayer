@@ -67,6 +67,7 @@ $(document).ready(function(){
 
 		//Color
 		tool_jQuery.css("background-color", toolsArray[index][12]);
+		tool_jQuery.css("border", "1px solid black");
 
 		index++;
 	}
@@ -124,8 +125,9 @@ function nudgeTool(e){
 
 //Hide Tool
 function hideTool(tool){
+//	console.log(tool);
 //	$(tool).css("display", "none");
-	$(tool).toggle("show");
+	$(tool).toggle("highlight");
 }
 
 //Moving the selected tool to the top

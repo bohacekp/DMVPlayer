@@ -3,7 +3,8 @@
 	<head>
   		<!-- Loading jQuery and jQuery UI -->
 		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+<!--		<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>-->
+		<script src="javascript/jquery-ui-1.10.4.min.js"></script>
 
 		<!-- Loading jQuery Touch Punch -->
 		<script src="javascript/jquery.ui.touch-punch.min.js"></script>
@@ -97,10 +98,10 @@
 						Tools:
 					</th>
 					<th>
-						<input type="button" value="Horizontal Ruler" id="horiRulerButton" class="measurementToolClass" onclick="hideTool(horizontalRuler)"/>
+						<input type="button" value="Horizontal Ruler" id="horiRulerButton" class="measurementToolClass" onclick="hideTool('#horizontalRuler')"/>
 					</th>
 					<th>
-						<input type="button" value="Vertical Ruler" id="vertRulerButton" class="measurementToolClass" onclick="hideTool(verticalRuler)"/>
+						<input type="button" value="Vertical Ruler" id="vertRulerButton" class="measurementToolClass" onclick="hideTool('#verticalRuler')"/>
 					</th>
 					<th>
 						<input type="button" value="Reset Tools" id="resetTools" onclick="resetTools()"/>

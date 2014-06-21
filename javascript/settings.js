@@ -49,21 +49,21 @@ toolsArray[n] = [
 ];
 */
 var toolsArray = new Array();
-//toolsArray.push([
-//	"horizontalRuler", 
-//	"250px",
-//	"250px",
-//  	"60px",
-//	"300px",
-//	true,
-//	true,
-//	true,
-//	false,
-//	false,
-//	"horiRulerButton",
-//	30,
-//	"rgba(255,255,255,0.5)"
-//]);
+toolsArray.push([
+	"horizontalRuler", 
+	"250px",
+	"250px",
+  	"60px",
+	"300px",
+	true,
+	true,
+	true,
+	false,
+	false,
+	"horiRulerButton",
+	30,
+	"rgba(255,255,255,0.5)"
+]);
 toolsArray.push([
 	"verticalRuler", 
 	"50px",
