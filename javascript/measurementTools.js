@@ -56,7 +56,7 @@ $(document).ready(function(){
 
 		//Resizable?
 		if(toolsArray[index][7]){
-			tool_jQuery.resizable({aspectRatio:toolsArray[index][9]});
+			tool_jQuery.resizable({aspectRatio:toolsArray[index][9], handles:toolsArray[index][13]});
 		}
 
 		//Z-Index

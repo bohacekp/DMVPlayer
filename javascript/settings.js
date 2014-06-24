@@ -45,7 +45,8 @@ toolsArray.push([
 	9"Aspect Ratio Locked true/false",
 	10"Measure Tool Button"
 	11"Z-Index",
-	12"Color"
+	12"Color",
+	13"Resizable Sides"
 ]);
 */
 var toolsArray = new Array();
@@ -62,7 +63,8 @@ toolsArray.push([
 	false,
 	"horiRulerButton",
 	30,
-	"rgba(255,255,255,0.5)"
+	"rgba(255,255,255,0.5)",
+	"n, e, s, w, ne, se, sw, nw"
 ]);
 toolsArray.push([
 	"verticalRuler", 
@@ -76,6 +78,7 @@ toolsArray.push([
 	false,
 	false,
 	"vertRulerButton",
-  30,
-  "rgba(255,255,255,0.5)"
+	30,
+	"rgba(255,255,255,0.5)",
+	"n, e, s, w, ne, se, sw, nw"
 ]);
