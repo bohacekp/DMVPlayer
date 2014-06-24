@@ -11,28 +11,28 @@ var resetButton = true;
 //Video Selection Array
 /*
 Template for the videoArray values
-videoArray[n] = [
+videoArray.push([
 	"name of the video selection",
 	"location of the .ogv video file",
 	"location of the .mp4 video file"
-];
+]);
 */
 var videoArray = new Array();
-videoArray[0] = [
+videoArray.push([
 	"Ping Pong Ball",
 	"videos/ppb_4_clean.ogv",
 	"videos/ppb_4_clean.mp4"
-];
-videoArray[1] = [
+]);
+videoArray.push([
 	"Wheel Falling",
 	"videos/spin_falling.ogv",
 	"videos/spin_falling.mp4"
-];
+]);
 
 //Tools Array
 /*
 Template for the toolArray values
-toolsArray[n] = [
+toolsArray.push([
 	0"Element ID",
 	1"Pos Left",
 	2"Pos Top",
@@ -46,7 +46,7 @@ toolsArray[n] = [
 	10"Measure Tool Button"
 	11"Z-Index",
 	12"Color"
-];
+]);
 */
 var toolsArray = new Array();
 toolsArray.push([
