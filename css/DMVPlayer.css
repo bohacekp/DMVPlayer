@@ -106,13 +106,16 @@ img
 /*.ui-slider-range { background: #003bff; }*/
 /*.ui-widget-content { background: #00a7ff; }*/
 
-#slider .ui-slider-handle {
-      background: url(../images/blue_square.png) no-repeat;
-      border: none;
+.ui-slider-horizontal {
+	height: 40px;
 }
 
-#progress {
-	width: 0;
-	height: 20px;
-	background-color: rgb(180,110,40);
+#slider .ui-slider-handle {
+    background: url(../images/blue_square.png);
+	height: 50px;
+	margin-bottom: -25px;
+	width: 50px;
+	margin-left: -25px;
+	background-size: 50px 50px;
+	border: none;
 }
