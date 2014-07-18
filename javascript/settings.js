@@ -6,7 +6,8 @@ var videoSelection = true;
 var nudgeButtons = true;
 //Reset Button
 var resetButton = true;
-//
+//Stop Watch
+var stopWatch = false;
 
 //Video Selection Array
 /*

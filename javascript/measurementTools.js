@@ -5,6 +5,14 @@ $(document).ready(function(){
 	var tool;
 	var tool_jQuery;
 	
+	//Stopwatch
+	var stopWatch_Tool = $("#stopWatchTest");
+	
+	//Removing the stop watch if it disabled
+	if(!stopWatch){
+		stopWatch_Tool.css("display", "none");
+	}
+	
 	$(".measurementToolClass").hide();
 	
 //	var toolButton;

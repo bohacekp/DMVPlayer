@@ -92,3 +92,10 @@ $(function() {
 		}
 	}
 });
+
+//Update the stopwatch time
+function stopwatch(){
+	console.log("stopwatch");
+	console.log(player.currentTime);
+	document.getElementById('stopWatchTest').innerHTML = player.currentTime;
+}
