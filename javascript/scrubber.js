@@ -86,6 +86,9 @@ $(function() {
 			console.log("update");
 			//sets old val equall to newVal so that this peice of code cannot be run twice without something changing
 			oldVal=newVal;
+			
+			//Stopwatch
+			stopwatch();
 		}
 	}
 });

@@ -118,6 +118,12 @@ function fwdFrame(){
 //	console.log("fwd frame , time: "+player.currentTime);
 }
 
+//Start button function
+function start(){
+	play();
+	pause();
+}
+
 $(document).ready(function(){
 	
 //	$('.ui-slider-handle').backgroundColor("#FF0000"); 
@@ -184,3 +190,12 @@ $(document).ready(function(){
 		$("#slider").slider('value',0);
 	});
 });
+
+//Update the stopwatch time
+//Note: this function is called the 'timeupdate' event in the scrubber.js file
+//$('#dmv_video').bind('timeupdate',this.stopwatch,false);
+function stopwatch(){
+	console.log("stopwatch");
+	console.log(player.currentTime);
+	document.getElementById('stopWatchTest').innerHTML = player.currentTime;
+}
