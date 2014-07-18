@@ -6,47 +6,52 @@ var videoSelection = true;
 var nudgeButtons = true;
 //Reset Button
 var resetButton = true;
-//
+//Stop Watch
+var stopWatch = false;
 
 //Video Selection Array
 /*
 Template for the videoArray values
-videoArray[n] = [
+videoArray.push([
 	"name of the video selection",
 	"location of the .ogv video file",
 	"location of the .mp4 video file"
-];
+]);
 */
 var videoArray = new Array();
-videoArray[0] = [
+videoArray.push([
 	"Ping Pong Ball",
 	"videos/ppb_4_clean.ogv",
 	"videos/ppb_4_clean.mp4"
-];
-videoArray[1] = [
+]);
+videoArray.push([
 	"Wheel Falling",
 	"videos/spin_falling.ogv",
 	"videos/spin_falling.mp4"
-];
+]);
 
 //Tools Array
 /*
 Template for the toolArray values
-toolsArray[n] = [
-	"Element ID",
-	"Pos Left",
-	"Pos Top",
-	"Size Height",
-	"Size Width",
-	"Show true/false",
-	"Draggable true/false",
-	"Resizable true/false",
-	"Contained true/false",
-	"Aspect Ratio Locked true/false"
-];
+toolsArray.push([
+	0"Element ID",
+	1"Pos Left",
+	2"Pos Top",
+	3"Size Height",
+	4"Size Width",
+	5"Show true/false",
+	6"Draggable true/false",
+	7"Resizable true/false",
+	8"Contained true/false",
+	9"Aspect Ratio Locked true/false",
+	10"Measure Tool Button"
+	11"Z-Index",
+	12"Color",
+	13"Resizable Sides"
+]);
 */
 var toolsArray = new Array();
-toolsArray[0] = [
+toolsArray.push([
 	"horizontalRuler", 
 	"250px",
 	"250px",
@@ -56,9 +61,13 @@ toolsArray[0] = [
 	true,
 	true,
 	false,
-	false
-];
-toolsArray[1] = [
+	false,
+	"horiRulerButton",
+	30,
+	"rgba(255,255,255,0.5)",
+	"n, e, s, w, ne, se, sw, nw"
+]);
+toolsArray.push([
 	"verticalRuler", 
 	"50px",
 	"50px",
@@ -68,5 +77,9 @@ toolsArray[1] = [
 	true,
 	true,
 	false,
-	false
-];
+	false,
+	"vertRulerButton",
+	30,
+	"rgba(255,255,255,0.5)",
+	"n, e, s, w, ne, se, sw, nw"
+]);

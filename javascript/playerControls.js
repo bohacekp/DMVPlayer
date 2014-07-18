@@ -118,6 +118,12 @@ function fwdFrame(){
 //	console.log("fwd frame , time: "+player.currentTime);
 }
 
+//Start button function
+function start(){
+	play();
+	pause();
+}
+
 $(document).ready(function(){
 	
 //	$('.ui-slider-handle').backgroundColor("#FF0000"); 

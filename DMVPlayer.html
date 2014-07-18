@@ -3,7 +3,8 @@
 	<head>
   		<!-- Loading jQuery and jQuery UI -->
 		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+<!--		<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>-->
+		<script src="javascript/jquery-ui-1.10.4.min.js"></script>
 
 		<!-- Loading jQuery Touch Punch -->
 		<script src="javascript/jquery.ui.touch-punch.min.js"></script>
@@ -28,6 +29,13 @@
  	<body>
 		<meta charset="utf-8">
 		<div>
+			<!-- Start Button -->
+<!--
+			<button title="Start" type="button" title="start" value="start" name="start" onclick="start()">
+							<img src="images/firstframe.png" style="height: 18px; width: 25px">
+			</button>
+-->
+			
 			<!-- this video tag is the video window that is shown on the player, it says where to get the video and tells it what codec to look for-->
 			<video id="dmv_video" width="100%" preload="auto" poster>
 				<source id="mp4_video" src="" id="movie" type="video/mp4">
@@ -57,6 +65,8 @@
 					//creates an instance of the video player called 'player' anytime you see player.blah, it is telling the video player to do something
 					var player = document.getElementById('dmv_video'); 
 				</script>
+			
+			<br>
 
 				<!-- this table tag creates the table which contains all of the buttons, all of the <th> tags create new columns, and the idntifiers like onClick, src, and id are used to set certain properties of the buttons-->
 				<!-- width=100% says that the sidth of the table should be 100% of the window and the margin says how much white space should be above the table-->
@@ -94,10 +104,13 @@
 				<!-- Measure Tools  -->
 				<table id="button_table_2" width ="100%" border="0" style="margin-top:5px;">
 					<th>
-						<input type="button" value="Horizontal Ruler" id="horiRuler" onclick="hideTool(horizontalRuler)"/>
+						Tools:
 					</th>
 					<th>
-						<input type="button" value="Vertical Ruler" id="vertRuler" onclick="hideTool(verticalRuler)"/>
+						<input type="button" value="Horizontal Ruler" id="horiRulerButton" class="measurementToolClass" onclick="hideTool('#horizontalRuler')"/>
+					</th>
+					<th>
+						<input type="button" value="Vertical Ruler" id="vertRulerButton" class="measurementToolClass" onclick="hideTool('#verticalRuler')"/>
 					</th>
 					<th>
 						<input type="button" value="Reset Tools" id="resetTools" onclick="resetTools()"/>
@@ -107,8 +120,13 @@
 						<input type="button" value="Nudge Up" id="nudgeUp" onclick="nudgeUp()"/>
 					</th>
 -->
+					<th>
+						<p id="stopWatchTest">kjhkjh</p>
+					</th>
 				</table>
 
+			
+			
 				<script>
 					document.getElementById("button_table_1").style.maxWidth="980px";
 					document.getElementById("button_table_2").style.maxWidth="980px";
