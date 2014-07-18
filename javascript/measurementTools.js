@@ -27,6 +27,11 @@ $(document).ready(function(){
 //		index++;
 //	}
 	
+	//Tools table
+	if(toolsArray.length == 0){
+		$("#button_table_2").css("display", "none");
+	}	
+	
 	index = 0;
 	//Showing only the tools that are defined in toolsArray
 	for(elements in toolsArray){
