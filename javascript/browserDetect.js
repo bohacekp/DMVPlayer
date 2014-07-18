@@ -1,3 +1,5 @@
+//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
+
 //From another website
 var isOpera = !!window.opera || navigator.userAgent.indexOf('Opera') >= 0;
 // Opera 8.0+ (UA detection to detect Blink/v8-powered Opera)

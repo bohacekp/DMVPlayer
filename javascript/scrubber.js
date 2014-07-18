@@ -1,3 +1,5 @@
+//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
+
 /* 
 * This peice of code took a good 3-4 weeks to write, so it is more complicated
 * I will try to explain it as well as I can, and there are some peices which I

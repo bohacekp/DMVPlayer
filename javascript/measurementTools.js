@@ -1,3 +1,5 @@
+//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
+
 $(document).ready(function(){
 	//Setting up the different tools
 	//Options are in the toolsArray array

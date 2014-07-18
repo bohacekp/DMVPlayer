@@ -1,3 +1,5 @@
+//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
+
 //Settings for the page
 //Flags
 //Video Selection

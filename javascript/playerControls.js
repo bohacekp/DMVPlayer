@@ -1,3 +1,5 @@
+//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
+
 //creates variable called percent
 var percent;
 //creates variable called oldVal
