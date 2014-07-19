@@ -56,9 +56,11 @@ $(document).ready(function(){
 		//Show the tool?
 		if(toolsArray[index][5]){
 			tool_jQuery.css("display", "initial");
-			toolButton.css("display", "initial");
 		}
 
+		//Show the button for the tool
+		toolButton.css("display", "initial");
+		
 		//Draggable?
 		if(toolsArray[index][6]){
 			if(toolsArray[index][8]){

@@ -52,8 +52,13 @@
 			<div id="horizontalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
 				<img id="hRulerImg" src="images/hruler.png">
 			</div>
+			<!--Vertical Ruler-->
 			<div id="verticalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
 				<img id="vRulerImg" src="images/vruler.png">
+			</div>
+			<!--Protractor Quarter Q4-->
+			<div id="protractor_Quarter_Q4" class="measurementToolClass" onmousedown="moveToTop(this.id)">
+				<img id="vProtractor_Quarter_Q4Img" src="images/protractor.png">
 			</div>
 			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			
@@ -110,6 +115,9 @@
 					</th>
 					<th>
 						<input type="button" value="Vertical Ruler" id="vertRulerButton" class="measurementToolClass" onclick="hideTool('#verticalRuler')"/>
+					</th>
+					<th>
+						<input type="button" value="Protractor" id="protractorButton" class="measurementToolClass" onclick="hideTool('#protractor_Quarter_Q4')"/>
 					</th>
 					<th>
 						<input type="button" value="Reset Tools" id="resetTools" onclick="resetTools()"/>
