@@ -3,7 +3,7 @@
 //Settings for the page
 //Flags
 //Video Selection
-var videoSelection = true;
+var videoSelection = false;
 //Nudging Buttons
 var nudgeButtons = true;
 //Reset Button
@@ -25,11 +25,6 @@ videoArray.push([
 	"Ping Pong Ball",
 	"videos/ppb_4_clean.ogv",
 	"videos/ppb_4_clean.mp4"
-]);
-videoArray.push([
-	"Wheel Falling",
-	"videos/spin_falling.ogv",
-	"videos/spin_falling.mp4"
 ]);
 
 //Tools Array
@@ -66,7 +61,7 @@ toolsArray.push([
 	false,
 	"horiRulerButton",
 	30,
-	"rgba(255,255,255,0.5)",
+	"rgba(255, 255, 255, 0)",
 	"n, e, s, w, ne, se, sw, nw"
 ]);
 toolsArray.push([
@@ -82,6 +77,22 @@ toolsArray.push([
 	false,
 	"vertRulerButton",
 	30,
-	"rgba(255,255,255,0.5)",
+	"rgba(255, 255, 255, 0)",
+	"n, e, s, w, ne, se, sw, nw"
+]);
+toolsArray.push([
+	"protractor_Quarter_Q4", 
+	"500px",
+	"50px",
+  	"200px",
+	"200px",
+	true,
+	true,
+	true,
+	false,
+	true,
+	"protractorButton",
+	30,
+	"rgba(255, 255, 255, 0)",
 	"n, e, s, w, ne, se, sw, nw"
 ]);
