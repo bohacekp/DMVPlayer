@@ -45,6 +45,8 @@ toolsArray.push([
 	11"Z-Index",
 	12"Color",
 	13"Resizable Sides"
+	14"Draggable Help Text",
+	15"Resize Help Text"
 ]);
 */
 var toolsArray = new Array();
@@ -62,7 +64,9 @@ toolsArray.push([
 	"horiRulerButton",
 	30,
 	"rgba(255, 255, 255, 0)",
-	"n, e, s, w, ne, se, sw, nw"
+	"n, e, s, w, ne, se, sw, nw",
+	true,
+	true
 ]);
 toolsArray.push([
 	"verticalRuler", 
@@ -78,7 +82,9 @@ toolsArray.push([
 	"vertRulerButton",
 	30,
 	"rgba(255, 255, 255, 0)",
-	"n, e, s, w, ne, se, sw, nw"
+	"n, e, s, w, ne, se, sw, nw",
+	true,
+	true
 ]);
 toolsArray.push([
 	"protractor_Quarter_Q4", 
@@ -94,5 +100,7 @@ toolsArray.push([
 	"protractorButton",
 	30,
 	"rgba(255, 255, 255, 0)",
-	"n, e, s, w, ne, se, sw, nw"
+	"n, e, s, w, ne, se, sw, nw",
+	true,
+	true
 ]);

@@ -104,6 +104,24 @@ img
 	height: 20px;
 }
 
+/*Help Text for the Tools*/
+.toolHelpText_Drag
+{
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	font-size: 150%;
+	color: red;
+}
+.toolHelpText_Resize
+{
+	position: absolute;
+	top: 40%;
+	left: 5%;
+	font-size: 150%;
+	color: red;
+}
+
 /*Changing the Slider's colors*/
 /*.ui-slider-range { background: #003bff; }*/
 /*.ui-widget-content { background: #00a7ff; }*/

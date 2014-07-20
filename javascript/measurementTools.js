@@ -37,7 +37,7 @@ $(document).ready(function(){
 	for(elements in toolsArray){
 		
 		//debug
-		console.log("adding in the tools");
+//		console.log("adding in the tools");
 //		console.log(toolsArray[index][0]);
 		
 		//Getting the tool
@@ -86,6 +86,20 @@ $(document).ready(function(){
 		tool_jQuery.css("background-color", toolsArray[index][12]);
 		tool_jQuery.css("border", "1px solid black");
 
+		//Showing Help Text
+		//Draggable
+		if(!toolsArray[index][14]){
+			$("#"+toolsArray[index][0]+"_DragHelp").css("display", "none");
+		}
+		//Resizable
+		if(!toolsArray[index][15]){
+			$("#"+toolsArray[index][0]+"_ResizeHelp").css("display", "none");
+		}
+		
+		//Binding the tools to the drag and resize callbacks
+		tool_jQuery.on( "drag", function( event, ui ) {$("#"+this.id+"_DragHelp").css("display", "none");} );
+		tool_jQuery.on( "resize", function( event, ui ) {$("#"+this.id+"_ResizeHelp").css("display", "none");} );
+		
 		index++;
 	}
 });
@@ -142,9 +156,33 @@ function nudgeTool(e){
 
 //Hide Tool
 function hideTool(tool){
-//	console.log(tool);
-//	$(tool).css("display", "none");
+	//Toggling the tool
 	$(tool).toggle("highlight");
+	
+	//Removing the '#' from the tool var, if it is there
+	var toolID = tool.replace('#', '');
+	
+	//Finding the tool in the toolsArray
+	var index = 0;
+	for(elements in toolsArray){
+		if(toolsArray[index][0] == toolID){
+			break;
+		}
+		index++;
+	}
+	
+	//Setting the flag that tool is hidden/visible
+	toolsArray[index][5] = !toolsArray[index][5];
+	
+	//Reshowing the Help Text for the tool
+	//Draggable
+	if(toolsArray[index][14] && toolsArray[index][5]){
+		$("#"+toolID+"_DragHelp").css("display", "initial");
+	}
+	//Resizable
+	if(toolsArray[index][15] && toolsArray[index][5]){
+		$("#"+toolID+"_ResizeHelp").css("display", "initial");
+	}
 }
 
 //Moving the selected tool to the top
