@@ -176,11 +176,11 @@ function hideTool(tool){
 	
 	//Reshowing the Help Text for the tool
 	//Draggable
-	if(toolsArray[index][14] && toolsArray[index][5]){
+	if(toolsArray[index][14] && toolsArray[index][5] && toolsArray[index][16]){
 		$("#"+toolID+"_DragHelp").css("display", "initial");
 	}
 	//Resizable
-	if(toolsArray[index][15] && toolsArray[index][5]){
+	if(toolsArray[index][15] && toolsArray[index][5] && toolsArray[index][17]){
 		$("#"+toolID+"_ResizeHelp").css("display", "initial");
 	}
 }

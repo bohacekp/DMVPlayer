@@ -46,7 +46,9 @@ toolsArray.push([
 	12"Color",
 	13"Resizable Sides"
 	14"Draggable Help Text",
-	15"Resize Help Text"
+	15"Resize Help Text",
+	16"Reshow Drag Help Text",
+	17"Reshow Resize Help Text"
 ]);
 */
 var toolsArray = new Array();
@@ -66,6 +68,8 @@ toolsArray.push([
 	"rgba(255, 255, 255, 0)",
 	"n, e, s, w, ne, se, sw, nw",
 	true,
+	true,
+	true,
 	true
 ]);
 toolsArray.push([
@@ -84,6 +88,8 @@ toolsArray.push([
 	"rgba(255, 255, 255, 0)",
 	"n, e, s, w, ne, se, sw, nw",
 	true,
+	true,
+	true,
 	true
 ]);
 toolsArray.push([
@@ -101,6 +107,8 @@ toolsArray.push([
 	30,
 	"rgba(255, 255, 255, 0)",
 	"n, e, s, w, ne, se, sw, nw",
+	true,
+	true,
 	true,
 	true
 ]);
