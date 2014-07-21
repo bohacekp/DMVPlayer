@@ -31,12 +31,12 @@ videoArray.push([
 /*
 Template for the toolArray values
 toolsArray.push([
-	0"Element ID",
+	0"Element ID", NO '#'
 	1"Pos Left",
 	2"Pos Top",
 	3"Size Height",
 	4"Size Width",
-	5"Show true/false",
+	5"Show tool at the start? true/false",
 	6"Draggable true/false",
 	7"Resizable true/false",
 	8"Contained true/false",

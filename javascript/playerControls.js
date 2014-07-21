@@ -154,10 +154,10 @@ $(document).ready(function(){
 	
 	//Setting the video sources
 	if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-		$(ogg_video).attr('src', videoArray[0][1]);
+		$(ogg_video).attr('src', videoArray[0][_locationOGV]);
 	}
 	else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-		$(mp4_video).attr('src', videoArray[0][2]);
+		$(mp4_video).attr('src', videoArray[0][_locationMP4]);
 	}
 	
 	//Reload the dmv video
@@ -166,7 +166,7 @@ $(document).ready(function(){
 	//Setting up the options in the video selection
 	var index = 0;
 	for(element in videoArray){
-		var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][0]));
+		var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][_nameOfVideo]));
 		index++;
 	}
 	
@@ -179,10 +179,10 @@ $(document).ready(function(){
 		
 		//Setting the video sources
 		if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-			$(ogg_video).attr('src', videoArray[video_index][1]);
+			$(ogg_video).attr('src', videoArray[video_index][_locationOGV]);
 		}
 		else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-			$(mp4_video).attr('src', videoArray[video_index][2]);
+			$(mp4_video).attr('src', videoArray[video_index][_locationMP4]);
 		}
 		
 		//Reload the dmv video

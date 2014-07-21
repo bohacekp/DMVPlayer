@@ -41,20 +41,20 @@ $(document).ready(function(){
 //		console.log(toolsArray[index][0]);
 		
 		//Getting the tool
-		tool_jQuery = $(document.getElementById(toolsArray[index][0]));
-		tool = document.getElementById(toolsArray[index][0]);
-		toolButton = $(document.getElementById(toolsArray[index][10]));
+		tool_jQuery = $(document.getElementById(toolsArray[index][_elementID]));
+		tool = document.getElementById(toolsArray[index][_elementID]);
+		toolButton = $(document.getElementById(toolsArray[index][_measureToolButton]));
 
 		//Setting the default location for the tool
-		tool.style.left = toolsArray[index][1];
-		tool.style.top = toolsArray[index][2];
+		tool.style.left = toolsArray[index][_positionLeft];
+		tool.style.top = toolsArray[index][_positionTop];
 
 		//Setting the default size of the tool
-		tool.style.height = toolsArray[index][3];
-		tool.style.width = toolsArray[index][4];
+		tool.style.height = toolsArray[index][_sizeHeight];
+		tool.style.width = toolsArray[index][_sizeWidth];
 
 		//Show the tool?
-		if(toolsArray[index][5]){
+		if(toolsArray[index][_show]){
 			tool_jQuery.css("display", "initial");
 		}
 
@@ -62,8 +62,8 @@ $(document).ready(function(){
 		toolButton.css("display", "initial");
 		
 		//Draggable?
-		if(toolsArray[index][6]){
-			if(toolsArray[index][8]){
+		if(toolsArray[index][_draggable]){
+			if(toolsArray[index][_contained]){
 				tool_jQuery.draggable({containment:"body"});
 			}
 			else{
@@ -72,28 +72,31 @@ $(document).ready(function(){
 		}
 
 		//Resizable?
-		if(toolsArray[index][7]){
-			tool_jQuery.resizable({aspectRatio:toolsArray[index][9], handles:toolsArray[index][13]});
+		if(toolsArray[index][_resizable]){
+			tool_jQuery.resizable({
+									aspectRatio:toolsArray[index][_aspectRatioLocked],
+									handles:toolsArray[index][_resizableSides]
+									});
 		}
 
 		//Z-Index
-		tool_jQuery.css("z-index", toolsArray[index][11]);
+		tool_jQuery.css("z-index", toolsArray[index][_zIndex]);
 
 		//Position Attributes
 		tool_jQuery.css("position", "absolute");
 
 		//Color
-		tool_jQuery.css("background-color", toolsArray[index][12]);
+		tool_jQuery.css("background-color", toolsArray[index][_color]);
 		tool_jQuery.css("border", "1px solid black");
 
 		//Showing Help Text
 		//Draggable
-		if(!toolsArray[index][14]){
-			$("#"+toolsArray[index][0]+"_DragHelp").css("display", "none");
+		if(!toolsArray[index][_draggableHelpText]){
+			$("#"+toolsArray[index][_elementID]+"_DragHelp").css("display", "none");
 		}
 		//Resizable
-		if(!toolsArray[index][15]){
-			$("#"+toolsArray[index][0]+"_ResizeHelp").css("display", "none");
+		if(!toolsArray[index][_resizeHelpText]){
+			$("#"+toolsArray[index][_elementID]+"_ResizeHelp").css("display", "none");
 		}
 		
 		//Binding the tools to the drag and resize callbacks
@@ -108,11 +111,11 @@ function resetTools(){
 	selectedTool = "";
 	var index = 0;
 	for(element in toolsArray){
-		tool = document.getElementById(toolsArray[index][0]);
-		tool.style.left = toolsArray[index][1];
-		tool.style.top = toolsArray[index][2];
-		tool.style.height = toolsArray[index][3];
-		tool.style.width = toolsArray[index][4];
+		tool = document.getElementById(toolsArray[index][_elementID]);
+		tool.style.left = toolsArray[index][_positionLeft];
+		tool.style.top = toolsArray[index][_positionTop];
+		tool.style.height = toolsArray[index][_sizeHeight];
+		tool.style.width = toolsArray[index][_sizeWidth];
 		tool.style.border = "1px solid black";
 		index++;
 	}
@@ -165,22 +168,26 @@ function hideTool(tool){
 	//Finding the tool in the toolsArray
 	var index = 0;
 	for(elements in toolsArray){
-		if(toolsArray[index][0] == toolID){
+		if(toolsArray[index][_elementID] == toolID){
 			break;
 		}
 		index++;
 	}
 	
 	//Setting the flag that tool is hidden/visible
-	toolsArray[index][5] = !toolsArray[index][5];
+	toolsArray[index][_show] = !toolsArray[index][_show];
 	
 	//Reshowing the Help Text for the tool
 	//Draggable
-	if(toolsArray[index][14] && toolsArray[index][5] && toolsArray[index][16]){
+	if(toolsArray[index][_draggableHelpText] &&
+	   toolsArray[index][_show] &&
+	   toolsArray[index][_reshowDragHelpText]){
 		$("#"+toolID+"_DragHelp").css("display", "initial");
 	}
 	//Resizable
-	if(toolsArray[index][15] && toolsArray[index][5] && toolsArray[index][17]){
+	if(toolsArray[index][_resizeHelpText] &&
+	   toolsArray[index][_show] &&
+	   toolsArray[index][_reshowResizeHelpText]){
 		$("#"+toolID+"_ResizeHelp").css("display", "initial");
 	}
 }
