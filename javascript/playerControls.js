@@ -109,7 +109,7 @@ function fwdFrame(){
 
 		}
 	else{
-		console.log("Skip by setting time");
+//		console.log("Skip by setting time");
 		pause();
 		player.currentTime=player.currentTime+(1/framerate);
 //		console.log("fwd frame other browser, time: "+player.currentTime);

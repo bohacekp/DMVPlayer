@@ -5,28 +5,28 @@
   		<!-- Loading jQuery and jQuery UI -->
 		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <!--		<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>-->
-		<script src="javascript/jquery-ui-1.10.4.min.js"></script>
+		<script src="../javascript/jquery-ui-1.10.4.min.js"></script>
 
 		<!-- Loading jQuery Touch Punch -->
-		<script src="javascript/jquery.ui.touch-punch.min.js"></script>
+		<script src="../javascript/jquery.ui.touch-punch.min.js"></script>
   
 		<!-- Loading CSS Files -->
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-		<link rel="stylesheet" href="css/DMVPlayer.css" type="text/css"/>
+		<link rel="stylesheet" href="../css/DMVPlayer.css" type="text/css"/>
 		
 		<!-- Loading Javascript Files -->
 		<!-- Browser detection code -->
-		<script src="javascript/browserDetect.js"></script>
+		<script src="../javascript/browserDetect.js"></script>
 		<!-- Scrubber code-->
-		<script src="javascript/scrubber.js"></script>
+		<script src="../javascript/scrubber.js"></script>
 		<!-- MeasurementTool javascript -->
-		<script src="javascript/measurementTools.js"></script>
+		<script src="../javascript/measurementTools.js"></script>
 		<!-- PlayerControl Javascript -->
-		<script src="javascript/playerControls.js"></script>
+		<script src="../javascript/playerControls.js"></script>
 		<!-- Variables -->
-		<script src="javascript/settings.js"></script>
+		<script src="../javascript/settings.js"></script>
 		<!-- Definitions -->
-		<script src="javascript/definitions.js"></script>
+		<script src="../javascript/definitions.js"></script>
  	</head>
 	
  	<body>
@@ -53,19 +53,19 @@
 		  	<!-- TOOLS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			<!--Horizontal Ruler-->
 			<div id="horizontalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
-				<img id="hRulerImg" src="images/hruler.png">
+				<img id="hRulerImg" src="../images/hruler.png">
 				<p id="horizontalRuler_DragHelp" class="toolHelpText_Drag">Click and hold to drag</p>
 				<p id="horizontalRuler_ResizeHelp" class="toolHelpText_Resize">Click and hold on sides to resize</p>
 			</div>
 			<!--Vertical Ruler-->
 			<div id="verticalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
-				<img id="vRulerImg" src="images/vruler.png">
+				<img id="vRulerImg" src="../images/vruler.png">
 				<p id="verticalRuler_DragHelp" class="toolHelpText_Drag">Click and hold to drag</p>
 				<p id="verticalRuler_ResizeHelp" class="toolHelpText_Resize">Click and hold on sides to resize</p>
 			</div>
 			<!--Protractor Quarter Q4-->
 			<div id="protractor_Quarter_Q4" class="measurementToolClass" onmousedown="moveToTop(this.id)">
-				<img id="vProtractor_Quarter_Q4Img" src="images/protractor.png">
+				<img id="vProtractor_Quarter_Q4Img" src="../images/protractor.png">
 				<p id="protractor_Quarter_Q4_DragHelp" class="toolHelpText_Drag">Click and hold to drag</p>
 				<p id="protractor_Quarter_Q4_ResizeHelp" class="toolHelpText_Resize">Click and hold on sides to resize</p>
 			</div>
@@ -86,22 +86,22 @@
 				<table id="button_table_1" width ="100%" border="0" style="margin-top:5px;"> 
 					<th>
 						<button title="Rewind the video" type="button" title="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
-							<img src="images/firstframe.png" style="height: 18px; width: 25px">
+							<img src="../images/firstframe.png" style="height: 18px; width: 25px">
 						</button>
 					</th>
 					<th>
 						<button title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
-							<img src="images/frame back.png"  style="height:18px; width: 18px"  />
+							<img src="../images/frame back.png"  style="height:18px; width: 18px"  />
 						</button>
 					</th>
 					<th>
 						<button title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
-							<img src="images/playpause2.png" style="height:18px; width: 28px" />
+							<img src="../images/playpause2.png" style="height:18px; width: 28px" />
 						</button>
 					</th>
 					<th>
 						<button title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
-							<img src="images/frame advance.png" style="height:18px; width: 18px"/>
+							<img src="../images/frame advance.png" style="height:18px; width: 18px"/>
 						</button>
 					</th>
 					<th>

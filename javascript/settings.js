@@ -23,8 +23,8 @@ videoArray.push([
 var videoArray = new Array();
 videoArray.push([
 	"Ping Pong Ball",
-	"videos/ppb_4_clean.ogv",
-	"videos/ppb_4_clean.mp4"
+	"../videos/ppb_4_clean.ogv",
+	"../videos/ppb_4_clean.mp4"
 ]);
 
 //Tools Array
@@ -44,7 +44,7 @@ toolsArray.push([
 	10"Measure Tool Button"
 	11"Z-Index",
 	12"Color",
-	13"Resizable Sides"
+	13"Resizable Sides",
 	14"Draggable Help Text",
 	15"Resize Help Text",
 	16"Reshow Drag Help Text",
