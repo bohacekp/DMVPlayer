@@ -103,6 +103,9 @@ $(document).ready(function(){
 		tool_jQuery.on( "drag", function( event, ui ) {$("#"+this.id+"_DragHelp").css("display", "none");} );
 		tool_jQuery.on( "resize", function( event, ui ) {$("#"+this.id+"_ResizeHelp").css("display", "none");} );
 		
+		//Setting up the images for the tool
+		document.getElementById(toolsArray[index][_toolImageID]).src = toolsArray[index][_toolImage];
+		
 		index++;
 	}
 	
@@ -119,7 +122,6 @@ $(document).ready(function(){
 		toolResizeText[i].style.fontSize = toolHelpTextSize;
 		toolResizeText[i].style.color = toolHelpTextColor;
 	}
-	
 });
 
 function resetTools(){

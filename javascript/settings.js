@@ -11,9 +11,9 @@ var resetButton = true;
 //Stop Watch
 var stopWatch = false;
 //Measure Tool Help Text Size
-var toolHelpTextSize = "100%";
+var toolHelpTextSize = "75%";
 //Measure Tool Help Text Color
-var toolHelpTextColor = "green";
+var toolHelpTextColor = "white";
 
 //Video Selection Array
 /*
@@ -52,7 +52,9 @@ toolsArray.push([
 	14"Draggable Help Text",
 	15"Resize Help Text",
 	16"Reshow Drag Help Text",
-	17"Reshow Resize Help Text"
+	17"Reshow Resize Help Text",
+	18"Tool Image",
+	19"Tool Image ID"
 ]);
 */
 var toolsArray = new Array();
@@ -74,7 +76,9 @@ toolsArray.push([
 	true,
 	true,
 	true,
-	true
+	true,
+	"../images/hruler_100_white.png",
+	"hRulerImg"
 ]);
 toolsArray.push([
 	"verticalRuler", 
@@ -94,7 +98,9 @@ toolsArray.push([
 	true,
 	true,
 	true,
-	true
+	true,
+	"../images/vruler_100_white.png",
+	"vRulerImg"
 ]);
 toolsArray.push([
 	"protractor_Quarter_Q4", 
@@ -114,5 +120,7 @@ toolsArray.push([
 	true,
 	true,
 	true,
-	true
+	true,
+	"../images/protractor_quarter_q4_white.png",
+	"vProtractor_Quarter_Q4Img"
 ]);
