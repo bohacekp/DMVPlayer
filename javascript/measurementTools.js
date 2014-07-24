@@ -105,6 +105,21 @@ $(document).ready(function(){
 		
 		index++;
 	}
+	
+	//Setting the attributes for the measurement tools help text
+	//Drag Text
+	var toolDragText = document.getElementsByClassName('toolHelpText_Drag');
+	for(var i = 0; i < toolDragText.length; i++) {
+		toolDragText[i].style.fontSize = toolHelpTextSize;
+		toolDragText[i].style.color = toolHelpTextColor;
+	}
+	//Resize Text
+	var toolResizeText = document.getElementsByClassName('toolHelpText_Resize');
+	for(var i = 0; i < toolResizeText.length; i++) {
+		toolResizeText[i].style.fontSize = toolHelpTextSize;
+		toolResizeText[i].style.color = toolHelpTextColor;
+	}
+	
 });
 
 function resetTools(){

@@ -110,16 +110,14 @@ img
 	position: absolute;
 	top: 5%;
 	left: 5%;
-	font-size: 150%;
-	color: red;
+	font-family: Arial, Helvetica, sans-serif;
 }
 .toolHelpText_Resize
 {
 	position: absolute;
 	top: 40%;
 	left: 5%;
-	font-size: 150%;
-	color: red;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 /*Changing the Slider's colors*/

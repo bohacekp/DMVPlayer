@@ -10,6 +10,10 @@ var nudgeButtons = true;
 var resetButton = true;
 //Stop Watch
 var stopWatch = false;
+//Measure Tool Help Text Size
+var toolHelpTextSize = "100%";
+//Measure Tool Help Text Color
+var toolHelpTextColor = "green";
 
 //Video Selection Array
 /*
