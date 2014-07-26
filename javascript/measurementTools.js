@@ -2,6 +2,23 @@
 
 $(document).ready(function(){
 	//Setting up the different tools
+	//Adding in the tools dynamically from the toolsArray
+	var index = 0;
+	//Getting the main div
+	var mainDiv = document.getElementById("main");
+	//Going through all the tools defined in the 
+	for(elements in toolsArray){
+		//HTML code for the tools
+		var toolHTML = '<div id="' + toolsArray[index][_elementID] + '" class="measurementToolClass" onmousedown="moveToTop(this.id)">' +
+						'<img id="' + toolsArray[index][_toolImageID] + '" src="">'+
+						'<p id="' + toolsArray[index][_elementID] + '_DragHelp" class="toolHelpText_Drag">Drag this into position</p>'+
+						'<p id="' + toolsArray[index][_elementID] + '_ResizeHelp" class="toolHelpText_Resize">Drag a corner or edge to calibrate</p>'+
+						'</div>';
+		//Appending the tool's HTML
+		mainDiv.insertAdjacentHTML("afterBegin", toolHTML);
+		index++;
+	}
+	
 	//Options are in the toolsArray array
 	var index = 0;
 	var tool;

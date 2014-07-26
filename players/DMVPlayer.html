@@ -31,7 +31,7 @@
 	
  	<body>
 		<meta charset="utf-8">
-		<div>
+		<div id="main">
 			<!-- Start Button -->
 <!--
 			<button title="Start" type="button" title="start" value="start" name="start" onclick="start()">
@@ -49,27 +49,6 @@
 				//the framerate variable is used in frame skipping
 				var framerate = 30;  
 			</script>
-			
-		  	<!-- TOOLS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-			<!--Horizontal Ruler-->
-			<div id="horizontalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
-				<img id="hRulerImg" src="">
-				<p id="horizontalRuler_DragHelp" class="toolHelpText_Drag">Drag this into position</p>
-				<p id="horizontalRuler_ResizeHelp" class="toolHelpText_Resize">Drag a corner or edge to calibrate</p>
-			</div>
-			<!--Vertical Ruler-->
-			<div id="verticalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
-				<img id="vRulerImg" src="">
-				<p id="verticalRuler_DragHelp" class="toolHelpText_Drag">Drag this into position</p>
-				<p id="verticalRuler_ResizeHelp" class="toolHelpText_Resize">Drag a corner or edge to calibrate</p>
-			</div>
-			<!--Protractor Quarter Q4-->
-			<div id="protractor_Quarter_Q4" class="measurementToolClass" onmousedown="moveToTop(this.id)">
-				<img id="vProtractor_Quarter_Q4Img" src="">
-				<p id="protractor_Quarter_Q4_DragHelp" class="toolHelpText_Drag">Drag this into position</p>
-				<p id="protractor_Quarter_Q4_ResizeHelp" class="toolHelpText_Resize">Drag a corner or edge to calibrate</p>
-			</div>
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			
 			<!-- set the amount of whitespace above the slider-->
 			<div id="slider" style="margin-top:0px;"></div> 
