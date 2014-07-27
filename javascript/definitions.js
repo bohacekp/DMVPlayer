@@ -27,3 +27,4 @@ var _reshowDragHelpText = 16;
 var _reshowResizeHelpText = 17;
 var _toolImage = 18;
 var _toolImageID = 19;
+var _toolButtonTitle = 20;

@@ -54,7 +54,8 @@ toolsArray.push([
 	16"Reshow Drag Help Text",
 	17"Reshow Resize Help Text",
 	18"Tool Image",
-	19"Tool Image ID"
+	19"Tool Image ID",
+	20"Tool's Button Title"
 ]);
 */
 var toolsArray = new Array();
@@ -78,7 +79,8 @@ toolsArray.push([
 	true,
 	true,
 	"../images/hruler_100_white.png",
-	"hRulerImg"
+	"hRulerImg",
+	"Horizontal Ruler"
 ]);
 toolsArray.push([
 	"verticalRuler", 
@@ -100,7 +102,8 @@ toolsArray.push([
 	true,
 	true,
 	"../images/vruler_100_white.png",
-	"vRulerImg"
+	"vRulerImg",
+	"Horizontal Ruler"
 ]);
 toolsArray.push([
 	"protractor_Quarter_Q4", 
@@ -122,5 +125,6 @@ toolsArray.push([
 	true,
 	true,
 	"../images/protractor_quarter_q4_white.png",
-	"vProtractor_Quarter_Q4Img"
+	"vProtractor_Quarter_Q4Img",
+	"Protractor"
 ]);

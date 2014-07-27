@@ -6,6 +6,8 @@ $(document).ready(function(){
 	var index = 0;
 	//Getting the main div
 	var mainDiv = document.getElementById("main");
+	//Tool Button Table
+	var toolButtonTable = document.getElementById("button_table_2");
 	//Going through all the tools defined in the 
 	for(elements in toolsArray){
 		//HTML code for the tools
@@ -16,6 +18,19 @@ $(document).ready(function(){
 						'</div>';
 		//Appending the tool's HTML
 		mainDiv.insertAdjacentHTML("afterBegin", toolHTML);
+		
+		//HTML code for the tools button
+		var toolButtonHTML = 
+							 '<button ' +
+//							 'value="' + toolsArray[index][_toolButtonTitle] + '" ' +
+							 'id="' + toolsArray[index][_measureToolButton] + 
+							 '" class="measurementToolClass" ' + 
+//							 'style="padding: 25px 20px;" ' +
+							 'onclick="hideTool(\'#' + toolsArray[index][_elementID] + '\')">' +
+							 toolsArray[index][_toolButtonTitle] + '</button>';
+		//Appenging the tool's button HTML
+		toolButtonTable.insertAdjacentHTML("beforeEnd", toolButtonHTML);
+		
 		index++;
 	}
 	
