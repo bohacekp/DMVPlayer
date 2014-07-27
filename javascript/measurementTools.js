@@ -34,6 +34,17 @@ $(document).ready(function(){
 		index++;
 	}
 	
+	//Reset Tool Button
+	//If there are any tools?
+	if(toolsArray.length == 1){
+		var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tool</button>';
+		toolButtonTable.insertAdjacentHTML("beforeEnd", resetButtonHTML);
+	}
+	else if(toolsArray.length > 1){
+		var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tools</button>';
+		toolButtonTable.insertAdjacentHTML("beforeEnd", resetButtonHTML);
+	}
+	
 	//Options are in the toolsArray array
 	var index = 0;
 	var tool;
