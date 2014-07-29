@@ -165,6 +165,15 @@ $(document).ready(function(){
 		toolResizeText[i].style.fontSize = toolHelpTextSize;
 		toolResizeText[i].style.color = toolHelpTextColor;
 	}
+	
+	//Overlay Image Button
+	if(!enableOverlayImage){
+		$("#overlayImageButton").css("display", "none");
+	}
+	else{
+		document.getElementById("overlayImageID").src = overlayImage;
+		$("#overlayImageID").css("display", "none");
+	}
 });
 
 function resetTools(){
@@ -266,4 +275,27 @@ function moveToTop(tool){
 	//Moving the selected tool to the top
 	$("#"+tool).css("z-index", currentMaxZIndex);
 	currentMaxZIndex++;
+}
+
+//Variable to store the state of the Overlay Image
+var overlayImageVisible = false;
+//Toggleing the Overlay Image
+function toggleOverlayImage(){	
+	if(overlayImageVisible){
+		$("#overlayImageID").css("display", "none");
+		$("#dmv_video").css("display", "initial");
+	}
+	else{
+		//Showing the Overlay Image
+		$("#overlayImageID").css("display", "initial");
+		//Hiding the video
+		$("#dmv_video").css("display", "none");
+		
+		//Putting the Overlay Image above everything
+		$("#overlayImageID").css("z-index", currentMaxZIndex);
+		currentMaxZIndex++;
+	}
+	
+	//Toggling the state
+	overlayImageVisible = !overlayImageVisible;
 }

@@ -14,6 +14,11 @@ var stopWatch = false;
 var toolHelpTextSize = "75%";
 //Measure Tool Help Text Color
 var toolHelpTextColor = "white";
+//Enable Overlay Image
+var enableOverlayImage = true;
+//Overlay Image
+var overlayImage = "../images/pingpong_overlay.png";
+
 
 //Video Selection Array
 /*
@@ -103,7 +108,7 @@ toolsArray.push([
 	true,
 	"../images/vruler_100_white.png",
 	"vRulerImg",
-	"Horizontal Ruler"
+	"Vertical Ruler"
 ]);
 toolsArray.push([
 	"protractor_Quarter_Q4", 

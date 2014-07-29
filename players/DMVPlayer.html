@@ -45,6 +45,9 @@
 				<source id="ogg_video" src="" id="movie" type="video/ogg">
 			</video>
 			
+			<!-- Overlay Image -->
+			<img id="overlayImageID" src=""/>
+			
 			<script>
 				//the framerate variable is used in frame skipping
 				var framerate = 30;  
@@ -54,7 +57,7 @@
 			<div id="slider" style="margin-top:0px;"></div> 
 				<script> 
 					document.getElementById("dmv_video").style.maxWidth="980px";
-					document.getElementById("dmv_video").style.minHeight="400px";
+//					document.getElementById("dmv_video").style.minHeight="400px";
 					document.getElementById("slider").style.maxWidth="980px";
 					//creates an instance of the video player called 'player' anytime you see player.blah, it is telling the video player to do something
 					var player = document.getElementById('dmv_video'); 
@@ -102,8 +105,10 @@
 						<p id="stopWatchTest">kjhkjh</p>
 					</th>
 				</table>
-
 			
+				<!-- Overlay image button -->
+				<button id="overlayImageButton" onclick="toggleOverlayImage()">Overlay Image</button>
+				
 			
 				<script>
 					document.getElementById("button_table_1").style.maxWidth="980px";
@@ -111,3 +116,4 @@
 				</script>
 			</div>
 		</body>
+	</html>
