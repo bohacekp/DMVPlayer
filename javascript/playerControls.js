@@ -197,5 +197,13 @@ $(document).ready(function(){
 		
 		//Setting the slider back to the beginning
 		$("#slider").slider('value',0);
+		
+		//Hiding the overlay image
+		overlayImageVisible = false;
+		$("#overlayImageID").css("display", "none");
+		//Making sure the video is visible
+		$("#dmv_video").css("display", "initial");
+		//Switching the overlay image
+		document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
 	});
 });

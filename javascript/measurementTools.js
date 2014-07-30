@@ -171,7 +171,8 @@ $(document).ready(function(){
 		$("#overlayImageButton").css("display", "none");
 	}
 	else{
-		document.getElementById("overlayImageID").src = overlayImage;
+		console.log(document.getElementById("video_selector").selectedIndex);
+		document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
 		$("#overlayImageID").css("display", "none");
 	}
 });

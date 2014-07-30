@@ -16,24 +16,23 @@ var toolHelpTextSize = "75%";
 var toolHelpTextColor = "white";
 //Enable Overlay Image
 var enableOverlayImage = true;
-//Overlay Image
-var overlayImage = "../images/pingpong_overlay.png";
-
 
 //Video Selection Array
 /*
 Template for the videoArray values
 videoArray.push([
-	"name of the video selection",
-	"location of the .ogv video file",
-	"location of the .mp4 video file"
+	0"name of the video selection",
+	1"location of the .ogv video file",
+	2"location of the .mp4 video file",
+	3"Overlay Image"
 ]);
 */
 var videoArray = new Array();
 videoArray.push([
 	"Ping Pong Ball",
 	"../videos/ppb_4_clean.ogv",
-	"../videos/ppb_4_clean.mp4"
+	"../videos/ppb_4_clean.mp4",
+	"../images/pingpong_overlay.png"
 ]);
 
 //Tools Array
