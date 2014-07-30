@@ -149,6 +149,13 @@ $(document).ready(function(){
 	var mp4_video = document.getElementById("mp4_video");
 	var ogg_video = document.getElementById("ogg_video");
 	
+	//Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
+	dmv_player.oncanplaythrough = 
+		function(){
+			console.log("video ready!");
+			dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
+		};
+	
 //	console.log("dmv_player.canPlayType('video/ogg') = " + dmv_player.canPlayType("video/ogg"));
 //	console.log("dmv_player.canPlayType('video/mp4') = " + dmv_player.canPlayType("video/mp4"));
 	
