@@ -132,6 +132,19 @@ $(document).ready(function(){
 		toolButtonTable.insertAdjacentHTML("beforeEnd", resetButtonHTML);
 	}
 	
+	//Putting in the marker buttons
+	if(enableMarkers){
+		//Creating the HTML for the marker buttons
+		var markerSpawnButton = '<button id="spawnMarkerButton" onclick="spawnMarker()">Spawn Marker</button>';
+		var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
+		var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton" onclick="removeAllMarkers()">Remove All Markers</button>';
+		
+		//Putting in the buttons
+		toolButtonTable.insertAdjacentHTML('beforeEnd', markerSpawnButton);
+		toolButtonTable.insertAdjacentHTML('beforeEnd', markerRemoveSelectedButton);
+		toolButtonTable.insertAdjacentHTML('beforeEnd', markerRemoveAllMarkersButton);
+	}
+	
 	//Options are in the toolsArray array
 	var index = 0;
 	var tool;

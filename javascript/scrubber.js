@@ -84,8 +84,7 @@ $(function() {
 			percent = video.currentTime / video.duration; 
 			//set the position of the slider based on how far along in the video we are.
 			$( "#slider" ).slider( "option", "value", percent*100000 ); 
-			//prints "update" in the console to indicate an update, for debugging only
-			console.log("update");
+
 			//sets old val equall to newVal so that this peice of code cannot be run twice without something changing
 			oldVal=newVal;
 			
@@ -97,7 +96,7 @@ $(function() {
 
 //Update the stopwatch time
 function stopwatch(){
-	console.log("stopwatch");
-	console.log(player.currentTime);
+//	console.log("stopwatch");
+//	console.log(player.currentTime);
 	document.getElementById('stopWatchTest').innerHTML = player.currentTime;
 }

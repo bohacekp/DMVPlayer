@@ -1,7 +1,7 @@
-//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
-
 //Settings for the page
-//Flags
+//-----//
+//Flags//
+//-----//
 //Video Selection
 var videoSelection = false;
 //Nudging Buttons
@@ -10,12 +10,34 @@ var nudgeButtons = true;
 var resetButton = true;
 //Stop Watch
 var stopWatch = false;
+//Enable Overlay Image
+var enableOverlayImage = true;
+//Enable Markers
+var enableMarkers = true;
+
+//---------//
+//Help Text//
+//---------//
 //Measure Tool Help Text Size
 var toolHelpTextSize = "75%";
 //Measure Tool Help Text Color
 var toolHelpTextColor = "white";
-//Enable Overlay Image
-var enableOverlayImage = true;
+
+//-------//
+//Markers//
+//-------//
+//Marker Color
+var markerColor = "purple";
+//Marker Top
+var markerTop = "50px";
+//Marker Left
+var markerLeft = "200px";
+//Marker Height
+var markerHeight = "100px";
+//Marker Width
+var markerWidth = "10px";
+//Max Number of Markers
+var maxNumMarkers = 4;
 
 //Video Selection Array
 /*

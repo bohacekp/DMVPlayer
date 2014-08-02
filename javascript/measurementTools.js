@@ -121,3 +121,68 @@ function toggleOverlayImage(){
 	//Toggling the state
 	overlayImageVisible = !overlayImageVisible;
 }
+
+//Spawning marker
+var markerID = 1;
+var numMarkers = 0;
+function spawnMarker(){
+	//Checking to make sure we have not spawned the max amount of markers
+	if(numMarkers < maxNumMarkers){
+		console.log("spawn marker");
+
+		//Getting the main div
+		var mainDiv = document.getElementById("main");
+
+		//HTML code for the markers
+		var markerHTML = '<div id="marker' + markerID + '" class="markerClass" onmousedown="moveToTop(this.id)"></div>';
+
+		//Putting the marker html into the page
+		mainDiv.insertAdjacentHTML("afterBegin", markerHTML);
+
+		//Changing the settings of the marker
+		var currentMarker = $("#marker" + markerID);
+		currentMarker.css("display", "initial");
+		currentMarker.draggable();
+		currentMarker.css("z-index", '30');
+		currentMarker.css("position", "absolute");
+		currentMarker.css("background-color", markerColor);
+		currentMarker.css("top", markerTop);
+		currentMarker.css("left", markerLeft);
+		currentMarker.css("height", markerHeight);
+		currentMarker.css("width", markerWidth);
+
+		//Incrementing the marker id
+		markerID++;
+		//Incrementing the number of markers
+		numMarkers++;
+	}
+}
+
+//Remove selected marker
+function removeSelectedMarker(){
+	//Currently selected tool
+	var selectedToolDOM = document.getElementById(selectedTool);
+	
+	//Checking to make sure the selected tool is a marker
+	if(selectedToolDOM != null && selectedToolDOM.classList.contains('markerClass')){
+		//Removing the marker HTML
+		selectedToolDOM.remove();
+		
+		//Decrementing the marker index
+		numMarkers--;
+	}
+}
+
+//Removing all the markers
+function removeAllMarkers(){
+	//Getting all the markers
+	var markersArray = document.getElementsByClassName('markerClass');
+	
+	//Looping through the markers to remove them
+	for(var i = 0; i < markersArray.length; i = 0){
+		document.getElementById(markersArray[i].id).remove();
+	}
+	
+	//Setting the number of markers back to zero
+	numMarkers = 0;
+}
