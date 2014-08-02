@@ -5,31 +5,33 @@
   		<!-- Loading jQuery and jQuery UI -->
 		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <!--		<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>-->
-		<script src="javascript/jquery-ui-1.10.4.min.js"></script>
+		<script src="../javascript/jquery-ui-1.10.4.min.js"></script>
 
 		<!-- Loading jQuery Touch Punch -->
-		<script src="javascript/jquery.ui.touch-punch.min.js"></script>
+		<script src="../javascript/jquery.ui.touch-punch.min.js"></script>
   
 		<!-- Loading CSS Files -->
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-		<link rel="stylesheet" href="css/DMVPlayer.css" type="text/css"/>
+		<link rel="stylesheet" href="../css/DMVPlayer.css" type="text/css"/>
 		
 		<!-- Loading Javascript Files -->
 		<!-- Browser detection code -->
-		<script src="javascript/browserDetect.js"></script>
+		<script src="../javascript/browserDetect.js"></script>
 		<!-- Scrubber code-->
-		<script src="javascript/scrubber.js"></script>
-		<!-- MeasurementTool javascript -->
-		<script src="javascript/measurementTools.js"></script>
+		<script src="../javascript/scrubber.js"></script>
 		<!-- PlayerControl Javascript -->
-		<script src="javascript/playerControls.js"></script>
+		<script src="../javascript/playerControls.js"></script>
+		<!-- MeasurementTool javascript -->
+		<script src="../javascript/measurementTools.js"></script>
 		<!-- Variables -->
-		<script src="javascript/settings.js"></script>
+		<script src="../javascript/settings.js"></script>
+		<!-- Definitions -->
+		<script src="../javascript/definitions.js"></script>
  	</head>
 	
  	<body>
 		<meta charset="utf-8">
-		<div>
+		<div id="main">
 			<!-- Start Button -->
 <!--
 			<button title="Start" type="button" title="start" value="start" name="start" onclick="start()">
@@ -38,24 +40,18 @@
 -->
 			
 			<!-- this video tag is the video window that is shown on the player, it says where to get the video and tells it what codec to look for-->
-			<video id="dmv_video" width="100%" preload="auto" poster>
+			<video id="dmv_video" width="100%" preload="auto" poster="../images/loading_splash_screen.png" onclick="playPause()">
 				<source id="mp4_video" src="" id="movie" type="video/mp4">
 				<source id="ogg_video" src="" id="movie" type="video/ogg">
 			</video>
+			
+			<!-- Overlay Image -->
+			<img id="overlayImageID" src=""/>
+			
 			<script>
 				//the framerate variable is used in frame skipping
 				var framerate = 30;  
 			</script>
-			
-		  	<!-- TOOLS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-			<!--Horizontal Ruler-->
-			<div id="horizontalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
-				<img id="hRulerImg" src="images/hruler.png">
-			</div>
-			<div id="verticalRuler" class="measurementToolClass" onmousedown="moveToTop(this.id)">
-				<img id="vRulerImg" src="images/vruler.png">
-			</div>
-			<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 			
 			<!-- set the amount of whitespace above the slider-->
 			<div id="slider" style="margin-top:0px;"></div> 
@@ -63,33 +59,32 @@
 					document.getElementById("dmv_video").style.maxWidth="980px";
 					document.getElementById("dmv_video").style.minHeight="400px";
 					document.getElementById("slider").style.maxWidth="980px";
+					document.getElementById("overlayImageID").style.maxWidth="980px";
 					//creates an instance of the video player called 'player' anytime you see player.blah, it is telling the video player to do something
 					var player = document.getElementById('dmv_video'); 
 				</script>
-			
-			<br>
 
 				<!-- this table tag creates the table which contains all of the buttons, all of the <th> tags create new columns, and the idntifiers like onClick, src, and id are used to set certain properties of the buttons-->
 				<!-- width=100% says that the sidth of the table should be 100% of the window and the margin says how much white space should be above the table-->
 				<table id="button_table_1" width ="100%" border="0" style="margin-top:5px;"> 
 					<th>
 						<button title="Rewind the video" type="button" title="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
-							<img src="images/firstframe.png" style="height: 18px; width: 25px">
+							<img src="../images/firstframe.png" style="height: 18px; width: 25px">
 						</button>
 					</th>
 					<th>
 						<button title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
-							<img src="images/frame back.png"  style="height:18px; width: 18px"  />
+							<img src="../images/frame back.png"  style="height:18px; width: 18px"  />
 						</button>
 					</th>
 					<th>
 						<button title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
-							<img src="images/playpause2.png" style="height:18px; width: 28px" />
+							<img src="../images/playpause2.png" style="height:18px; width: 28px" />
 						</button>
 					</th>
 					<th>
 						<button title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
-							<img src="images/frame advance.png" style="height:18px; width: 18px"/>
+							<img src="../images/frame advance.png" style="height:18px; width: 18px"/>
 						</button>
 					</th>
 					<th>
@@ -108,25 +103,13 @@
 						Tools:
 					</th>
 					<th>
-						<input type="button" value="Horizontal Ruler" id="horiRulerButton" class="measurementToolClass" onclick="hideTool('#horizontalRuler')"/>
-					</th>
-					<th>
-						<input type="button" value="Vertical Ruler" id="vertRulerButton" class="measurementToolClass" onclick="hideTool('#verticalRuler')"/>
-					</th>
-					<th>
-						<input type="button" value="Reset Tools" id="resetTools" onclick="resetTools()"/>
-					</th>
-<!--
-					<th>
-						<input type="button" value="Nudge Up" id="nudgeUp" onclick="nudgeUp()"/>
-					</th>
--->
-					<th>
 						<p id="stopWatchTest">kjhkjh</p>
 					</th>
 				</table>
-
 			
+				<!-- Overlay image button -->
+				<button id="overlayImageButton" onclick="toggleOverlayImage()">Overlay Image</button>
+				
 			
 				<script>
 					document.getElementById("button_table_1").style.maxWidth="980px";
@@ -134,3 +117,4 @@
 				</script>
 			</div>
 		</body>
+	</html>

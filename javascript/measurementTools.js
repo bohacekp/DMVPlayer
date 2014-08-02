@@ -2,6 +2,49 @@
 
 $(document).ready(function(){
 	//Setting up the different tools
+	//Adding in the tools dynamically from the toolsArray
+	var index = 0;
+	//Getting the main div
+	var mainDiv = document.getElementById("main");
+	//Tool Button Table
+	var toolButtonTable = document.getElementById("button_table_2");
+	//Going through all the tools defined in the 
+	for(elements in toolsArray){
+		//HTML code for the tools
+		var toolHTML = '<div id="' + toolsArray[index][_elementID] + '" class="measurementToolClass" onmousedown="moveToTop(this.id)">' +
+						'<img id="' + toolsArray[index][_toolImageID] + '" src="">'+
+						'<p id="' + toolsArray[index][_elementID] + '_DragHelp" class="toolHelpText_Drag">Drag this into position</p>'+
+						'<p id="' + toolsArray[index][_elementID] + '_ResizeHelp" class="toolHelpText_Resize">Drag a corner or edge to calibrate</p>'+
+						'</div>';
+		//Appending the tool's HTML
+		mainDiv.insertAdjacentHTML("afterBegin", toolHTML);
+		
+		//HTML code for the tools button
+		var toolButtonHTML = 
+							 '<button ' +
+//							 'value="' + toolsArray[index][_toolButtonTitle] + '" ' +
+							 'id="' + toolsArray[index][_measureToolButton] + 
+							 '" class="measurementToolClass" ' + 
+//							 'style="padding: 25px 20px;" ' +
+							 'onclick="hideTool(\'#' + toolsArray[index][_elementID] + '\')">' +
+							 toolsArray[index][_toolButtonTitle] + '</button>';
+		//Appenging the tool's button HTML
+		toolButtonTable.insertAdjacentHTML("beforeEnd", toolButtonHTML);
+		
+		index++;
+	}
+	
+	//Reset Tool Button
+	//If there are any tools?
+	if(toolsArray.length == 1){
+		var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tool</button>';
+		toolButtonTable.insertAdjacentHTML("beforeEnd", resetButtonHTML);
+	}
+	else if(toolsArray.length > 1){
+		var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tools</button>';
+		toolButtonTable.insertAdjacentHTML("beforeEnd", resetButtonHTML);
+	}
+	
 	//Options are in the toolsArray array
 	var index = 0;
 	var tool;
@@ -27,36 +70,43 @@ $(document).ready(function(){
 //		index++;
 //	}
 	
+	//Tools table
+	if(toolsArray.length == 0){
+		$("#button_table_2").css("display", "none");
+	}	
+	
 	index = 0;
 	//Showing only the tools that are defined in toolsArray
 	for(elements in toolsArray){
 		
 		//debug
-		console.log("adding in the tools");
+//		console.log("adding in the tools");
 //		console.log(toolsArray[index][0]);
 		
 		//Getting the tool
-		tool_jQuery = $(document.getElementById(toolsArray[index][0]));
-		tool = document.getElementById(toolsArray[index][0]);
-		toolButton = $(document.getElementById(toolsArray[index][10]));
+		tool_jQuery = $(document.getElementById(toolsArray[index][_elementID]));
+		tool = document.getElementById(toolsArray[index][_elementID]);
+		toolButton = $(document.getElementById(toolsArray[index][_measureToolButton]));
 
 		//Setting the default location for the tool
-		tool.style.left = toolsArray[index][1];
-		tool.style.top = toolsArray[index][2];
+		tool.style.left = toolsArray[index][_positionLeft];
+		tool.style.top = toolsArray[index][_positionTop];
 
 		//Setting the default size of the tool
-		tool.style.height = toolsArray[index][3];
-		tool.style.width = toolsArray[index][4];
+		tool.style.height = toolsArray[index][_sizeHeight];
+		tool.style.width = toolsArray[index][_sizeWidth];
 
 		//Show the tool?
-		if(toolsArray[index][5]){
+		if(toolsArray[index][_show]){
 			tool_jQuery.css("display", "initial");
-			toolButton.css("display", "initial");
 		}
 
+		//Show the button for the tool
+		toolButton.css("display", "initial");
+		
 		//Draggable?
-		if(toolsArray[index][6]){
-			if(toolsArray[index][8]){
+		if(toolsArray[index][_draggable]){
+			if(toolsArray[index][_contained]){
 				tool_jQuery.draggable({containment:"body"});
 			}
 			else{
@@ -65,21 +115,65 @@ $(document).ready(function(){
 		}
 
 		//Resizable?
-		if(toolsArray[index][7]){
-			tool_jQuery.resizable({aspectRatio:toolsArray[index][9], handles:toolsArray[index][13]});
+		if(toolsArray[index][_resizable]){
+			tool_jQuery.resizable({
+									aspectRatio:toolsArray[index][_aspectRatioLocked],
+									handles:toolsArray[index][_resizableSides]
+									});
 		}
 
 		//Z-Index
-		tool_jQuery.css("z-index", toolsArray[index][11]);
+		tool_jQuery.css("z-index", toolsArray[index][_zIndex]);
 
 		//Position Attributes
 		tool_jQuery.css("position", "absolute");
 
 		//Color
-		tool_jQuery.css("background-color", toolsArray[index][12]);
+		tool_jQuery.css("background-color", toolsArray[index][_color]);
 		tool_jQuery.css("border", "1px solid black");
 
+		//Showing Help Text
+		//Draggable
+		if(!toolsArray[index][_draggableHelpText]){
+			$("#"+toolsArray[index][_elementID]+"_DragHelp").css("display", "none");
+		}
+		//Resizable
+		if(!toolsArray[index][_resizeHelpText]){
+			$("#"+toolsArray[index][_elementID]+"_ResizeHelp").css("display", "none");
+		}
+		
+		//Binding the tools to the drag and resize callbacks
+		tool_jQuery.on( "drag", function( event, ui ) {$("#"+this.id+"_DragHelp").css("display", "none");} );
+		tool_jQuery.on( "resize", function( event, ui ) {$("#"+this.id+"_ResizeHelp").css("display", "none");} );
+		
+		//Setting up the images for the tool
+		document.getElementById(toolsArray[index][_toolImageID]).src = toolsArray[index][_toolImage];
+		
 		index++;
+	}
+	
+	//Setting the attributes for the measurement tools help text
+	//Drag Text
+	var toolDragText = document.getElementsByClassName('toolHelpText_Drag');
+	for(var i = 0; i < toolDragText.length; i++) {
+		toolDragText[i].style.fontSize = toolHelpTextSize;
+		toolDragText[i].style.color = toolHelpTextColor;
+	}
+	//Resize Text
+	var toolResizeText = document.getElementsByClassName('toolHelpText_Resize');
+	for(var i = 0; i < toolResizeText.length; i++) {
+		toolResizeText[i].style.fontSize = toolHelpTextSize;
+		toolResizeText[i].style.color = toolHelpTextColor;
+	}
+	
+	//Overlay Image Button
+	if(!enableOverlayImage){
+		$("#overlayImageButton").css("display", "none");
+	}
+	else{
+		console.log(document.getElementById("video_selector").selectedIndex);
+		document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
+		$("#overlayImageID").css("display", "none");
 	}
 });
 
@@ -87,11 +181,11 @@ function resetTools(){
 	selectedTool = "";
 	var index = 0;
 	for(element in toolsArray){
-		tool = document.getElementById(toolsArray[index][0]);
-		tool.style.left = toolsArray[index][1];
-		tool.style.top = toolsArray[index][2];
-		tool.style.height = toolsArray[index][3];
-		tool.style.width = toolsArray[index][4];
+		tool = document.getElementById(toolsArray[index][_elementID]);
+		tool.style.left = toolsArray[index][_positionLeft];
+		tool.style.top = toolsArray[index][_positionTop];
+		tool.style.height = toolsArray[index][_sizeHeight];
+		tool.style.width = toolsArray[index][_sizeWidth];
 		tool.style.border = "1px solid black";
 		index++;
 	}
@@ -135,9 +229,37 @@ function nudgeTool(e){
 
 //Hide Tool
 function hideTool(tool){
-//	console.log(tool);
-//	$(tool).css("display", "none");
+	//Toggling the tool
 	$(tool).toggle("highlight");
+	
+	//Removing the '#' from the tool var, if it is there
+	var toolID = tool.replace('#', '');
+	
+	//Finding the tool in the toolsArray
+	var index = 0;
+	for(elements in toolsArray){
+		if(toolsArray[index][_elementID] == toolID){
+			break;
+		}
+		index++;
+	}
+	
+	//Setting the flag that tool is hidden/visible
+	toolsArray[index][_show] = !toolsArray[index][_show];
+	
+	//Reshowing the Help Text for the tool
+	//Draggable
+	if(toolsArray[index][_draggableHelpText] &&
+	   toolsArray[index][_show] &&
+	   toolsArray[index][_reshowDragHelpText]){
+		$("#"+toolID+"_DragHelp").css("display", "initial");
+	}
+	//Resizable
+	if(toolsArray[index][_resizeHelpText] &&
+	   toolsArray[index][_show] &&
+	   toolsArray[index][_reshowResizeHelpText]){
+		$("#"+toolID+"_ResizeHelp").css("display", "initial");
+	}
 }
 
 //Moving the selected tool to the top
@@ -154,4 +276,27 @@ function moveToTop(tool){
 	//Moving the selected tool to the top
 	$("#"+tool).css("z-index", currentMaxZIndex);
 	currentMaxZIndex++;
+}
+
+//Variable to store the state of the Overlay Image
+var overlayImageVisible = false;
+//Toggleing the Overlay Image
+function toggleOverlayImage(){	
+	if(overlayImageVisible){
+		$("#overlayImageID").css("display", "none");
+		$("#dmv_video").css("display", "initial");
+	}
+	else{
+		//Showing the Overlay Image
+		$("#overlayImageID").css("display", "initial");
+		//Hiding the video
+		$("#dmv_video").css("display", "none");
+		
+		//Putting the Overlay Image above everything
+		$("#overlayImageID").css("z-index", currentMaxZIndex);
+		currentMaxZIndex++;
+	}
+	
+	//Toggling the state
+	overlayImageVisible = !overlayImageVisible;
 }
