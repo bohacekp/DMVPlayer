@@ -14,6 +14,8 @@ var stopWatch = false;
 var enableOverlayImage = true;
 //Enable Markers
 var enableMarkers = true;
+//Enable 'Click to Play' overlay
+var enableClickToPlayOverlay = true;
 
 //---------//
 //Help Text//

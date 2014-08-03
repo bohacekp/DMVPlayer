@@ -27,11 +27,13 @@ $(document).ready(function(){
 	var showedPlaySplashScreen = false;
 	dmv_player.oncanplaythrough = 
 		function(){
-			if(!showedPlaySplashScreen){
-				console.log("video ready!");
-				dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
-				showedPlaySplashScreen = true;
+			if(!showedPlaySplashScreen && enableClickToPlayOverlay){
+				dmv_player.setAttribute('poster', '../images/play_splash_screen.png');	
 			}
+			else if(!showedPlaySplashScreen && !enableClickToPlayOverlay){
+				dmv_player.setAttribute('poster', '');
+			}
+			showedPlaySplashScreen = true;
 		};
 	
 	//Setting the play callback to remove the video poster of 'click to play'
