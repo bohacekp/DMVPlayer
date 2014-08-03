@@ -134,6 +134,12 @@ $(document).ready(function(){
 		toolButtonTable.insertAdjacentHTML("beforeEnd", resetButtonHTML);
 	}
 	
+	//Deselect measurement tool button
+	if(toolsArray.length >= 1){
+		var deselectToolButtonHTML = '<button id="deselectTool" onclick="deselectTool()">Deselect Tool</button>';
+		toolButtonTable.insertAdjacentHTML("beforeEnd", deselectToolButtonHTML);
+	}
+			
 	//Putting in the marker buttons
 	if(enableMarkers){
 		//Creating the HTML for the marker buttons
