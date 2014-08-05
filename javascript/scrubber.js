@@ -1,5 +1,3 @@
-//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
-
 /* 
 * This peice of code took a good 3-4 weeks to write, so it is more complicated
 * I will try to explain it as well as I can, and there are some peices which I
@@ -47,6 +45,7 @@ $(function() {
 			var value = $( "#slider" ).slider( "value" ); 
 			//gets the percentage value of the slider, and then sets the current time of the video according to where the slider is positioned
 			player.currentTime=player.duration*(value/100000); 
+			player2.currentTime = player2.duration * (value/100000);
 			//prints the value of the slider in the console, used only for debugging
 			//console.log(value); 
       	}
@@ -77,7 +76,7 @@ $(function() {
 	//the value of oldVal is set eslewhere in the playerControls.js file
 	function videoTimeUpdateHandler(e) {
 		// if (newVal does not equal oldVal OR player is NOT paused, then run this. this test checks to see if the video has changed or is changing positions. the following code runs if it is.
-		if((newVal!=oldVal)||!(player.paused)){ 
+		if((newVal!=oldVal) || !(player.paused) || !(player.paused)){ 
 			//set variable called value to the slider value
 			value = $( "#slider" ).slider( "value" ); 
 			//get percent of the video that has palyed

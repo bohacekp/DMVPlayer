@@ -29,3 +29,7 @@ var _reshowResizeHelpText = 17;
 var _toolImage = 18;
 var _toolImageID = 19;
 var _toolButtonTitle = 20;
+
+//Video players
+var player = document.getElementById('dmv_video'); 
+var player2 = document.getElementById('dmv_video_2');

@@ -103,19 +103,45 @@ function moveToTop(tool){
 var overlayImageVisible = false;
 //Toggleing the Overlay Image
 function toggleOverlayImage(){	
-	if(overlayImageVisible){
-		$("#overlayImageID").css("display", "none");
-		$("#dmv_video").css("display", "initial");
+	//1 Video
+	if(numberOfVideos == 1){
+		if(overlayImageVisible){
+			//Hiding the overlay image
+			$("#overlayImageID").css("display", "none");
+			//Showing the video
+			$("#dmv_video").css("display", "initial");
+		}
+		else{
+			//Showing the Overlay Image
+			$("#overlayImageID").css("display", "initial");
+			//Hiding the video
+			$("#dmv_video").css("display", "none");
+			//Putting the Overlay Image above everything
+			$("#overlayImageID").css("z-index", currentMaxZIndex);
+			currentMaxZIndex++;
+		}
 	}
-	else{
-		//Showing the Overlay Image
-		$("#overlayImageID").css("display", "initial");
-		//Hiding the video
-		$("#dmv_video").css("display", "none");
-		
-		//Putting the Overlay Image above everything
-		$("#overlayImageID").css("z-index", currentMaxZIndex);
-		currentMaxZIndex++;
+	else if(numberOfVideos == 2){
+		if(overlayImageVisible){
+			//Hiding the overlay images
+			$("#overlayImageID").css("display", "none");
+			$("#overlayImageID2").css("display", "none");
+			//Showing the videos
+			$("#dmv_video").css("display", "initial");
+			$("#dmv_video2").css("display", "initial");
+		}
+		else{
+			//Showing the Overlay Images
+			$("#overlayImageID").css("display", "initial");
+			$("#overlayImageID2").css("display", "initial");
+			//Hiding the videos
+			$("#dmv_video").css("display", "none");
+			$("#dmv_video2").css("display", "none");
+			//Putting the Overlay Image above everything
+			$("#overlayImageID").css("z-index", currentMaxZIndex);
+			$("#overlayImageID2").css("z-index", currentMaxZIndex);
+			currentMaxZIndex++;
+		}
 	}
 	
 	//Toggling the state

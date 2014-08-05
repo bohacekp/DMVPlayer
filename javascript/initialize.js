@@ -1,6 +1,6 @@
 //This is the final javascript file that get executed
 
-$(document).ready(function(){
+$(document).ready(function(){	
 	//----------------------------------------------//
 	//Player Controls                               //
 	//----------------------------------------------//
@@ -12,53 +12,89 @@ $(document).ready(function(){
 	//Drop down for the different videos
 	var video_selection = $("#video_selection");
 	var video_selector = $("#video_selector");
+	var video_selection2 = $("#video_selection2");
+	var video_selector2 = $("#video_selector2");
 	
 	//Removing the Video Selector if it is turned off
-	if(!videoSelection){
-		video_selection.css("display", "none");
+	if(numberOfVideos == 1){
+		if(!enableVideoSelection){
+			video_selection.css('display', 'none');
+		}
+		video_selection2.css('display', 'none');
+	}
+	else if(numberOfVideos == 2){
+		if(!enableVideoSelection){
+			video_selection.css('display', 'none');
+			video_selection2.css('display', 'none');
+		}
 	}
 	
 	//Setting the default video
 	var dmv_player = document.getElementById("dmv_video");
 	var mp4_video = document.getElementById("mp4_video");
 	var ogg_video = document.getElementById("ogg_video");
+	var dmv_player2 = document.getElementById("dmv_video2");
+	var mp4_video2 = document.getElementById("mp4_video2");
+	var ogg_video2 = document.getElementById("ogg_video2");
 	
 	//Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
 	var showedPlaySplashScreen = false;
 	dmv_player.oncanplaythrough = 
 		function(){
 			if(!showedPlaySplashScreen && enableClickToPlayOverlay){
-				dmv_player.setAttribute('poster', '../images/play_splash_screen.png');	
+				dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
+				dmv_player2.setAttribute('poster', '../images/play_splash_screen.png');
 			}
 			else if(!showedPlaySplashScreen && !enableClickToPlayOverlay){
 				dmv_player.setAttribute('poster', '');
+				dmv_player2.setAttribute('poster', '');
 			}
 			showedPlaySplashScreen = true;
 		};
 	
 	//Setting the play callback to remove the video poster of 'click to play'
-	$('#dmv_video').bind('play', function(){dmv_player.removeAttribute('poster');});
+	$('#dmv_video').bind('play', function(){
+											dmv_player.removeAttribute('poster');
+											dmv_player2.removeAttribute('poster');
+										   });
 	
 	//Setting the video sources
+	//Player 1
 	if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
 		$(ogg_video).attr('src', videoArray[0][_locationOGV]);
 	}
 	else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
 		$(mp4_video).attr('src', videoArray[0][_locationMP4]);
 	}
+	//Player 2
+	if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
+		$(ogg_video2).attr('src', videoArray2[0][_locationOGV]);
+	}
+	else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
+		$(mp4_video2).attr('src', videoArray2[0][_locationMP4]);
+	}
 	
 	//Reload the dmv video
 	dmv_player.load();
+	dmv_player2.load();
 	
 	//Setting up the options in the video selection
+	//Player 1
 	var index = 0;
 	for(element in videoArray){
 		var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][_nameOfVideo]));
 		index++;
 	}
+	//Player 2
+	var index = 0;
+	for(element in videoArray2){
+		var option = video_selector2.append($("<option></option>").attr("value",index).text(videoArray2[index][_nameOfVideo]));
+		index++;
+	}
 	
 	//If the drop down changes
-	video_selector.change(function(){
+	var videoSelectorFunction = function(){
+		//Player 1
 		var video_index = document.getElementById("video_selector").selectedIndex;
 		var dmv_player = document.getElementById("dmv_video");
 		var mp4_video = document.getElementById("mp4_video");
@@ -75,17 +111,39 @@ $(document).ready(function(){
 		//Reload the dmv video
 		dmv_player.load();
 		
+		//Player 2
+		var video_index2 = document.getElementById("video_selector2").selectedIndex;
+		var dmv_player2 = document.getElementById("dmv_video2");
+		var mp4_video2 = document.getElementById("mp4_video2");
+		var ogg_video2 = document.getElementById("ogg_video2");
+		
+		//Setting the video sources
+		if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
+			$(ogg_video2).attr('src', videoArray2[video_index2][_locationOGV]);
+		}
+		else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
+			$(mp4_video2).attr('src', videoArray2[video_index2][_locationMP4]);
+		}
+		
+		//Reload the dmv video
+		dmv_player2.load();
+		
 		//Setting the slider back to the beginning
 		$("#slider").slider('value',0);
 		
 		//Hiding the overlay image
 		overlayImageVisible = false;
 		$("#overlayImageID").css("display", "none");
+		$("#overlayImageID2").css("display", "none");
 		//Making sure the video is visible
 		$("#dmv_video").css("display", "initial");
+		$("#dmv_video2").css("display", "initial");
 		//Switching the overlay image
-		document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
-	});
+		document.getElementById("overlayImageID").src = videoArray[video_index][_overlayImage];
+		document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
+	}
+	video_selector.change(videoSelectorFunction);
+	video_selector2.change(videoSelectorFunction);
 	
 	//----------------------------------------------//
 	//Measurement Tools                             //
@@ -279,8 +337,10 @@ $(document).ready(function(){
 		$("#overlayImageButton").css("display", "none");
 	}
 	else{
-		console.log(document.getElementById("video_selector").selectedIndex);
+//		console.log(document.getElementById("video_selector").selectedIndex);
 		document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
+		document.getElementById("overlayImageID2").src = videoArray2[document.getElementById("video_selector2").selectedIndex][_overlayImage];
 		$("#overlayImageID").css("display", "none");
+		$("#overlayImageID2").css("display", "none");
 	}
 });

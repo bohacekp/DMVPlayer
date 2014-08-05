@@ -1,5 +1,3 @@
-//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
-
 //creates variable called percent
 var percent;
 //creates variable called oldVal
@@ -51,7 +49,8 @@ function prevFrame(){
 	document.getElementById("frameprev").focus(); 
 	pause();
 	//gets current time to 5 decimal places
-	player.currentTime -=(1/30).toPrecision(5); 
+	player.currentTime -= (1/30).toPrecision(5);
+	player2.currentTime -= (1/30).toPrecision(5);
 //	console.log("prev frame");
 	//deselects previous frame button
 	document.getElementById("frameprev").blur();
@@ -62,7 +61,7 @@ function playPause(){
 	document.getElementById("gotoframe").focus();
 	document.getElementById("gotoframe").blur();
 	
-	if (player.paused) {
+	if (player.paused && player2.paused) {
 		play();
 	}
 	else {
@@ -73,20 +72,24 @@ function playPause(){
 
 function pause(){
 	player.pause();
+	player2.pause();
 //	console.log("pause");
 }
 function play(){
 	player.play();
+	player2.play();
 //	console.log("play");
 }
 //can be called by seek(10), seeks to 10 seconds
 function seek(time){ 
 	pause();
 	player.currentTime=time;
+	player2.currentTime = time;
 //	console.log("seek");
 }
 function goToTime(time){
 	player.currentTime=time;
+	player2.currentTime=time;
 //	console.log("goToTime:" + time);
 }
 function firstFrame(){
@@ -103,7 +106,7 @@ function fwdFrame(){
 //		console.log("You are using chrome, I will skip by playing");
 		play();
 		//set timeout calls a function after a certain amount of time
-		setTimeout(function() {player.pause()}, (1000/framerate)); 
+		setTimeout(function() {player.pause(); player2.pause()}, (1000/framerate)); 
 //		console.log("fwd frame Chrome, time: "+player.currentTime);
 		doingSomethingElse=0;
 
@@ -112,6 +115,7 @@ function fwdFrame(){
 //		console.log("Skip by setting time");
 		pause();
 		player.currentTime=player.currentTime+(1/framerate);
+		player2.currentTime = player2.currentTime + (1/framerate);
 //		console.log("fwd frame other browser, time: "+player.currentTime);
 		doingSomethingElse=0;
 

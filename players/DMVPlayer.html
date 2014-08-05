@@ -41,14 +41,21 @@
 			</button>
 -->
 			
-			<!-- this video tag is the video window that is shown on the player, it says where to get the video and tells it what codec to look for-->
+			<!-- this video tag is the video window that is shown on the player, 
+				it says where to get the video and tells it what codec to look for-->
 			<video id="dmv_video" width="100%" preload="auto" poster="../images/loading_splash_screen.png" onclick="playPause()">
 				<source id="mp4_video" src="" id="movie" type="video/mp4">
 				<source id="ogg_video" src="" id="movie" type="video/ogg">
 			</video>
 			
-			<!-- Overlay Image -->
+			<video id="dmv_video2" width="100%" preload="auto" poster="../images/loading_splash_screen.png" onclick="playPause()">
+				<source id="mp4_video2" src="" id="movie" type="video/mp4">
+				<source id="ogg_video2" src="" id="movie" type="video/ogg">
+			</video>
+			
+			<!-- Overlay Images -->
 			<img id="overlayImageID" src=""/>
+			<img id="overlayImageID2" src=""/>
 			
 			<script>
 				//the framerate variable is used in frame skipping
@@ -58,12 +65,26 @@
 			<!-- set the amount of whitespace above the slider-->
 			<div id="slider" style="margin-top:0px;"></div> 
 				<script> 
-					document.getElementById("dmv_video").style.maxWidth="980px";
-					document.getElementById("dmv_video").style.minHeight="400px";
-					document.getElementById("slider").style.maxWidth="980px";
-					document.getElementById("overlayImageID").style.maxWidth="980px";
-					//creates an instance of the video player called 'player' anytime you see player.blah, it is telling the video player to do something
+					//creates an instance of the video player
 					var player = document.getElementById('dmv_video'); 
+					var player2 = document.getElementById('dmv_video2');
+					document.getElementById("slider").style.maxWidth="980px";
+					
+					if(numberOfVideos == 1){
+						player.style.maxWidth="980px";
+						player.style.minHeight="400px";
+						player2.style.display = 'none';
+						document.getElementById("overlayImageID").style.maxWidth="980px";		
+					}
+					else if(numberOfVideos == 2){
+						player.style.maxWidth="490px";
+						player2.style.maxWidth="490px";
+						document.getElementById("overlayImageID").style.maxWidth="490px";
+						document.getElementById("overlayImageID2").style.maxWidth="490px";
+					}
+					else{
+						console.error("ERROR: " + numberOfVideos + " videos is not supported");
+					}
 				</script>
 
 				<!-- this table tag creates the table which contains all of the buttons, all of the <th> tags create new columns, and the idntifiers like onClick, src, and id are used to set certain properties of the buttons-->
@@ -93,8 +114,15 @@
 						<input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
 						<input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
 					</th>
-					<th id="video_selection">Pick a Video:
+					
+					<!-- This code needs to be auto generated to make it look right for the 1 and 2 video selection -->
+					
+					<th id="video_selection">Pick a Video (Left):
 						<select id="video_selector">
+						</select>
+					</th>
+					<th id="video_selection2">Pick a Video (Right):
+						<select id="video_selector2">
 						</select>
 					</th>
 				</table>

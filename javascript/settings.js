@@ -3,7 +3,7 @@
 //Flags//
 //-----//
 //Video Selection
-var videoSelection = false;
+var enableVideoSelection = true;
 //Nudging Buttons
 var nudgeButtons = true;
 //Reset Button
@@ -13,9 +13,11 @@ var stopWatch = false;
 //Enable Overlay Image
 var enableOverlayImage = true;
 //Enable Markers
-var enableMarkers = true;
+var enableMarkers = false;
 //Enable 'Click to Play' overlay
 var enableClickToPlayOverlay = true;
+//Number of Videos; 1 or 2
+var numberOfVideos = 2;
 
 //---------//
 //Help Text//
@@ -59,6 +61,26 @@ videoArray.push([
 	"../images/pingpong_overlay.png"
 ]);
 
+var videoArray2 = new Array();
+videoArray2.push([
+	"Ping Pong Ball",
+	"../videos/ppb_4_clean.ogv",
+	"../videos/ppb_4_clean.mp4",
+	"../images/pingpong_overlay.png"
+]);
+videoArray2.push([
+	"Ping Pong Ball 2",
+	"../videos/ppb_4_clean.ogv",
+	"../videos/ppb_4_clean.mp4",
+	"../images/pingpong_overlay.png"
+]);
+videoArray2.push([
+	"Ping Pong Ball 3",
+	"../videos/ppb_4_clean.ogv",
+	"../videos/ppb_4_clean.mp4",
+	"../images/pingpong_overlay.png"
+]);
+
 //Tools Array
 /*
 Template for the toolArray values
@@ -93,7 +115,7 @@ toolsArray.push([
 	"250px",
   	"60px",
 	"300px",
-	true,
+	false,
 	true,
 	true,
 	false,
@@ -116,7 +138,7 @@ toolsArray.push([
 	"50px",
   	"300px",
 	"100px",
-	true,
+	false,
 	true,
 	true,
 	false,
@@ -139,7 +161,7 @@ toolsArray.push([
 	"50px",
   	"200px",
 	"200px",
-	true,
+	false,
 	true,
 	true,
 	false,
