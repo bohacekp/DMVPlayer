@@ -68,19 +68,19 @@
 					//creates an instance of the video player
 					var player = document.getElementById('dmv_video'); 
 					var player2 = document.getElementById('dmv_video2');
-					document.getElementById("slider").style.maxWidth="980px";
+					document.getElementById("slider").style.maxWidth="1200px";
 					
 					if(numberOfVideos == 1){
-						player.style.maxWidth="980px";
+						player.style.maxWidth="1200px";
 						player.style.minHeight="400px";
 						player2.style.display = 'none';
-						document.getElementById("overlayImageID").style.maxWidth="980px";		
+						document.getElementById("overlayImageID").style.maxWidth="1200px";		
 					}
 					else if(numberOfVideos == 2){
-						player.style.maxWidth="490px";
-						player2.style.maxWidth="490px";
-						document.getElementById("overlayImageID").style.maxWidth="490px";
-						document.getElementById("overlayImageID2").style.maxWidth="490px";
+						player.style.maxWidth="600px";
+						player2.style.maxWidth="600px";
+						document.getElementById("overlayImageID").style.maxWidth="600px";
+						document.getElementById("overlayImageID2").style.maxWidth="600px";
 					}
 					else{
 						console.error("ERROR: " + numberOfVideos + " videos is not supported");
@@ -114,17 +114,6 @@
 						<input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
 						<input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
 					</th>
-					
-					<!-- This code needs to be auto generated to make it look right for the 1 and 2 video selection -->
-					
-					<th id="video_selection">Pick a Video (Left):
-						<select id="video_selector">
-						</select>
-					</th>
-					<th id="video_selection2">Pick a Video (Right):
-						<select id="video_selector2">
-						</select>
-					</th>
 				</table>
 			
 				<!-- Measure Tools  -->
@@ -133,7 +122,7 @@
 						Tools:
 					</th>
 					<th>
-						<p id="stopWatchTest">kjhkjh</p>
+<!--						<p id="stopWatchTest">kjhkjh</p>-->
 					</th>
 				</table>
 			
@@ -142,8 +131,8 @@
 				
 			
 				<script>
-					document.getElementById("button_table_1").style.maxWidth="980px";
-					document.getElementById("button_table_2").style.maxWidth="980px";
+					document.getElementById("button_table_1").style.maxWidth="1200px";
+					document.getElementById("button_table_2").style.maxWidth="1200px";
 				</script>
 			</div>
 		</body>

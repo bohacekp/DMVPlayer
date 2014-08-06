@@ -9,11 +9,11 @@ var nudgeButtons = true;
 //Reset Button
 var resetButton = true;
 //Stop Watch
-var stopWatch = false;
+var stopWatch = false; //NOT IMPLEMENTED!!!!!
 //Enable Overlay Image
 var enableOverlayImage = true;
 //Enable Markers
-var enableMarkers = false;
+var enableMarkers = true;
 //Enable 'Click to Play' overlay
 var enableClickToPlayOverlay = true;
 //Number of Videos; 1 or 2

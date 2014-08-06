@@ -9,26 +9,6 @@ $(document).ready(function(){
 		$("#resetTools").css("display", "none");
 	}
 	
-	//Drop down for the different videos
-	var video_selection = $("#video_selection");
-	var video_selector = $("#video_selector");
-	var video_selection2 = $("#video_selection2");
-	var video_selector2 = $("#video_selector2");
-	
-	//Removing the Video Selector if it is turned off
-	if(numberOfVideos == 1){
-		if(!enableVideoSelection){
-			video_selection.css('display', 'none');
-		}
-		video_selection2.css('display', 'none');
-	}
-	else if(numberOfVideos == 2){
-		if(!enableVideoSelection){
-			video_selection.css('display', 'none');
-			video_selection2.css('display', 'none');
-		}
-	}
-	
 	//Setting the default video
 	var dmv_player = document.getElementById("dmv_video");
 	var mp4_video = document.getElementById("mp4_video");
@@ -78,18 +58,47 @@ $(document).ready(function(){
 	dmv_player.load();
 	dmv_player2.load();
 	
-	//Setting up the options in the video selection
-	//Player 1
-	var index = 0;
-	for(element in videoArray){
-		var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][_nameOfVideo]));
-		index++;
+	//Creating the video selectors
+	if(enableVideoSelection){
+		//1 video
+		if(numberOfVideos == 1){
+			//HTML for the video selector
+			var videoSelectorHTML = '<p>Pick a Video:<select id="video_selector"></select></p>';
+			document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
+			
+			//Drop down for the video
+			var video_selector = $("#video_selector");
+		}
+		//2 videos
+		else if(numberOfVideos == 2){
+			//HTML for the video selectors
+			var videoSelectorHTML = 'Pick a Video(Left):<select id="video_selector"></select>';
+			var videoSelector2HTML = 'Pick a Video(Right):<select id="video_selector2"></select>';
+			document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelector2HTML);
+			document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
+			
+			//Drop down for the different videos
+			var video_selector = $("#video_selector");
+			var video_selector2 = $("#video_selector2");
+		}
 	}
-	//Player 2
-	var index = 0;
-	for(element in videoArray2){
-		var option = video_selector2.append($("<option></option>").attr("value",index).text(videoArray2[index][_nameOfVideo]));
-		index++;
+	
+	//Setting up the options in the video selection
+	if(numberOfVideos == 1 || numberOfVideos == 2){
+		//Player 1
+		var index = 0;
+		for(element in videoArray){
+			var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][_nameOfVideo]));
+			index++;
+		}
+	}
+	if(numberOfVideos == 2){
+		//Player 2
+		var index = 0;
+		for(element in videoArray2){
+			var option = video_selector2.append($("<option></option>").attr("value",index).text(videoArray2[index][_nameOfVideo]));
+			index++;
+		}
 	}
 	
 	//If the drop down changes
@@ -142,9 +151,13 @@ $(document).ready(function(){
 		document.getElementById("overlayImageID").src = videoArray[video_index][_overlayImage];
 		document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
 	}
-	video_selector.change(videoSelectorFunction);
-	video_selector2.change(videoSelectorFunction);
-	
+	if(numberOfVideos == 1 || numberOfVideos == 2){
+		video_selector.change(videoSelectorFunction);
+	}
+	if(numberOfVideos == 2){
+		video_selector2.change(videoSelectorFunction);
+	}
+		
 	//----------------------------------------------//
 	//Measurement Tools                             //
 	//----------------------------------------------//
@@ -337,10 +350,13 @@ $(document).ready(function(){
 		$("#overlayImageButton").css("display", "none");
 	}
 	else{
-//		console.log(document.getElementById("video_selector").selectedIndex);
-		document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
-		document.getElementById("overlayImageID2").src = videoArray2[document.getElementById("video_selector2").selectedIndex][_overlayImage];
-		$("#overlayImageID").css("display", "none");
-		$("#overlayImageID2").css("display", "none");
+		if(numberOfVideos == 1 || numberOfVideos == 2){
+			document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
+			$("#overlayImageID").css("display", "none");
+		}
+		if(numberOfVideos == 2){
+			document.getElementById("overlayImageID2").src = videoArray2[document.getElementById("video_selector2").selectedIndex][_overlayImage];
+			$("#overlayImageID2").css("display", "none");
+		}
 	}
 });
