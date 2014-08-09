@@ -15,7 +15,7 @@ var enableOverlayImage = true;
 //Enable Markers
 var enableMarkers = true;
 //Enable 'Click to Play' overlay
-var enableClickToPlayOverlay = true;
+var enableClickToPlayOverlay = false;
 //Number of Videos; 1 or 2
 var numberOfVideos = 2;
 

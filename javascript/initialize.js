@@ -17,6 +17,12 @@ $(document).ready(function(){
 	var mp4_video2 = document.getElementById("mp4_video2");
 	var ogg_video2 = document.getElementById("ogg_video2");
 	
+	//Enabling 'click to play'
+	if(enableClickToPlayOverlay){
+		dmv_player.onclick = playPause;
+		dmv_player2.onclick = playPause;
+	}
+	
 	//Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
 	var showedPlaySplashScreen = false;
 	dmv_player.oncanplaythrough = 
@@ -177,7 +183,7 @@ $(document).ready(function(){
 						'<p id="' + toolsArray[index][_elementID] + '_ResizeHelp" class="toolHelpText_Resize">Drag a corner or edge to calibrate</p>'+
 						'</div>';
 		//Appending the tool's HTML
-		mainDiv.insertAdjacentHTML("afterBegin", toolHTML);
+		mainDiv.insertAdjacentHTML("afterEnd", toolHTML);
 		
 		//HTML code for the tools button
 		var toolButtonHTML = 
