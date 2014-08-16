@@ -5,19 +5,22 @@
 //Video Selection
 var enableVideoSelection = true;
 //Nudging Buttons
-var nudgeButtons = true;
+var nudgeButtons = false;
 //Reset Button
-var resetButton = true;
+var resetButton = false;
 //Stop Watch
 var stopWatch = false; //NOT IMPLEMENTED!!!!!
 //Enable Overlay Image
-var enableOverlayImage = true;
+var enableOverlayImage = false;
 //Enable Markers
-var enableMarkers = true;
+var enableMarkers = false;
 //Enable 'Click to Play' overlay
 var enableClickToPlayOverlay = false;
 //Number of Videos; 1 or 2
 var numberOfVideos = 2;
+//Video selection index to open with, starts at 0
+var videoLeftMain = 0;
+var videoRight = 1;
 
 //---------//
 //Help Text//
@@ -55,31 +58,32 @@ videoArray.push([
 */
 var videoArray = new Array();
 videoArray.push([
+	"Apple",
+	"../videos/freefall/apple.ogv",
+	"../videos/freefall/apple.mp4",
+	""
+]);
+videoArray.push([
+	"Bowling Ball",
+	"../videos/freefall/bowling_ball.ogv",
+	"../videos/freefall/bowling_ball.mp4",
+	""
+]);
+videoArray.push([
+	"Large Steel",
+	"../videos/freefall/large_steel.ogv",
+	"../videos/freefall/large_steel.mp4",
+	""
+]);
+videoArray.push([
 	"Ping Pong Ball",
-	"../videos/ppb_4_clean.ogv",
-	"../videos/ppb_4_clean.mp4",
-	"../images/pingpong_overlay.png"
+	"../videos/freefall/ping_pong_ball.ogv",
+	"../videos/freefall/ping_pong_ball.mp4",
+	""
 ]);
 
 var videoArray2 = new Array();
-videoArray2.push([
-	"Ping Pong Ball",
-	"../videos/ppb_4_clean.ogv",
-	"../videos/ppb_4_clean.mp4",
-	"../images/pingpong_overlay.png"
-]);
-videoArray2.push([
-	"Ping Pong Ball 2",
-	"../videos/ppb_4_clean.ogv",
-	"../videos/ppb_4_clean.mp4",
-	"../images/pingpong_overlay.png"
-]);
-videoArray2.push([
-	"Ping Pong Ball 3",
-	"../videos/ppb_4_clean.ogv",
-	"../videos/ppb_4_clean.mp4",
-	"../images/pingpong_overlay.png"
-]);
+videoArray2 = videoArray;
 
 //Tools Array
 /*
@@ -109,72 +113,72 @@ toolsArray.push([
 ]);
 */
 var toolsArray = new Array();
-toolsArray.push([
-	"horizontalRuler", 
-	"250px",
-	"250px",
-  	"60px",
-	"300px",
-	false,
-	true,
-	true,
-	false,
-	false,
-	"horiRulerButton",
-	30,
-	"rgba(255, 255, 255, 0)",
-	"n, e, s, w, ne, se, sw, nw",
-	true,
-	true,
-	true,
-	true,
-	"../images/hruler_100_white.png",
-	"hRulerImg",
-	"Horizontal Ruler"
-]);
-toolsArray.push([
-	"verticalRuler", 
-	"50px",
-	"50px",
-  	"300px",
-	"100px",
-	false,
-	true,
-	true,
-	false,
-	false,
-	"vertRulerButton",
-	30,
-	"rgba(255, 255, 255, 0)",
-	"n, e, s, w, ne, se, sw, nw",
-	true,
-	true,
-	true,
-	true,
-	"../images/vruler_100_white.png",
-	"vRulerImg",
-	"Vertical Ruler"
-]);
-toolsArray.push([
-	"protractor_Quarter_Q4", 
-	"500px",
-	"50px",
-  	"200px",
-	"200px",
-	false,
-	true,
-	true,
-	false,
-	true,
-	"protractorButton",
-	30,
-	"rgba(255, 255, 255, 0)",
-	"n, e, s, w, ne, se, sw, nw",
-	true,
-	true,
-	true,
-	true,
-	"../images/protractor_quarter_q4_white.png",
-	"vProtractor_Quarter_Q4Img",
-	"Protractor"
-]);
+//toolsArray.push([
+//	"horizontalRuler", 
+//	"250px",
+//	"250px",
+//  	"60px",
+//	"300px",
+//	false,
+//	true,
+//	true,
+//	false,
+//	false,
+//	"horiRulerButton",
+//	30,
+//	"rgba(255, 255, 255, 0)",
+//	"n, e, s, w, ne, se, sw, nw",
+//	true,
+//	true,
+//	true,
+//	true,
+//	"../images/hruler_100_white.png",
+//	"hRulerImg",
+//	"Horizontal Ruler"
+//]);
+//toolsArray.push([
+//	"verticalRuler", 
+//	"50px",
+//	"50px",
+//  	"300px",
+//	"100px",
+//	false,
+//	true,
+//	true,
+//	false,
+//	false,
+//	"vertRulerButton",
+//	30,
+//	"rgba(255, 255, 255, 0)",
+//	"n, e, s, w, ne, se, sw, nw",
+//	true,
+//	true,
+//	true,
+//	true,
+//	"../images/vruler_100_white.png",
+//	"vRulerImg",
+//	"Vertical Ruler"
+//]);
+//toolsArray.push([
+//	"protractor_Quarter_Q4", 
+//	"500px",
+//	"50px",
+//  	"200px",
+//	"200px",
+//	false,
+//	true,
+//	true,
+//	false,
+//	true,
+//	"protractorButton",
+//	30,
+//	"rgba(255, 255, 255, 0)",
+//	"n, e, s, w, ne, se, sw, nw",
+//	true,
+//	true,
+//	true,
+//	true,
+//	"../images/protractor_quarter_q4_white.png",
+//	"vProtractor_Quarter_Q4Img",
+//	"Protractor"
+//]);

@@ -215,7 +215,7 @@ function removeAllMarkers(){
 
 //Deselect tool
 function deselectTool(){
-	if(selectedTool != ""){
+	if(selectedTool){
 		tool = document.getElementById(selectedTool);
 		tool.style.border = "1px solid black";
 		selectedTool = "";

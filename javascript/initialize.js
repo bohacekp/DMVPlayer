@@ -47,17 +47,17 @@ $(document).ready(function(){
 	//Setting the video sources
 	//Player 1
 	if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-		$(ogg_video).attr('src', videoArray[0][_locationOGV]);
+		$(ogg_video).attr('src', videoArray[videoLeftMain][_locationOGV]);
 	}
 	else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-		$(mp4_video).attr('src', videoArray[0][_locationMP4]);
+		$(mp4_video).attr('src', videoArray[videoLeftMain][_locationMP4]);
 	}
 	//Player 2
 	if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
-		$(ogg_video2).attr('src', videoArray2[0][_locationOGV]);
+		$(ogg_video2).attr('src', videoArray2[videoRight][_locationOGV]);
 	}
 	else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
-		$(mp4_video2).attr('src', videoArray2[0][_locationMP4]);
+		$(mp4_video2).attr('src', videoArray2[videoRight][_locationMP4]);
 	}
 	
 	//Reload the dmv video
@@ -163,10 +163,17 @@ $(document).ready(function(){
 	if(numberOfVideos == 2){
 		video_selector2.change(videoSelectorFunction);
 	}
+	
+	//Changing the currently selected video
+	video_selector.val(videoLeftMain);
+	video_selector2.val(videoRight);
 		
 	//----------------------------------------------//
 	//Measurement Tools                             //
 	//----------------------------------------------//
+	//Currently selected tool
+	var selectedTool = "";
+	
 	//Setting up the different tools
 	//Adding in the tools dynamically from the toolsArray
 	var index = 0;
