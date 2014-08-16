@@ -33,3 +33,6 @@ var _toolButtonTitle = 20;
 //Video players
 var player = document.getElementById('dmv_video'); 
 var player2 = document.getElementById('dmv_video_2');
+
+//Max Slider Value
+var maxSliderValue = 100000;

@@ -13,8 +13,10 @@ $(function() {
 	//----Variables--------------------------------------------//
 	//creates an jquery instance of the video player window
 	var $video = $("#dmv_video"); 
+    var $video2 = $("dmv_video2");
 	//creates an instance of the jquery object $video
 	var video = $video.get(0);
+    
 	//variable used to indicate whether or not the playpause button has been clicked
 	var playPauseClicked; 
 	//0 is mouse up 1 is mouse down, the initial value is set to zero
@@ -26,6 +28,7 @@ $(function() {
 	
 	//there is an event which 'fires' every so often when the video is playing. it is called 'timeupdate' and what this line does is it says that anytime this event fires, the function videoTImeUpdateHandler should be called. This function updates the slider position
 	$video.bind("timeupdate", videoTimeUpdateHandler); 
+    $video2.bind("timeupdate", videoTimeUpdateHandler);
 	
 	//gets the percent of the video that is done playing, this can be applied to the slider to set its position
 	var percent = $video.currentTime / $video.duration; 
@@ -38,14 +41,14 @@ $(function() {
 		// this is teh minimum value of the slider
       	min: 0, 
 		//this is the max slider position, this is effectively the resolution of the slider. the 100,000 means that it can handle 100,000 different positions, or videos with 100,000 frames which is more than enough. this value can be increased or decreased.
-      	max: 100000, 
+      	max: maxSliderValue, 
 		//the slide: is an event that fires when the slider is being moved. the function() inside runs whenever the slider is being moved
       	slide: function( event, ui ) {
 			// this gets the value of the slider, a number between 0 and 100,000
 			var value = $( "#slider" ).slider( "value" ); 
 			//gets the percentage value of the slider, and then sets the current time of the video according to where the slider is positioned
-			player.currentTime=player.duration*(value/100000); 
-			player2.currentTime = player2.duration * (value/100000);
+			player.currentTime=player.duration*(value/maxSliderValue); 
+			player2.currentTime = player2.duration * (value/maxSliderValue);
 			//prints the value of the slider in the console, used only for debugging
 			//console.log(value); 
       	}
@@ -62,9 +65,13 @@ $(function() {
 			//gets final value of slidr after it is not being moved anymore
 			var value = $( "#slider" ).slider( "value" ); 
 			//gets percentage value of the slider
-			player.currentTime=player.duration*(value/100000); 
+			player.currentTime=player.duration*(value/maxSliderValue);
+            player2.currentTime = player2.duration * (value / maxSliderValue);
+            
 			//prints the slider value in the console, used for debugging only
-			//console.log(value);
+//			console.log("Slider Value: "+value);
+//            console.log("Video 1 Current Time: "+player.currentTime);
+//            console.log("Video 2 Current Time: "+player2.currentTime);
 		}
 	});
 	
@@ -82,7 +89,7 @@ $(function() {
 			//get percent of the video that has palyed
 			percent = video.currentTime / video.duration; 
 			//set the position of the slider based on how far along in the video we are.
-			$( "#slider" ).slider( "option", "value", percent*100000 ); 
+			$( "#slider" ).slider( "option", "value", percent * maxSliderValue ); 
 
 			//sets old val equall to newVal so that this peice of code cannot be run twice without something changing
 			oldVal=newVal;
