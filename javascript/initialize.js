@@ -159,14 +159,16 @@ $(document).ready(function(){
 	}
 	if(numberOfVideos == 1 || numberOfVideos == 2){
 		video_selector.change(videoSelectorFunction);
+        video_selector.val(videoLeftMain);
 	}
 	if(numberOfVideos == 2){
 		video_selector2.change(videoSelectorFunction);
+        video_selector2.val(videoRight);
 	}
 	
 	//Changing the currently selected video
-	video_selector.val(videoLeftMain);
-	video_selector2.val(videoRight);
+//	video_selector.val(videoLeftMain);
+//	video_selector2.val(videoRight);
 		
 	//----------------------------------------------//
 	//Measurement Tools                             //

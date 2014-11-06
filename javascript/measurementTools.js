@@ -87,16 +87,46 @@ function hideTool(tool){
 var currentMaxZIndex = 100;
 var selectedTool;
 function moveToTop(tool){
+    //getting the indexes for the currently selected tool and newly selected tool
+    var previousToolID = getToolIndex(selectedTool);
+    var nextToolID = getToolIndex(tool);
+    
 	//Putting a the previous selected tool back to the default color
 	$("#"+selectedTool).css("border", "1px solid black");
-	//Saving the last tool selected
-	selectedTool = tool;
-	//Putting a different colored border around the selected tool
-	$("#"+selectedTool).css("border", "2px solid red");
 	
-	//Moving the selected tool to the top
-	$("#"+tool).css("z-index", currentMaxZIndex);
-	currentMaxZIndex++;
+    //Saving the last tool selected
+	selectedTool = tool;
+    
+    //check to see if the tool has the border enabled
+    if(toolsArray[nextToolID][_outlineEnabled]){
+        //Putting a different colored border around the selected tool
+        $("#"+selectedTool).css("border", toolsArray[nextToolID][_outlineThickness] +
+                                          " solid " +
+                                          toolsArray[nextToolID][_outlineColor]);
+
+        //Moving the selected tool to the top
+        $("#"+tool).css("z-index", currentMaxZIndex);
+        currentMaxZIndex++;
+    }
+}
+
+//Helper function to get the index for a given tool ID
+function getToolIndex(toolID){
+    //index number
+    var count = 0;
+    
+    //looping through the tools to find the one that was passed in
+    for(element in toolsArray){
+        if(toolID == toolsArray[count][_elementID]){
+            return count;
+        }
+        
+        //increment counter
+        count++;
+    }
+    
+    //returning -1 it was not able to find a valid tool ID
+    return -1;
 }
 
 //Variable to store the state of the Overlay Image

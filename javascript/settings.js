@@ -17,10 +17,10 @@ var enableMarkers = false;
 //Enable 'Click to Play' overlay
 var enableClickToPlayOverlay = false;
 //Number of Videos; 1 or 2
-var numberOfVideos = 2;
+var numberOfVideos = 1;
 //Video selection index to open with, starts at 0
 var videoLeftMain = 0;
-var videoRight = 1;
+var videoRight = 0;
 
 //---------//
 //Help Text//
@@ -57,30 +57,42 @@ videoArray.push([
 ]);
 */
 var videoArray = new Array();
+//videoArray.push([
+//	"ping pong",
+//	"../videos/ppb_4_clean.ogv",
+//	"../videos/ppb_4_clean.mp4",
+//	""
+//]);
 videoArray.push([
-	"Apple",
-	"../videos/freefall/apple.ogv",
-	"../videos/freefall/apple.mp4",
+	"ping pong",
+	"../videos/spin_falling.ogv",
+	"../videos/spin_falling.mp4",
 	""
 ]);
-videoArray.push([
-	"Bowling Ball",
-	"../videos/freefall/bowling_ball.ogv",
-	"../videos/freefall/bowling_ball.mp4",
-	""
-]);
-videoArray.push([
-	"Large Steel",
-	"../videos/freefall/large_steel.ogv",
-	"../videos/freefall/large_steel.mp4",
-	""
-]);
-videoArray.push([
-	"Ping Pong Ball",
-	"../videos/freefall/ping_pong_ball.ogv",
-	"../videos/freefall/ping_pong_ball.mp4",
-	""
-]);
+//videoArray.push([
+//	"Apple",
+//	"../videos/freefall/apple.ogv",
+//	"../videos/freefall/apple.mp4",
+//	""
+//]);
+//videoArray.push([
+//	"Bowling Ball",
+//	"../videos/freefall/bowling_ball.ogv",
+//	"../videos/freefall/bowling_ball.mp4",
+//	""
+//]);
+//videoArray.push([
+//	"Large Steel",
+//	"../videos/freefall/large_steel.ogv",
+//	"../videos/freefall/large_steel.mp4",
+//	""
+//]);
+//videoArray.push([
+//	"Ping Pong Ball",
+//	"../videos/freefall/ping_pong_ball.ogv",
+//	"../videos/freefall/ping_pong_ball.mp4",
+//	""
+//]);
 
 var videoArray2 = new Array();
 videoArray2 = videoArray;
@@ -109,33 +121,39 @@ toolsArray.push([
 	17"Reshow Resize Help Text",
 	18"Tool Image",
 	19"Tool Image ID",
-	20"Tool's Button Title"
+	20"Tool's Button Title",
+    21"Outline Enabled?"
+    22"Outline Color",
+    23"Outline Thickness"
 ]);
 */
 var toolsArray = new Array();
-//toolsArray.push([
-//	"horizontalRuler", 
-//	"250px",
-//	"250px",
-//  	"60px",
-//	"300px",
-//	false,
-//	true,
-//	true,
-//	false,
-//	false,
-//	"horiRulerButton",
-//	30,
-//	"rgba(255, 255, 255, 0)",
-//	"n, e, s, w, ne, se, sw, nw",
-//	true,
-//	true,
-//	true,
-//	true,
-//	"../images/hruler_100_white.png",
-//	"hRulerImg",
-//	"Horizontal Ruler"
-//]);
+toolsArray.push([
+	"horizontalRuler", 
+	"250px",
+	"250px",
+  	"60px",
+	"300px",
+	false,
+	true,
+	true,
+	false,
+	false,
+	"horiRulerButton",
+	30,
+	"rgba(255, 255, 255, 0)",
+	"n, e, s, w, ne, se, sw, nw",
+	true,
+	true,
+	true,
+	true,
+	"../images/hruler_100_white.png",
+	"hRulerImg",
+	"Horizontal Ruler",
+    false,
+    "#00FFFF",
+    "5px"
+]);
 //toolsArray.push([
 //	"verticalRuler", 
 //	"50px",

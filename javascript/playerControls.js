@@ -51,6 +51,12 @@ function prevFrame(){
 	//gets current time to 5 decimal places
 	player.currentTime -= (1/30).toPrecision(5);
 	player2.currentTime -= (1/30).toPrecision(5);
+	
+//	var frameNumber = player.currentTime / 30;
+//	console.log("(1/30).toPrecision(5): "+(1/30).toPrecision(5));
+//	console.log("current time: "+player.currentTime);
+//	console.log("current frame: "+frameNumber);
+	
 //	console.log("prev frame");
 	//deselects previous frame button
 	document.getElementById("frameprev").blur();
@@ -122,6 +128,11 @@ function fwdFrame(){
 	}
 	document.getElementById("framefwd").blur();
 //	console.log("fwd frame , time: "+player.currentTime);
+	
+//	var frameNumber = player.currentTime / 30;
+//	console.log("current time: "+player.currentTime);
+//	console.log("current frame: "+frameNumber);
+	
 }
 
 //Start button function
