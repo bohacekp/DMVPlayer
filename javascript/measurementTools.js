@@ -28,11 +28,11 @@ function nudgeTool(e){
 		//Current key's code
 		var keyCode = e.keyCode;
 		//Default value to nudge by
-		var nudgeValue = 10;
+		var nudgeValue = 1;
 		//Checking if one of the Shift keys are down
 		if(e.shiftKey){
 			//If the shift key is down change the nudging value
-			nudgeValue = 1;
+			nudgeValue = 10;
 		}
 		//WASD keys
 		//W
