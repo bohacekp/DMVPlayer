@@ -7,7 +7,13 @@ function resetTools(){
 		tool.style.top = toolsArray[index][_positionTop];
 		tool.style.height = toolsArray[index][_sizeHeight];
 		tool.style.width = toolsArray[index][_sizeWidth];
-		tool.style.border = "1px solid black";
+        //Checking to see if the unselected outline is enabled
+        if(toolsArray[index][_unselectedOutlineEnabled]){
+            //Putting a the previous selected tool back to the default color
+            tool.style.border = toolsArray[index][_unselectedOutlineThickness] +
+                                " solid " +
+                                toolsArray[index][_unselectedOutlineColor];
+        }
 		index++;
 	}
 }
@@ -90,19 +96,24 @@ function moveToTop(tool){
     //getting the indexes for the currently selected tool and newly selected tool
     var previousToolID = getToolIndex(selectedTool);
     var nextToolID = getToolIndex(tool);
-    
-	//Putting a the previous selected tool back to the default color
-	$("#"+selectedTool).css("border", "1px solid black");
+        
+    //Checking to see if the unselected outline is enabled
+    if(previousToolID != -1 && toolsArray[previousToolID][_unselectedOutlineEnabled]){
+        //Putting a the previous selected tool back to the default color
+        $("#"+selectedTool).css("border", toolsArray[previousToolID][_unselectedOutlineThickness] +
+                                          " solid " +
+                                          toolsArray[previousToolID][_unselectedOutlineColor]);
+    }
 	
     //Saving the last tool selected
 	selectedTool = tool;
     
     //check to see if the tool has the border enabled
-    if(toolsArray[nextToolID][_outlineEnabled]){
+    if(toolsArray[nextToolID][_selectedOutlineEnabled]){
         //Putting a different colored border around the selected tool
-        $("#"+selectedTool).css("border", toolsArray[nextToolID][_outlineThickness] +
+        $("#"+selectedTool).css("border", toolsArray[nextToolID][_selectedOutlineThickness] +
                                           " solid " +
-                                          toolsArray[nextToolID][_outlineColor]);
+                                          toolsArray[nextToolID][_selectedOutlineColor]);
 
         //Moving the selected tool to the top
         $("#"+tool).css("z-index", currentMaxZIndex);
@@ -247,7 +258,14 @@ function removeAllMarkers(){
 function deselectTool(){
 	if(selectedTool){
 		tool = document.getElementById(selectedTool);
-		tool.style.border = "1px solid black";
+        var toolIndex = getToolIndex(selectedTool);
+        //Checking to see if the unselected outline is enabled
+        if(toolsArray[toolIndex][_unselectedOutlineEnabled]){
+            //Putting a the previous selected tool back to the default color
+            tool.style.border = toolsArray[toolIndex][_unselectedOutlineThickness] +
+                                " solid " +
+                                toolsArray[toolIndex][_unselectedOutlineColor];
+        }
 		selectedTool = "";
 	}
 }

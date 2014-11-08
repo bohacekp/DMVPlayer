@@ -66,27 +66,61 @@ $(document).ready(function(){
 	
 	//Creating the video selectors
 	if(enableVideoSelection){
-		//1 video
-		if(numberOfVideos == 1){
-			//HTML for the video selector
-			var videoSelectorHTML = '<p>Pick a Video:<select id="video_selector"></select></p>';
-			document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
-			
-			//Drop down for the video
-			var video_selector = $("#video_selector");
-		}
-		//2 videos
-		else if(numberOfVideos == 2){
-			//HTML for the video selectors
-			var videoSelectorHTML = 'Pick a Video(Left):<select id="video_selector"></select>';
-			var videoSelector2HTML = 'Pick a Video(Right):<select id="video_selector2"></select>';
-			document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelector2HTML);
-			document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
-			
-			//Drop down for the different videos
-			var video_selector = $("#video_selector");
-			var video_selector2 = $("#video_selector2");
-		}
+        //Basic video selection
+        if(basicVideoSelection && !advancedVideoSelection){
+            //1 video
+            if(numberOfVideos == 1){
+                //HTML for the video selector
+                var videoSelectorHTML = '<p>Pick a Video:<select id="video_selector"></select></p>';
+                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
+
+                //Drop down for the video
+                var video_selector = $("#video_selector");
+            }
+            //2 videos
+            else if(numberOfVideos == 2){
+                //HTML for the video selectors
+                var videoSelectorHTML = 'Pick a Video(Left):<select id="video_selector"></select>';
+                var videoSelector2HTML = 'Pick a Video(Right):<select id="video_selector2"></select>';
+                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelector2HTML);
+                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
+
+                //Drop down for the different videos
+                var video_selector = $("#video_selector");
+                var video_selector2 = $("#video_selector2");
+            }
+        }
+        
+        //Advanced video selection
+        else if(!basicVideoSelection && advancedVideoSelection){
+            //1 video
+            if(numberOfVideos == 1){
+                //HTML for the video selector
+                var videoSelectorHTML = '<p>Pick a Video:<select id="video_selector"></select></p>';
+                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
+
+                //Drop down for the video
+                var video_selector = $("#video_selector");
+            }
+            //2 videos
+            else if(numberOfVideos == 2){
+                console.warn("Warning:Advanced video selection is currently not supported.");
+//                //HTML for the video selectors
+//                var videoSelectorHTML = 'Pick a Video(Left):<select id="video_selector"></select>';
+//                var videoSelector2HTML = 'Pick a Video(Right):<select id="video_selector2"></select>';
+//                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelector2HTML);
+//                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
+//
+//                //Drop down for the different videos
+//                var video_selector = $("#video_selector");
+//                var video_selector2 = $("#video_selector2");
+            }
+        }
+        
+        //Error
+        else{
+            console.error("Error:You cannot have both basic and advanced video selection enabled.");
+        }
 	}
 	
 	//Setting up the options in the video selection
@@ -322,9 +356,16 @@ $(document).ready(function(){
 		//Position Attributes
 		tool_jQuery.css("position", "absolute");
 
-		//Color
+		//Background Color
 		tool_jQuery.css("background-color", toolsArray[index][_color]);
-		tool_jQuery.css("border", "1px solid black");
+        
+        //Default Border Color
+        if(toolsArray[index][_unselectedOutlineEnabled]){
+            //Putting a different colored border around the selected tool
+            tool_jQuery.css("border", toolsArray[index][_unselectedOutlineThickness] +
+                                      " solid " +
+                                      toolsArray[index][_unselectedOutlineColor]);
+        }
 
 		//Showing Help Text
 		//Draggable

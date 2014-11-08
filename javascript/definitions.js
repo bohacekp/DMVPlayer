@@ -29,9 +29,12 @@ var _reshowResizeHelpText = 17;
 var _toolImage = 18;
 var _toolImageID = 19;
 var _toolButtonTitle = 20;
-var _outlineEnabled = 21;
-var _outlineColor = 22;
-var _outlineThickness = 23;
+var _selectedOutlineEnabled = 21;
+var _selectedOutlineColor = 22;
+var _selectedOutlineThickness = 23;
+var _unselectedOutlineEnabled = 24;
+var _unselectedOutlineColor = 25;
+var _unselectedOutlineThickness = 26;
 
 //Video players
 var player = document.getElementById('dmv_video'); 

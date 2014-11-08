@@ -4,6 +4,8 @@
 //-----//
 //Video Selection
 var enableVideoSelection = true;
+var basicVideoSelection = false;
+var advancedVideoSelection = true;
 //Nudging Buttons
 var nudgeButtons = false;
 //Reset Button
@@ -97,6 +99,25 @@ videoArray.push([
 var videoArray2 = new Array();
 videoArray2 = videoArray;
 
+//Advanced Video Selection Array
+//Single Video
+//Video Array
+
+//Selection Array
+var selectionArray = new Array();
+selectionArray.push([
+    "1",
+    "2",
+    "3",
+    "4"
+]);
+selectionArray.push([
+    "a",
+    "b",
+    "c",
+    "d"
+]);
+
 //Tools Array
 /*
 Template for the toolArray values
@@ -122,9 +143,12 @@ toolsArray.push([
 	18"Tool Image",
 	19"Tool Image ID",
 	20"Tool's Button Title",
-    21"Outline Enabled?"
-    22"Outline Color",
-    23"Outline Thickness"
+    21"Selected Outline Enabled?"
+    22"Selected Outline Color",
+    23"Selected Outline Thickness",
+    24"Unselected Outline Enabled",
+    25"Unselected Outline Color",
+    26"Unselected Outline Thickness"
 ]);
 */
 var toolsArray = new Array();
@@ -152,31 +176,40 @@ toolsArray.push([
 	"Horizontal Ruler",
     false,
     "#00FFFF",
-    "5px"
+    "5px",
+    true,
+    "#00FF55",
+    "1px"
 ]);
-//toolsArray.push([
-//	"verticalRuler", 
-//	"50px",
-//	"50px",
-//  	"300px",
-//	"100px",
-//	false,
-//	true,
-//	true,
-//	false,
-//	false,
-//	"vertRulerButton",
-//	30,
-//	"rgba(255, 255, 255, 0)",
-//	"n, e, s, w, ne, se, sw, nw",
-//	true,
-//	true,
-//	true,
-//	true,
-//	"../images/vruler_100_white.png",
-//	"vRulerImg",
-//	"Vertical Ruler"
-//]);
+toolsArray.push([
+	"verticalRuler", 
+	"50px",
+	"50px",
+  	"300px",
+	"100px",
+	false,
+	true,
+	true,
+	false,
+	false,
+	"vertRulerButton",
+	30,
+	"rgba(255, 255, 255, 0)",
+	"n, e, s, w, ne, se, sw, nw",
+	true,
+	true,
+	true,
+	true,
+	"../images/vruler_100_white.png",
+	"vRulerImg",
+	"Vertical Ruler",
+    false,
+    "#00FFFF",
+    "5px",
+    true,
+    "#00FF55",
+    "1px"
+]);
 //toolsArray.push([
 //	"protractor_Quarter_Q4", 
 //	"500px",
