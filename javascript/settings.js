@@ -55,7 +55,8 @@ videoArray.push([
 	0"name of the video selection",
 	1"location of the .ogv video file",
 	2"location of the .mp4 video file",
-	3"Overlay Image"
+	3"Overlay Image",
+    4"file name without extension"
 ]);
 */
 var videoArray = new Array();
@@ -69,7 +70,8 @@ videoArray.push([
 	"ping pong",
 	"../videos/spin_falling.ogv",
 	"../videos/spin_falling.mp4",
-	""
+	"",
+    "ssfsdfsfddsf"
 ]);
 //videoArray.push([
 //	"Apple",
@@ -103,19 +105,29 @@ videoArray2 = videoArray;
 //Single Video
 //Video Array
 
-//Selection Array
-var selectionArray = new Array();
-selectionArray.push([
-    "1",
-    "2",
-    "3",
-    "4"
+//Advanced Video Selection
+//File Name Array
+// the file name array contains each section video file name
+// each gap will have the value from each of the selection dropdown put into it
+// also do not include the extension in the file name, it will append .ogv and .mp4
+var fileNameArray = new Array();
+fileNameArray.push("first_");
+fileNameArray.push("_second_");
+fileNameArray.push("_third");
+//Advanced Selection Array
+// each entry ["drop down value", "file name value"]
+var advancedSelectionArray = new Array();
+advancedSelectionArray.push([
+    ["name 1", "1"],
+    ["name 2", "2"],
+    ["name 3", "3"],
+    ["name 4", "4"]
 ]);
-selectionArray.push([
-    "a",
-    "b",
-    "c",
-    "d"
+advancedSelectionArray.push([
+    ["name a", "a"],
+    ["name b", "b"],
+    ["name c", "c"],
+    ["name d", "d"]
 ]);
 
 //Tools Array

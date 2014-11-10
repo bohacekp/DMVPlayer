@@ -6,6 +6,11 @@ var _nameOfVideo = 0;
 var _locationOGV = 1;
 var _locationMP4 = 2;
 var _overlayImage = 3;
+var _videoFileName = 4;
+
+//advancedSelectionArray indexes
+var _advancedSelectionName = 0;
+var _advancedSelectionValue = 1;
 
 //toolsArray indexes
 var _elementID = 0;

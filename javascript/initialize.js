@@ -95,25 +95,36 @@ $(document).ready(function(){
         else if(!basicVideoSelection && advancedVideoSelection){
             //1 video
             if(numberOfVideos == 1){
-                //HTML for the video selector
-                var videoSelectorHTML = '<p>Pick a Video:<select id="video_selector"></select></p>';
-                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
-
-                //Drop down for the video
-                var video_selector = $("#video_selector");
+                //checking to see if the fileNameArray and advancedSelectionArray
+                if((fileNameArray.length - 1) < advancedSelectionArray.length){
+                    console.error("Error:You have too many selections in the advancedSelectionArray");
+                }
+                if((fileNameArray.length - 1) > advancedSelectionArray.length){
+                    console.error("Error:You have too many sections in the fileNameArray");
+                }
+                
+                var count = 0;
+                var videoSelector = "video_selector";
+                var videoSelectorIDArray = new Array();
+                var videoSelectionHTML = "<p>Pick your parameters:";
+                for(elements in advancedSelectionArray){
+                    //adding the HTML for the video selector
+                    videoSelectionHTML = videoSelectionHTML + '<select id=' + videoSelector + count + '></select>';
+                    
+                    //saving the video selector ids for later
+                    videoSelectorIDArray.push(videoSelector + count);
+                    
+                    count++;
+                }
+                
+                videoSelectionHTML = videoSelectionHTML + "</p>";
+                
+                //putting in the html
+                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectionHTML);
             }
             //2 videos
             else if(numberOfVideos == 2){
                 console.warn("Warning:Advanced video selection is currently not supported.");
-//                //HTML for the video selectors
-//                var videoSelectorHTML = 'Pick a Video(Left):<select id="video_selector"></select>';
-//                var videoSelector2HTML = 'Pick a Video(Right):<select id="video_selector2"></select>';
-//                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelector2HTML);
-//                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
-//
-//                //Drop down for the different videos
-//                var video_selector = $("#video_selector");
-//                var video_selector2 = $("#video_selector2");
             }
         }
         
@@ -121,89 +132,186 @@ $(document).ready(function(){
         else{
             console.error("Error:You cannot have both basic and advanced video selection enabled.");
         }
-	}
 	
-	//Setting up the options in the video selection
-	if(numberOfVideos == 1 || numberOfVideos == 2){
-		//Player 1
-		var index = 0;
-		for(element in videoArray){
-			var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][_nameOfVideo]));
-			index++;
-		}
-	}
-	if(numberOfVideos == 2){
-		//Player 2
-		var index = 0;
-		for(element in videoArray2){
-			var option = video_selector2.append($("<option></option>").attr("value",index).text(videoArray2[index][_nameOfVideo]));
-			index++;
-		}
-	}
-	
-	//If the drop down changes
-	var videoSelectorFunction = function(){
-		//Player 1
-		var video_index = document.getElementById("video_selector").selectedIndex;
-		var dmv_player = document.getElementById("dmv_video");
-		var mp4_video = document.getElementById("mp4_video");
-		var ogg_video = document.getElementById("ogg_video");
-		
-		//Setting the video sources
-		if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-			$(ogg_video).attr('src', videoArray[video_index][_locationOGV]);
-		}
-		else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-			$(mp4_video).attr('src', videoArray[video_index][_locationMP4]);
-		}
-		
-		//Reload the dmv video
-		dmv_player.load();
-		
-		//Player 2
-		var video_index2 = document.getElementById("video_selector2").selectedIndex;
-		var dmv_player2 = document.getElementById("dmv_video2");
-		var mp4_video2 = document.getElementById("mp4_video2");
-		var ogg_video2 = document.getElementById("ogg_video2");
-		
-		//Setting the video sources
-		if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
-			$(ogg_video2).attr('src', videoArray2[video_index2][_locationOGV]);
-		}
-		else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
-			$(mp4_video2).attr('src', videoArray2[video_index2][_locationMP4]);
-		}
-		
-		//Reload the dmv video
-		dmv_player2.load();
-		
-		//Setting the slider back to the beginning
-		$("#slider").slider('value',0);
-		
-		//Hiding the overlay image
-		overlayImageVisible = false;
-		$("#overlayImageID").css("display", "none");
-		$("#overlayImageID2").css("display", "none");
-		//Making sure the video is visible
-		$("#dmv_video").css("display", "initial");
-		$("#dmv_video2").css("display", "initial");
-		//Switching the overlay image
-		document.getElementById("overlayImageID").src = videoArray[video_index][_overlayImage];
-		document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
-	}
-	if(numberOfVideos == 1 || numberOfVideos == 2){
-		video_selector.change(videoSelectorFunction);
-        video_selector.val(videoLeftMain);
-	}
-	if(numberOfVideos == 2){
-		video_selector2.change(videoSelectorFunction);
-        video_selector2.val(videoRight);
-	}
-	
-	//Changing the currently selected video
-//	video_selector.val(videoLeftMain);
-//	video_selector2.val(videoRight);
-		
+        //Setting up the options in the video selection
+        if(numberOfVideos == 1 || numberOfVideos == 2){
+            //Player 1
+            //check to see if they want basic video selection
+            if(basicVideoSelection && !advancedVideoSelection){
+                var index = 0;
+                for(element in videoArray){
+                    var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][_nameOfVideo]));
+                    index++;
+                }
+            }
+            
+            //check to see if they want advanced video selection
+            else if(advancedVideoSelection && !basicVideoSelection){
+                //indexes
+                var selectionIndex = 0;
+                var optionIndex = 0;
+                //loop through the selection drop downs
+                for(element in advancedSelectionArray){
+                    //looking up the video selector
+                    var videoSelector = $("#" + videoSelectorIDArray[selectionIndex]);
+                    //loop through the options for the drop down
+                    for(options in advancedSelectionArray[selectionIndex]){
+                        //appending the options
+                        videoSelector.append($("<option></option>").attr("value", optionIndex).text(
+                            advancedSelectionArray[selectionIndex][optionIndex][_advancedSelectionName]
+                        ));
+                        //increment index for the options
+                        optionIndex++;
+                    }
+                    //reseting index for the options
+                    optionIndex = 0;
+                    //increment index for the selection drop down
+                    selectionIndex++;
+                }
+            }
+            
+            //error
+            else{
+                console.error("Error:You cannot have both basic and advanced video selection enabled.");
+            }
+        }
+        if(numberOfVideos == 2){
+            //Player 2
+            var index = 0;
+            for(element in videoArray2){
+                var option = video_selector2.append($("<option></option>").attr("value",index).text(videoArray2[index][_nameOfVideo]));
+                index++;
+            }
+        }
+
+        //If the drop down changes
+        var videoSelectorFunction = function(){
+            //Player 1
+            var dmv_player = document.getElementById("dmv_video");
+            var mp4_video = document.getElementById("mp4_video");
+            var ogg_video = document.getElementById("ogg_video");
+
+            //checking to see if it is basic or advanced video selection
+            //basic
+            if(basicVideoSelection && !advancedVideoSelection){
+                var video_index = document.getElementById("video_selector").selectedIndex;
+            }
+            
+            //advanced
+            else if(advancedVideoSelection && !basicVideoSelection){
+                //figuring out the index for the video they want
+                var fileName = "";
+                var index = 0;
+                for(elements in fileNameArray){
+                    fileName = fileName + fileNameArray[index];
+                    
+                    if(index < (videoSelectorIDArray.length - 1)){
+                        var selector = document.getElementById(videoSelectorIDArray[index]);
+                        fileName = fileName + advancedSelectionArray[index][selector.selectedIndex][_advancedSelectionValue];
+                    }
+                    
+                    index++;
+                }
+                
+                console.log(fileName);
+                
+                //looking up the video's index in the video array
+                var index = 0;
+                video_index = -1;
+                for(elements in videoArray){
+                    if(videoArray[index][_videoFileName] == fileName){
+                        video_index = index;
+                        break;
+                    }
+                    index++;
+                }
+                
+                //////////////stopped here///////////////
+                
+            }
+            
+            //error
+            else{
+                console.error("Error:You cannot have both basic and advanced video selection enabled.");
+            }
+            
+            //Setting the video sources
+            if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
+                $(ogg_video).attr('src', videoArray[video_index][_locationOGV]);
+            }
+            else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
+                $(mp4_video).attr('src', videoArray[video_index][_locationMP4]);
+            }
+
+            //Reload the dmv video
+            dmv_player.load();
+
+            //Player 2
+            var video_index2 = document.getElementById("video_selector2").selectedIndex;
+            var dmv_player2 = document.getElementById("dmv_video2");
+            var mp4_video2 = document.getElementById("mp4_video2");
+            var ogg_video2 = document.getElementById("ogg_video2");
+
+            //Setting the video sources
+            if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
+                $(ogg_video2).attr('src', videoArray2[video_index2][_locationOGV]);
+            }
+            else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
+                $(mp4_video2).attr('src', videoArray2[video_index2][_locationMP4]);
+            }
+
+            //Reload the dmv video
+            dmv_player2.load();
+
+            //Setting the slider back to the beginning
+            $("#slider").slider('value',0);
+
+            //Hiding the overlay image
+            overlayImageVisible = false;
+            $("#overlayImageID").css("display", "none");
+            $("#overlayImageID2").css("display", "none");
+            //Making sure the video is visible
+            $("#dmv_video").css("display", "initial");
+            $("#dmv_video2").css("display", "initial");
+            //Switching the overlay image
+            document.getElementById("overlayImageID").src = videoArray[video_index][_overlayImage];
+            document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
+        }
+
+        if(numberOfVideos == 1 || numberOfVideos == 2){
+            //basic video selection
+            if(basicVideoSelection && !advancedVideoSelection){
+                video_selector.change(videoSelectorFunction);
+                video_selector.val(videoLeftMain);
+            }
+            
+            //advanced video selection
+            else if(advancedVideoSelection && !basicVideoSelection){
+                //assign all the videoSelectorIDArray selectors to the videoSelectorFunction
+                var count = 0;
+                for(elements in videoSelectorIDArray){
+                    var temp = $("#" + videoSelectorIDArray[count]);
+                    temp.change(videoSelectorFunction);
+                    count++;
+                }
+            }
+            
+            //Error
+            else{
+                console.error("Error:You cannot have both basic and advanced video selection enabled.");
+            }
+        }
+        if(numberOfVideos == 2){
+            video_selector2.change(videoSelectorFunction);
+            video_selector2.val(videoRight);
+        }
+
+        //Changing the currently selected video
+//    	video_selector.val(videoLeftMain);
+//    	video_selector2.val(videoRight);
+
+    }
+        
 	//----------------------------------------------//
 	//Measurement Tools                             //
 	//----------------------------------------------//
