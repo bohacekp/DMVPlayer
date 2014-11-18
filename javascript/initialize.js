@@ -93,6 +93,11 @@ $(document).ready(function(){
         
         //Advanced video selection
         else if(!basicVideoSelection && advancedVideoSelection){
+            //Checking to see if the number of titles equal the number of options
+            if(advancedSelectionTitleArray.length != advancedSelectionArray.length){
+                console.error("Error: The number of titles and options for multiparameters need to equal. Check advancedSelectionTitleArray and advancedSelectionArray.");
+            }
+            
             //1 video
             if(numberOfVideos == 1){
                 //checking to see if the fileNameArray and advancedSelectionArray
@@ -108,6 +113,9 @@ $(document).ready(function(){
                 var videoSelectorIDArray = new Array();
                 var videoSelectionHTML = "<p>Pick your parameters:";
                 for(elements in advancedSelectionArray){
+                    //adding the dropdowns title
+                    videoSelectionHTML = videoSelectionHTML + advancedSelectionTitleArray[count];
+                    
                     //adding the HTML for the video selector
                     videoSelectionHTML = videoSelectionHTML + '<select id=' + videoSelector + count + '></select>';
                     

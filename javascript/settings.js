@@ -231,6 +231,14 @@ var fileNameArray = new Array();
 fileNameArray.push("circle_");
 fileNameArray.push("_");
 fileNameArray.push("_clean");
+//Advanced Selection Titles
+var advancedSelectionTitleArray = new Array();
+advancedSelectionTitleArray.push([
+    "Speed: "
+]);
+advancedSelectionTitleArray.push([
+    "Frame Rate: "
+]);
 //Advanced Selection Array
 // each entry ["drop down value", "file name value"]
 var advancedSelectionArray = new Array();
@@ -315,35 +323,35 @@ toolsArray.push([
     "#00FF55",
     "1px"
 ]);
-toolsArray.push([
-	"verticalRuler", 
-	"50px",
-	"50px",
-  	"300px",
-	"100px",
-	false,
-	true,
-	true,
-	false,
-	false,
-	"vertRulerButton",
-	30,
-	"rgba(255, 255, 255, 0)",
-	"n, e, s, w, ne, se, sw, nw",
-	true,
-	true,
-	true,
-	true,
-	"../images/vruler_100_white.png",
-	"vRulerImg",
-	"Vertical Ruler",
-    false,
-    "#00FFFF",
-    "5px",
-    true,
-    "#00FF55",
-    "1px"
-]);
+//toolsArray.push([
+//	"verticalRuler", 
+//	"50px",
+//	"50px",
+//  	"300px",
+//	"100px",
+//	false,
+//	true,
+//	true,
+//	false,
+//	false,
+//	"vertRulerButton",
+//	30,
+//	"rgba(255, 255, 255, 0)",
+//	"n, e, s, w, ne, se, sw, nw",
+//	true,
+//	true,
+//	true,
+//	true,
+//	"../images/vruler_100_white.png",
+//	"vRulerImg",
+//	"Vertical Ruler",
+//    false,
+//    "#00FFFF",
+//    "5px",
+//    true,
+//    "#00FF55",
+//    "1px"
+//]);
 //toolsArray.push([
 //	"protractor_Quarter_Q4", 
 //	"500px",
