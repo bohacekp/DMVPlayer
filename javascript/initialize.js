@@ -205,16 +205,14 @@ $(document).ready(function(){
                 for(elements in fileNameArray){
                     fileName = fileName + fileNameArray[index];
                     
-                    if(index < (videoSelectorIDArray.length - 1)){
+                    if(index <= (videoSelectorIDArray.length - 1)){
                         var selector = document.getElementById(videoSelectorIDArray[index]);
                         fileName = fileName + advancedSelectionArray[index][selector.selectedIndex][_advancedSelectionValue];
                     }
                     
                     index++;
                 }
-                
-                console.log(fileName);
-                
+                                
                 //looking up the video's index in the video array
                 var index = 0;
                 video_index = -1;
@@ -224,10 +222,7 @@ $(document).ready(function(){
                         break;
                     }
                     index++;
-                }
-                
-                //////////////stopped here///////////////
-                
+                }                
             }
             
             //error
@@ -247,21 +242,24 @@ $(document).ready(function(){
             dmv_player.load();
 
             //Player 2
-            var video_index2 = document.getElementById("video_selector2").selectedIndex;
-            var dmv_player2 = document.getElementById("dmv_video2");
-            var mp4_video2 = document.getElementById("mp4_video2");
-            var ogg_video2 = document.getElementById("ogg_video2");
+            //checking the number of videos
+            if(numberOfVideos == 2){
+                var video_index2 = document.getElementById("video_selector2").selectedIndex;
+                var dmv_player2 = document.getElementById("dmv_video2");
+                var mp4_video2 = document.getElementById("mp4_video2");
+                var ogg_video2 = document.getElementById("ogg_video2");
 
-            //Setting the video sources
-            if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
-                $(ogg_video2).attr('src', videoArray2[video_index2][_locationOGV]);
-            }
-            else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
-                $(mp4_video2).attr('src', videoArray2[video_index2][_locationMP4]);
-            }
+                //Setting the video sources
+                if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
+                    $(ogg_video2).attr('src', videoArray2[video_index2][_locationOGV]);
+                }
+                else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
+                    $(mp4_video2).attr('src', videoArray2[video_index2][_locationMP4]);
+                }
 
-            //Reload the dmv video
-            dmv_player2.load();
+                //Reload the dmv video
+                dmv_player2.load();
+            }
 
             //Setting the slider back to the beginning
             $("#slider").slider('value',0);
@@ -272,10 +270,16 @@ $(document).ready(function(){
             $("#overlayImageID2").css("display", "none");
             //Making sure the video is visible
             $("#dmv_video").css("display", "initial");
-            $("#dmv_video2").css("display", "initial");
+            //checking the number of videos
+            if(numberOfVideos == 2){
+                $("#dmv_video2").css("display", "initial");
+            }
             //Switching the overlay image
             document.getElementById("overlayImageID").src = videoArray[video_index][_overlayImage];
-            document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
+            //checking the number of videos
+            if(numberOfVideos == 2){
+                document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
+            }
         }
 
         if(numberOfVideos == 1 || numberOfVideos == 2){

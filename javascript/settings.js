@@ -60,43 +60,160 @@ videoArray.push([
 ]);
 */
 var videoArray = new Array();
-//videoArray.push([
-//	"ping pong",
-//	"../videos/ppb_4_clean.ogv",
-//	"../videos/ppb_4_clean.mp4",
-//	""
-//]);
 videoArray.push([
-	"ping pong",
-	"../videos/spin_falling.ogv",
-	"../videos/spin_falling.mp4",
+	"junk",
+	"../videos/circleLab2/circle_0_30fps_clean.ogv",
+	"../videos/circleLab2/circle_0_30fps_clean.mp4",
 	"",
-    "ssfsdfsfddsf"
+    "circle_0_30fps_clean"
 ]);
-//videoArray.push([
-//	"Apple",
-//	"../videos/freefall/apple.ogv",
-//	"../videos/freefall/apple.mp4",
-//	""
-//]);
-//videoArray.push([
-//	"Bowling Ball",
-//	"../videos/freefall/bowling_ball.ogv",
-//	"../videos/freefall/bowling_ball.mp4",
-//	""
-//]);
-//videoArray.push([
-//	"Large Steel",
-//	"../videos/freefall/large_steel.ogv",
-//	"../videos/freefall/large_steel.mp4",
-//	""
-//]);
-//videoArray.push([
-//	"Ping Pong Ball",
-//	"../videos/freefall/ping_pong_ball.ogv",
-//	"../videos/freefall/ping_pong_ball.mp4",
-//	""
-//]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_0_240fps_clean.ogv",
+	"../videos/circleLab2/circle_0_240fps_clean.mp4",
+	"",
+    "circle_0_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_1_30fps_clean.ogv",
+	"../videos/circleLab2/circle_1_30fps_clean.mp4",
+	"",
+    "circle_1_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_1_240fps_clean.ogv",
+	"../videos/circleLab2/circle_1_240fps_clean.mp4",
+	"",
+    "circle_1_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_2_30fps_clean.ogv",
+	"../videos/circleLab2/circle_2_30fps_clean.mp4",
+	"",
+    "circle_2_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_2_240fps_clean.ogv",
+	"../videos/circleLab2/circle_2_240fps_clean.mp4",
+	"",
+    "circle_2_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_3_30fps_clean.ogv",
+	"../videos/circleLab2/circle_3_30fps_clean.mp4",
+	"",
+    "circle_3_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_3_240fps_clean.ogv",
+	"../videos/circleLab2/circle_3_240fps_clean.mp4",
+	"",
+    "circle_3_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_4_30fps_clean.ogv",
+	"../videos/circleLab2/circle_4_30fps_clean.mp4",
+	"",
+    "circle_4_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_4_240fps_clean.ogv",
+	"../videos/circleLab2/circle_4_240fps_clean.mp4",
+	"",
+    "circle_4_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_5_30fps_clean.ogv",
+	"../videos/circleLab2/circle_5_30fps_clean.mp4",
+	"",
+    "circle_5_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_5_240fps_clean.ogv",
+	"../videos/circleLab2/circle_5_240fps_clean.mp4",
+	"",
+    "circle_5_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_6_30fps_clean.ogv",
+	"../videos/circleLab2/circle_6_30fps_clean.mp4",
+	"",
+    "circle_6_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_6_240fps_clean.ogv",
+	"../videos/circleLab2/circle_6_240fps_clean.mp4",
+	"",
+    "circle_6_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_7_30fps_clean.ogv",
+	"../videos/circleLab2/circle_7_30fps_clean.mp4",
+	"",
+    "circle_7_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_7_240fps_clean.ogv",
+	"../videos/circleLab2/circle_7_240fps_clean.mp4",
+	"",
+    "circle_7_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_8_30fps_clean.ogv",
+	"../videos/circleLab2/circle_8_30fps_clean.mp4",
+	"",
+    "circle_8_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_8_240fps_clean.ogv",
+	"../videos/circleLab2/circle_8_240fps_clean.mp4",
+	"",
+    "circle_8_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_9_30fps_clean.ogv",
+	"../videos/circleLab2/circle_9_30fps_clean.mp4",
+	"",
+    "circle_9_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_9_240fps_clean.ogv",
+	"../videos/circleLab2/circle_9_240fps_clean.mp4",
+	"",
+    "circle_9_240fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_10_30fps_clean.ogv",
+	"../videos/circleLab2/circle_10_30fps_clean.mp4",
+	"",
+    "circle_10_30fps_clean"
+]);
+videoArray.push([
+	"junk",
+	"../videos/circleLab2/circle_10_240fps_clean.ogv",
+	"../videos/circleLab2/circle_10_240fps_clean.mp4",
+	"",
+    "circle_10_240fps_clean"
+]);
 
 var videoArray2 = new Array();
 videoArray2 = videoArray;
@@ -111,23 +228,28 @@ videoArray2 = videoArray;
 // each gap will have the value from each of the selection dropdown put into it
 // also do not include the extension in the file name, it will append .ogv and .mp4
 var fileNameArray = new Array();
-fileNameArray.push("first_");
-fileNameArray.push("_second_");
-fileNameArray.push("_third");
+fileNameArray.push("circle_");
+fileNameArray.push("_");
+fileNameArray.push("_clean");
 //Advanced Selection Array
 // each entry ["drop down value", "file name value"]
 var advancedSelectionArray = new Array();
 advancedSelectionArray.push([
-    ["name 1", "1"],
-    ["name 2", "2"],
-    ["name 3", "3"],
-    ["name 4", "4"]
+    ["0", "0"],
+    ["1", "1"],
+    ["2", "2"],
+    ["3", "3"],
+    ["4", "4"],
+    ["5", "5"],
+    ["6", "6"],
+    ["7", "7"],
+    ["8", "8"],
+    ["9", "9"],
+    ["10", "10"],
 ]);
 advancedSelectionArray.push([
-    ["name a", "a"],
-    ["name b", "b"],
-    ["name c", "c"],
-    ["name d", "d"]
+    ["30 FPS", "30fps"],
+    ["240 FPS", "240fps"]
 ]);
 
 //Tools Array
