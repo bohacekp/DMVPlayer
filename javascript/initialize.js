@@ -362,7 +362,7 @@ $(document).ready(function(){
 		
 		index++;
 	}
-	
+  
 	//Reset Tool Button
 	//If there are any tools?
 	if(toolsArray.length == 1){
@@ -440,9 +440,16 @@ $(document).ready(function(){
 		tool.style.left = toolsArray[index][_positionLeft];
 		tool.style.top = toolsArray[index][_positionTop];
 
-		//Setting the default size of the tool
-		tool.style.height = toolsArray[index][_sizeHeight];
-		tool.style.width = toolsArray[index][_sizeWidth];
+		//Setting the default size of the tool      
+        //calculating the video height and width ratios
+        // Tool Size/Video Size
+        toolsArray[index][_toolAndVideoHeightRatio] = 
+          Number(toolsArray[index][_sizeHeight].replace("px", "")) / Number(maxHeightVideo.replace("px", ""));
+        toolsArray[index][_toolAndVideoWidthRatio] = 
+          Number(toolsArray[index][_sizeWidth].replace("px", "")) / Number(maxWidth1Video.replace("px", ""));
+      
+        //Resizing the tools for the current size of the screen
+        resizeTools();
 
 		//Show the tool?
 		if(toolsArray[index][_show]){

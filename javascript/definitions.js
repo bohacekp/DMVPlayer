@@ -40,6 +40,10 @@ var _selectedOutlineThickness = 23;
 var _unselectedOutlineEnabled = 24;
 var _unselectedOutlineColor = 25;
 var _unselectedOutlineThickness = 26;
+var _resizeHeightWithScreenChange = 27;
+var _resizeWidthWithScreenChange = 28;
+var _toolAndVideoHeightRatio = 29;
+var _toolAndVideoWidthRatio = 30;
 
 //Video players
 var player = document.getElementById('dmv_video'); 
@@ -47,3 +51,9 @@ var player2 = document.getElementById('dmv_video_2');
 
 //Max Slider Value
 var maxSliderValue = 100000;
+
+//Measurement Tools
+//Max Size for the video
+var maxWidth1Video = "980px";
+var maxWidth2Videos = "490px";
+var maxHeightVideo = "490px";

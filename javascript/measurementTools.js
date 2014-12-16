@@ -269,3 +269,32 @@ function deselectTool(){
 		selectedTool = "";
 	}
 }
+
+//callback if the screen is resized
+resizeTools = function() {
+
+  //the current size of the video
+  var currentVideoHeight = document.getElementById('dmv_video').offsetHeight;
+  var currentVideoWidth = document.getElementById('dmv_video').offsetWidth;
+
+  //looping through all of the tools
+  var index = 0;
+  var currentTool;
+  for(elements in toolsArray){
+    //setting the current tool
+    currentTool = document.getElementById(toolsArray[index][_elementID]);
+
+    //checking to see if the height of the tool should change with the screen size change
+    if(toolsArray[index][_resizeHeightWithScreenChange]){
+      currentTool.style.height = currentVideoHeight * toolsArray[index][_toolAndVideoHeightRatio] + "px";
+    }
+
+    //checking to see if the width of the tool should change with the screen size change
+    if(toolsArray[index][_resizeWidthWithScreenChange]){
+      currentTool.style.width = currentVideoWidth * toolsArray[index][_toolAndVideoWidthRatio] + "px";
+    }
+
+    index++;
+  }
+}
+$(window).resize(resizeTools);

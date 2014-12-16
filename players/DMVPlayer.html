@@ -71,16 +71,16 @@
 					document.getElementById("slider").style.maxWidth="980px";
 					
 					if(numberOfVideos == 1){
-						player.style.maxWidth="980px";
-						player.style.minHeight="400px";
+						player.style.maxWidth = maxWidth1Video;
+						//player.style.minHeight="400px";
 						player2.style.display = 'none';
-						document.getElementById("overlayImageID").style.maxWidth="980px";		
+						document.getElementById("overlayImageID").style.maxWidth = maxWidth1Video;		
 					}
 					else if(numberOfVideos == 2){
-						player.style.maxWidth="490px";
-						player2.style.maxWidth="490px";
-						document.getElementById("overlayImageID").style.maxWidth="490px";
-						document.getElementById("overlayImageID2").style.maxWidth="490px";
+						player.style.maxWidth=maxWidth2Videos;
+						player2.style.maxWidth=maxWidth2Videos;
+						document.getElementById("overlayImageID").style.maxWidth = maxWidth2Videos;
+						document.getElementById("overlayImageID2").style.maxWidth = maxWidth2Videos;
 					}
 					else{
 						console.error("ERROR: " + numberOfVideos + " videos is not supported");

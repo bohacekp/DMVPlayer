@@ -41,6 +41,12 @@ body
   font-weight: normal;
   font-style: normal;
 }
+
+p 
+{
+  font: 'MidoMedium', Arial, sans-serif;
+}
+
 h1 
 {
   font: 30px/1.2 'MidoMedium', Arial, sans-serif;

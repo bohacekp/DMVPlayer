@@ -234,26 +234,26 @@ fileNameArray.push("_clean");
 //Advanced Selection Titles
 var advancedSelectionTitleArray = new Array();
 advancedSelectionTitleArray.push([
-    "Speed: "
+    ""
 ]);
 advancedSelectionTitleArray.push([
-    "Frame Rate: "
+    ""
 ]);
 //Advanced Selection Array
 // each entry ["drop down value", "file name value"]
 var advancedSelectionArray = new Array();
 advancedSelectionArray.push([
-    ["0", "0"],
-    ["1", "1"],
-    ["2", "2"],
-    ["3", "3"],
-    ["4", "4"],
-    ["5", "5"],
-    ["6", "6"],
-    ["7", "7"],
-    ["8", "8"],
-    ["9", "9"],
-    ["10", "10"],
+    ["Speed 0", "0"],
+    ["Speed 1", "1"],
+    ["Speed 2", "2"],
+    ["Speed 3", "3"],
+    ["Speed 4", "4"],
+    ["Speed 5", "5"],
+    ["Speed 6", "6"],
+    ["Speed 7", "7"],
+    ["Speed 8", "8"],
+    ["Speed 9", "9"],
+    ["Speed 10", "10"],
 ]);
 advancedSelectionArray.push([
     ["30 FPS", "30fps"],
@@ -264,64 +264,72 @@ advancedSelectionArray.push([
 /*
 Template for the toolArray values
 toolsArray.push([
-	0"Element ID", NO '#'
-	1"Pos Left",
-	2"Pos Top",
-	3"Size Height",
-	4"Size Width",
-	5"Show tool at the start? true/false",
-	6"Draggable true/false",
-	7"Resizable true/false",
-	8"Contained true/false",
-	9"Aspect Ratio Locked true/false",
-	10"Measure Tool Button"
-	11"Z-Index",
-	12"Color",
-	13"Resizable Sides",
-	14"Draggable Help Text",
-	15"Resize Help Text",
-	16"Reshow Drag Help Text",
-	17"Reshow Resize Help Text",
-	18"Tool Image",
-	19"Tool Image ID",
-	20"Tool's Button Title",
-    21"Selected Outline Enabled?"
-    22"Selected Outline Color",
-    23"Selected Outline Thickness",
-    24"Unselected Outline Enabled",
-    25"Unselected Outline Color",
-    26"Unselected Outline Thickness"
+  0"Element ID", NO '#'
+  1"Pos Left",
+  2"Pos Top",
+  3"Size Height",
+  4"Size Width",
+  5"Show tool at the start? true/false",
+  6"Draggable true/false",
+  7"Resizable true/false",
+  8"Contained true/false",
+  9"Aspect Ratio Locked true/false",
+  10"Measure Tool Button"
+  11"Z-Index",
+  12"Color",
+  13"Resizable Sides",
+  14"Draggable Help Text",
+  15"Resize Help Text",
+  16"Reshow Drag Help Text",
+  17"Reshow Resize Help Text",
+  18"Tool Image",
+  19"Tool Image ID",
+  20"Tool's Button Title",
+  21"Selected Outline Enabled?"
+  22"Selected Outline Color",
+  23"Selected Outline Thickness",
+  24"Unselected Outline Enabled",
+  25"Unselected Outline Color",
+  26"Unselected Outline Thickness",
+  27"Resize Height with Screen Change true/false",
+  28"Resize Width with Screen Change true/false"
+  29"Tool And Video Height Ratio",
+  30"Tool And Video Width Ratio"
 ]);
 */
 var toolsArray = new Array();
 toolsArray.push([
-	"horizontalRuler", 
-	"250px",
-	"250px",
-  	"60px",
-	"300px",
-	false,
-	true,
-	true,
-	false,
-	false,
-	"horiRulerButton",
-	30,
-	"rgba(255, 255, 255, 0)",
-	"n, e, s, w, ne, se, sw, nw",
-	true,
-	true,
-	true,
-	true,
-	"../images/hruler_100_white.png",
-	"hRulerImg",
-	"Horizontal Ruler",
-    false,
-    "#00FFFF",
-    "5px",
-    true,
-    "#00FF55",
-    "1px"
+  "horizontalRuler", 
+  "250px",
+  "250px",
+  "60px",
+  "300px",
+  false,
+  true,
+  true,
+  false,
+  false,
+  "horiRulerButton",
+  30,
+  "rgba(255, 255, 255, 0)",
+  "n, e, s, w, ne, se, sw, nw",
+  true,
+  true,
+  true,
+  true,
+  "../images/hruler_100_white.png",
+  "hRulerImg",
+  "Horizontal Ruler",
+  false,
+  "#00FFFF",
+  "5px",
+  true,
+  "#00FF55",
+  "1px",
+  true,
+  true,
+  "",
+  ""
 ]);
 //toolsArray.push([
 //	"verticalRuler", 
