@@ -13,11 +13,11 @@ var resetButton = false;
 //Stop Watch
 var stopWatch = false; //NOT IMPLEMENTED!!!!!
 //Enable Overlay Image
-var enableOverlayImage = false;
+var enableOverlayImage = false; //NOT IMPLEMENTED!!!!!
 //Enable Markers
 var enableMarkers = false;
 //Enable 'Click to Play' overlay
-var enableClickToPlayOverlay = false;
+var enableClickToPlayOverlay = false; //NOT IMPLEMENTED!!!!!
 //Number of Videos; 1 or 2
 var numberOfVideos = 1;
 //Video selection index to open with, starts at 0

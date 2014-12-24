@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--DMVPlayer Copyright 2014 by ISD197 and Jared Poetter-->
 <html id="DMVPlayer">
+  <meta charset="utf-8">
 	<head>
   		<!-- Loading jQuery and jQuery UI -->
 		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
@@ -54,8 +55,8 @@
 			</video>
 			
 			<!-- Overlay Images -->
-			<img id="overlayImageID" src=""/>
-			<img id="overlayImageID2" src=""/>
+<!--			<img id="overlayImageID" src=""/>-->
+<!--			<img id="overlayImageID2" src=""/>-->
 			
 			<script>
 				//the framerate variable is used in frame skipping
@@ -74,13 +75,13 @@
 						player.style.maxWidth = maxWidth1Video;
 						//player.style.minHeight="400px";
 						player2.style.display = 'none';
-						document.getElementById("overlayImageID").style.maxWidth = maxWidth1Video;		
+//						document.getElementById("overlayImageID").style.maxWidth = maxWidth1Video;		
 					}
 					else if(numberOfVideos == 2){
 						player.style.maxWidth=maxWidth2Videos;
 						player2.style.maxWidth=maxWidth2Videos;
-						document.getElementById("overlayImageID").style.maxWidth = maxWidth2Videos;
-						document.getElementById("overlayImageID2").style.maxWidth = maxWidth2Videos;
+//						document.getElementById("overlayImageID").style.maxWidth = maxWidth2Videos;
+//						document.getElementById("overlayImageID2").style.maxWidth = maxWidth2Videos;
 					}
 					else{
 						console.error("ERROR: " + numberOfVideos + " videos is not supported");
