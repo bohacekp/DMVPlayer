@@ -68,11 +68,15 @@ $(document).ready(function(){
 	if(enableVideoSelection){
         //Basic video selection
         if(basicVideoSelection && !advancedVideoSelection){
+          
+          //Hiding the Advanced video selection
+          document.getElementById('multi-parameter_section').style.display = 'none';
+          
             //1 video
             if(numberOfVideos == 1){
                 //HTML for the video selector
                 var videoSelectorHTML = '<p>Pick a Video:<select id="video_selector"></select></p>';
-                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
+                document.getElementById('video_selection_section').insertAdjacentHTML("beforeEnd", videoSelectorHTML);
 
                 //Drop down for the video
                 var video_selector = $("#video_selector");
@@ -82,8 +86,8 @@ $(document).ready(function(){
                 //HTML for the video selectors
                 var videoSelectorHTML = 'Pick a Video(Left):<select id="video_selector"></select>';
                 var videoSelector2HTML = 'Pick a Video(Right):<select id="video_selector2"></select>';
-                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelector2HTML);
-                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectorHTML);
+                document.getElementById('video_selection_section').insertAdjacentHTML("beforeEnd", videoSelector2HTML);
+                document.getElementById('video_selection_section').insertAdjacentHTML("beforeEnd", videoSelectorHTML);
 
                 //Drop down for the different videos
                 var video_selector = $("#video_selector");
@@ -93,6 +97,10 @@ $(document).ready(function(){
         
         //Advanced video selection
         else if(!basicVideoSelection && advancedVideoSelection){
+          
+          //Hiding the Advanced video selection
+          document.getElementById('video_selection_section').style.display = 'none';
+          
             //Checking to see if the number of titles equal the number of options
             if(advancedSelectionTitleArray.length != advancedSelectionArray.length){
                 console.error("Error: The number of titles and options for multiparameters need to equal. Check advancedSelectionTitleArray and advancedSelectionArray.");
@@ -128,7 +136,7 @@ $(document).ready(function(){
                 videoSelectionHTML = videoSelectionHTML + "</p>";
                 
                 //putting in the html
-                document.getElementById('button_table_1').insertAdjacentHTML("afterEnd", videoSelectionHTML);
+                document.getElementById('multi-parameter_section').insertAdjacentHTML("beforeEnd", videoSelectionHTML);
             }
             //2 videos
             else if(numberOfVideos == 2){
@@ -323,6 +331,15 @@ $(document).ready(function(){
 //    	video_selector2.val(videoRight);
 
     }
+  
+    //If video selection is disabled
+    else{
+      //Hiding the Advanced video selection
+      document.getElementById('multi-parameter_section').style.display = 'none';
+      
+      //Hiding the Advanced video selection
+      document.getElementById('video_selection_section').style.display = 'none';
+    }
         
 	//----------------------------------------------//
 	//Measurement Tools                             //
@@ -336,7 +353,7 @@ $(document).ready(function(){
 	//Getting the main div
 	var mainDiv = document.getElementById("main");
 	//Tool Button Table
-	var toolButtonTable = document.getElementById("button_table_2");
+	var toolButtonTable = document.getElementById("measurement_tools_section");
 	//Going through all the tools defined in the 
 	for(elements in toolsArray){
 		//HTML code for the tools
