@@ -299,4 +299,4 @@ resizeTools = function() {
     index++;
   }
 }
-$(window).resize(resizeTools);
+//$(window).resize(resizeTools);
