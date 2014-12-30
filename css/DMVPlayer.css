@@ -6,6 +6,10 @@ font-family: "calibri";
 border-collapse:collapse;
 vertical-align:center;
 position: relative;
+  max-width: 980px;
+  width: "100%";
+  border: "0";
+  margin-top: 5px;
 }
 
 td
