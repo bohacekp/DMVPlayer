@@ -49,8 +49,12 @@ function prevFrame(){
 	document.getElementById("frameprev").focus(); 
 	pause();
 	//gets current time to 5 decimal places
-	player.currentTime -= (1/30).toPrecision(5);
-	player2.currentTime -= (1/30).toPrecision(5);
+    if (numberOfVideos == 1 || numberOfVideos == 2){
+      player.currentTime -= (1/30).toPrecision(5);
+    }
+    if (numberOfVideos == 2){
+      player2.currentTime -= (1/30).toPrecision(5);
+    }
 	
 //	var frameNumber = player.currentTime / 30;
 //	console.log("(1/30).toPrecision(5): "+(1/30).toPrecision(5));
@@ -77,25 +81,41 @@ function playPause(){
 } 
 
 function pause(){
-	player.pause();
-	player2.pause();
+    if (numberOfVideos == 1 || numberOfVideos == 2){
+      player.pause();
+    }
+    if (numberOfVideos == 2) {
+      player2.pause();
+    }
 //	console.log("pause");
 }
 function play(){
-	player.play();
-	player2.play();
+    if (numberOfVideos == 1 || numberOfVideos == 2){
+      player.play();
+    }
+    if (numberOfVideos == 2) {
+      player2.play();
+    }
 //	console.log("play");
 }
 //can be called by seek(10), seeks to 10 seconds
 function seek(time){ 
 	pause();
-	player.currentTime=time;
-	player2.currentTime = time;
+    if (numberOfVideos == 1 || numberOfVideos == 2) {
+      player.currentTime=time;
+    }
+    if (numberOfVideos == 2) {
+      player2.currentTime = time;
+    }
 //	console.log("seek");
 }
 function goToTime(time){
-	player.currentTime=time;
-	player2.currentTime=time;
+    if (numberOfVideos == 1 || numberOfVideos == 2) {
+      player.currentTime=time;
+    }
+    if (numberOfVideos == 2) {
+      player2.currentTime=time;
+    }
 //	console.log("goToTime:" + time);
 }
 function firstFrame(){
@@ -120,8 +140,12 @@ function fwdFrame(){
 	else{
 //		console.log("Skip by setting time");
 		pause();
-		player.currentTime=player.currentTime+(1/framerate);
-		player2.currentTime = player2.currentTime + (1/framerate);
+        if (numberOfVideos == 1 || numberOfVideos == 2) {
+          player.currentTime=player.currentTime + (1/framerate);
+        }
+        if (numberOfVideos == 2) {
+          player2.currentTime = player2.currentTime + (1/framerate);
+        }
 //		console.log("fwd frame other browser, time: "+player.currentTime);
 		doingSomethingElse=0;
 

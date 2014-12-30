@@ -47,8 +47,12 @@ $(function() {
 			// this gets the value of the slider, a number between 0 and 100,000
 			var value = $( "#slider" ).slider( "value" ); 
 			//gets the percentage value of the slider, and then sets the current time of the video according to where the slider is positioned
-			player.currentTime=player.duration*(value/maxSliderValue); 
-			player2.currentTime = player2.duration * (value/maxSliderValue);
+            if (numberOfVideos == 1 || numberOfVideos == 2) {
+			   player.currentTime=player.duration*(value/maxSliderValue); 
+            }
+            if (numberOfVideos == 2) {
+			   player2.currentTime = player2.duration * (value/maxSliderValue);
+            }
 			//prints the value of the slider in the console, used only for debugging
 			//console.log(value); 
       	}
@@ -65,8 +69,12 @@ $(function() {
 			//gets final value of slidr after it is not being moved anymore
 			var value = $( "#slider" ).slider( "value" ); 
 			//gets percentage value of the slider
-			player.currentTime=player.duration*(value/maxSliderValue);
-            player2.currentTime = player2.duration * (value / maxSliderValue);
+            if (numberOfVideos == 1 || numberOfVideos == 2) {
+              player.currentTime=player.duration*(value/maxSliderValue);
+            }
+            if (numberOfVideos == 2) {
+              player2.currentTime = player2.duration * (value / maxSliderValue);
+            }
             
 			//prints the slider value in the console, used for debugging only
 //			console.log("Slider Value: "+value);

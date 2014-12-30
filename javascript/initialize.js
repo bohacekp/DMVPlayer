@@ -19,8 +19,12 @@ $(document).ready(function(){
 	
 	//Enabling 'click to play'
 	if(enableClickToPlayOverlay){
-		dmv_player.onclick = playPause;
-		dmv_player2.onclick = playPause;
+        if (numberOfVideos == 1 || numberOfVideos == 2) {
+          dmv_player.onclick = playPause;
+        }
+        if (numberOfVideos == 2) {
+          dmv_player2.onclick = playPause;
+        }
 	}
 	
 	//Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
@@ -28,41 +32,57 @@ $(document).ready(function(){
 	dmv_player.oncanplaythrough = 
 		function(){
 			if(!showedPlaySplashScreen && enableClickToPlayOverlay){
-				dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
-				dmv_player2.setAttribute('poster', '../images/play_splash_screen.png');
+                if (numberOfVideos == 1 || numberOfVideos == 2) {
+                  dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
+                }
+                if (numberOfVideos == 2) {
+				  dmv_player2.setAttribute('poster', '../images/play_splash_screen.png');
+                }
 			}
 			else if(!showedPlaySplashScreen && !enableClickToPlayOverlay){
-				dmv_player.setAttribute('poster', '');
-				dmv_player2.setAttribute('poster', '');
+                if (numberOfVideos == 1 || numberOfVideos == 2) {
+                  dmv_player.setAttribute('poster', '');
+                }
+                if (numberOfVideos == 2) {
+                  dmv_player2.setAttribute('poster', '');
+                }
 			}
 			showedPlaySplashScreen = true;
 		};
 	
 	//Setting the play callback to remove the video poster of 'click to play'
 	$('#dmv_video').bind('play', function(){
-											dmv_player.removeAttribute('poster');
-											dmv_player2.removeAttribute('poster');
+											if (numberOfVideos == 1 || numberOfVideos == 2) {dmv_player.removeAttribute('poster');}
+											if (numberOfVideos == 2) {dmv_player2.removeAttribute('poster');}
 										   });
 	
 	//Setting the video sources
 	//Player 1
-	if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-		$(ogg_video).attr('src', videoArray[videoLeftMain][_locationOGV]);
-	}
-	else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-		$(mp4_video).attr('src', videoArray[videoLeftMain][_locationMP4]);
-	}
+    if (numberOfVideos == 1 || numberOfVideos == 2) {
+      if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
+          $(ogg_video).attr('src', videoArray[videoLeftMain][_locationOGV]);
+      }
+      else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
+          $(mp4_video).attr('src', videoArray[videoLeftMain][_locationMP4]);
+      }
+    }
 	//Player 2
-	if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
-		$(ogg_video2).attr('src', videoArray2[videoRight][_locationOGV]);
-	}
-	else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
-		$(mp4_video2).attr('src', videoArray2[videoRight][_locationMP4]);
-	}
+	if (numberOfVideos == 2) {
+      if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
+          $(ogg_video2).attr('src', videoArray2[videoRight][_locationOGV]);
+      }
+      else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
+          $(mp4_video2).attr('src', videoArray2[videoRight][_locationMP4]);
+      }
+    }
 	
 	//Reload the dmv video
-	dmv_player.load();
-	dmv_player2.load();
+    if (numberOfVideos == 1 || numberOfVideos == 2) {
+	   dmv_player.load();
+    }
+    if (numberOfVideos == 2) {
+	   dmv_player2.load();
+    }
 	
 	//Creating the video selectors
 	if(enableVideoSelection){

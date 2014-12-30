@@ -272,6 +272,8 @@ function deselectTool(){
 
 //callback if the screen is resized
 resizeTools = function() {
+  
+//  console.log("resizeTools");
 
   //the current size of the video
   var currentVideoHeight = document.getElementById('dmv_video').offsetHeight;

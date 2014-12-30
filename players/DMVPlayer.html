@@ -44,12 +44,12 @@
 			
 			<!-- this video tag is the video window that is shown on the player, 
 				it says where to get the video and tells it what codec to look for-->
-			<video id="dmv_video" width="100%" preload="auto" poster="../images/loading_splash_screen.png">
+			<video id="dmv_video" width="100%" height="56.25%" preload="auto" poster="../images/loading_splash_screen.png">
 				<source id="mp4_video" src="" id="movie" type="video/mp4">
 				<source id="ogg_video" src="" id="movie" type="video/ogg">
 			</video>
 			
-			<video id="dmv_video2" width="100%" preload="auto" poster="../images/loading_splash_screen.png">
+			<video id="dmv_video2" width="100%" height="56.25%" preload="auto" poster="../images/loading_splash_screen.png">
 				<source id="mp4_video2" src="" id="movie" type="video/mp4">
 				<source id="ogg_video2" src="" id="movie" type="video/ogg">
 			</video>
@@ -73,7 +73,7 @@
 					
 					if(numberOfVideos == 1){
 						player.style.maxWidth = maxWidth1Video;
-						//player.style.minHeight="400px";
+						player.style.minHeight="400px";
 						player2.style.display = 'none';
 //						document.getElementById("overlayImageID").style.maxWidth = maxWidth1Video;		
 					}
