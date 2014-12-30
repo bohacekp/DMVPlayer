@@ -307,8 +307,12 @@ $(document).ready(function(){
             toolsArray[index][_toolAndVideoWidthRatio] = 
               Number(toolsArray[index][_sizeWidth].replace("px", "")) / Number(maxWidth1Video.replace("px", ""));
 
+            //Setting the default size of the tool
+            tool.style.height = toolsArray[index][_sizeHeight];
+            tool.style.width = toolsArray[index][_sizeWidth];
+          
             //Resizing the tools for the current size of the screen
-            resizeTools();
+//            resizeTools();
 
             //Show the tool?
             if(toolsArray[index][_show]){
