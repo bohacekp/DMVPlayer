@@ -180,8 +180,10 @@ $(document).ready(function(){
         //Tool Button Table
         var toolButtonTable = document.getElementById("measurement_tools_section");
       
-        toolsTable += '<td>Tools:</td>';
-      
+        if (toolsArray.length > 0){
+          toolsTable += '<td>Tools:</td>';
+        }
+          
         //Going through all the tools defined in the 
         for(elements in toolsArray){
             //HTML code for the tools
