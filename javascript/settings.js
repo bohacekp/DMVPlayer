@@ -23,6 +23,8 @@ var numberOfVideos = 1;
 //Video selection index to open with, starts at 0
 var videoLeftMain = 0;
 var videoRight = 0;
+//Go To Frame Enabled
+var goToFrameControlEnabled = true;
 
 //---------//
 //Help Text//

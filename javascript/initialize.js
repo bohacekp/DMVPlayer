@@ -8,6 +8,11 @@ $(document).ready(function(){
 	if(!resetButton){
 		$("#resetTools").css("display", "none");
 	}
+  
+    //Go To Frame Control
+    if(goToFrameControlEnabled == false){
+      document.getElementById('GoToFrameControls').style.display = 'none';
+    }
 	
 	//Setting the default video
 	var dmv_player = document.getElementById("dmv_video");
