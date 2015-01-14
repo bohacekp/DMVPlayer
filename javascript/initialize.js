@@ -36,6 +36,9 @@ $(document).ready(function(){
 	var showedPlaySplashScreen = false;
 	dmv_player.oncanplaythrough = 
 		function(){
+            //resizing the tools
+            resizeTools();
+      
 			if(!showedPlaySplashScreen && enableClickToPlayOverlay){
                 if (numberOfVideos == 1 || numberOfVideos == 2) {
                   dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
@@ -319,7 +322,7 @@ $(document).ready(function(){
             tool.style.width = toolsArray[index][_sizeWidth];
           
             //Resizing the tools for the current size of the screen
-//            resizeTools();
+            resizeTools();
 
             //Show the tool?
             if(toolsArray[index][_show]){

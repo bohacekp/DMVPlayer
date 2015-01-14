@@ -272,13 +272,29 @@ function deselectTool(){
 
 //callback if the screen is resized
 resizeTools = function() {
-  
-//  console.log("resizeTools");
-
-  //the current size of the video
+  //Getting the current size of the video tag
   var currentVideoHeight = document.getElementById('dmv_video').offsetHeight;
   var currentVideoWidth = document.getElementById('dmv_video').offsetWidth;
-
+  
+  var videoAspectRatio = currentVideoWidth / currentVideoHeight;
+  
+  //Checking to see if the videos aspect ratio
+  //------------------------------------------
+  //the aspect ratio of the video is perfect
+  if(videoAspectRatio == (16 / 9)){
+    //Do Nothing with the current width and height
+  }
+  //there is space on the left and right side of the video
+  if(videoAspectRatio > (16 / 9)){
+    currentVideoHeight = document.getElementById('dmv_video').offsetHeight;
+    currentVideoWidth = (16 / 9) * currentVideoHeight;
+  }
+  //there is space on the top and bottom of the video
+  if(videoAspectRatio < (16 / 9)){
+    currentVideoWidth = document.getElementById('dmv_video').offsetWidth;
+    currentVideoHeight = (9 / 16) * currentVideoWidth;
+  }
+  
   //looping through all of the tools
   var index = 0;
   var currentTool;
@@ -299,4 +315,4 @@ resizeTools = function() {
     index++;
   }
 }
-//$(window).resize(resizeTools);
+$(window).resize(resizeTools);
