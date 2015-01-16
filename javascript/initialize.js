@@ -11,7 +11,9 @@ $(document).ready(function(){
   
     //Go To Frame Control
     if(goToFrameControlEnabled == false){
-      document.getElementById('GoToFrameControls').style.display = 'none';
+//      document.getElementById('GoToFrameControls').style.display = 'none';
+      document.getElementById('FrameJump').style.display = 'none';
+      document.getElementById('gotoframe').style.display = 'none';
     }
 	
 	//Setting the default video
@@ -145,7 +147,7 @@ $(document).ready(function(){
                 
                 var count = 0;
                 var videoSelector = "video_selector";
-                var videoSelectorIDArray = new Array();
+                videoSelectorIDArray = new Array();
               
                 toolsTable += '<td>Video Parameters:</td>';
               
@@ -473,6 +475,9 @@ $(document).ready(function(){
             //basic
             if(basicVideoSelection && !advancedVideoSelection){
                 var video_index = document.getElementById("video_selector").selectedIndex;
+                
+                //Deselecting the drop down
+                document.getElementById('video_selector').blur();
             }
             
             //advanced
@@ -501,6 +506,13 @@ $(document).ready(function(){
                     }
                     index++;
                 }                
+              
+                //Deselecting the video selection drop downs
+                var count = 0;
+                for(elements in videoSelectorIDArray){
+                  document.getElementById(videoSelectorIDArray[count]).blur();
+                  count++;
+                }
             }
             
             //error

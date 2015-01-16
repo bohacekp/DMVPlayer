@@ -1,4 +1,4 @@
-function resetTools(){
+function resetTools(){  
 	selectedTool = "";
 	var index = 0;
 	for(element in toolsArray){
@@ -16,6 +16,9 @@ function resetTools(){
         }
 		index++;
 	}
+  
+    //Deselecting the Reset Tools button
+    document.getElementById('resetTools').blur();
 }
 
 //Nudging the measurement tool with the WASD keys
@@ -87,6 +90,9 @@ function hideTool(tool){
 	   toolsArray[index][_reshowResizeHelpText]){
 		$("#"+toolID+"_ResizeHelp").css("display", "initial");
 	}
+  
+    //Deselecting the tool button
+    document.getElementById(toolsArray[index][_measureToolButton]).blur();
 }
 
 //Moving the selected tool to the top
@@ -187,6 +193,9 @@ function toggleOverlayImage(){
 	
 	//Toggling the state
 	overlayImageVisible = !overlayImageVisible;
+
+  //Deselecting the Overlay Image button
+  document.getElementById('overlayImageButton').blur();
 }
 
 //Spawning marker
@@ -268,6 +277,9 @@ function deselectTool(){
         }
 		selectedTool = "";
 	}
+  
+  //Deselecting the Deselect Tool
+  document.getElementById('deselectTool').blur();
 }
 
 //callback if the screen is resized

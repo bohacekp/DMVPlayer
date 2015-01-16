@@ -17,6 +17,10 @@ function goToEnteredFrame(){
 	//adds one to oldVal, so that it no longer equals newVal and the slider consequently updates (see scrubber.js)
 	++oldVal; 
 //	console.log("go to frame:"+thisFrame);
+  
+    //Deselecting the Go To Frame button and its text field
+    document.getElementById('FrameJump').blur();
+    document.getElementById('gotoframe').blur();
 }
 
 //isaac wrote this. listens for keydownn event and also for which key is pressed
@@ -68,9 +72,11 @@ function prevFrame(){
 
 function playPause(){ 
 	//the next two lines deselct everything
-	document.getElementById("gotoframe").focus();
-	document.getElementById("gotoframe").blur();
-	
+    if (goToFrameControlEnabled) {
+	   document.getElementById("gotoframe").focus();
+	   document.getElementById("gotoframe").blur();
+    }
+      
 	if (player.paused && player2.paused) {
 		play();
 	}
@@ -78,6 +84,9 @@ function playPause(){
 		doNotUpdate=1;
 		pause();
 	}
+  
+    //Deselecting the Play/Pause Button
+    document.getElementById('playorpause').blur();
 } 
 
 function pause(){
@@ -121,6 +130,9 @@ function goToTime(time){
 function firstFrame(){
 	++oldVal;
 	goToTime(0);
+    
+    //Deselecting the Rewind Button
+    document.getElementById('rewind').blur();
 }
 function fwdFrame(){
 	++oldVal;

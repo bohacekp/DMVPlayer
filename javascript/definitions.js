@@ -49,6 +49,9 @@ var _toolAndVideoWidthRatio = 30;
 var player = document.getElementById('dmv_video'); 
 var player2 = document.getElementById('dmv_video_2');
 
+//Video Selectors
+var videoSelectorIDArray;
+
 //Max Slider Value
 var maxSliderValue = 100000;
 
