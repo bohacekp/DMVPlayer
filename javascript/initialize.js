@@ -103,9 +103,9 @@ $(document).ready(function(){
     ////////////////////////////////
 	//Creating the video selectors//
     ////////////////////////////////
-	if(enableVideoSelection){
+//	if(enableVideoSelection){
         //Basic video selection
-        if(basicVideoSelection && !advancedVideoSelection){
+        if(enableVideoSelection && basicVideoSelection && !advancedVideoSelection){
                     
             //1 video
             if(numberOfVideos == 1){
@@ -128,7 +128,7 @@ $(document).ready(function(){
         }
         
         //Advanced video selection
-        else if(!basicVideoSelection && advancedVideoSelection){
+        else if(enableVideoSelection && !basicVideoSelection && advancedVideoSelection){
           
             //Checking to see if the number of titles equal the number of options
             if(advancedSelectionTitleArray.length != advancedSelectionArray.length){
@@ -159,7 +159,12 @@ $(document).ready(function(){
                     //adding the dropdowns title
                     toolsTable += advancedSelectionTitleArray[count];
                     //adding the HTML for the video selector
-                    toolsTable += '<select id=' + videoSelector + count + '></select>';
+                    toolsTable += '<select id=' + videoSelector + count + '>';
+                    
+                    //TODO: Looping through the video selection values
+                  
+                    //closing the selection tag
+                    toolsTable += '</select>';
                     toolsTable += '</td>';
                   
                     count++;
@@ -170,12 +175,16 @@ $(document).ready(function(){
                 console.warn("Warning:Advanced video selection is currently not supported.");
             }
         }
+
+        else if(!enableVideoSelection){
+          //do nothing because video selection is disabled
+        }
         
         //Error
         else{
             console.error("Error:You cannot have both basic and advanced video selection enabled.");
         }
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //----------------------------------------------//
         //Measurement Tools                             //
         //----------------------------------------------//
@@ -449,6 +458,10 @@ $(document).ready(function(){
                     selectionIndex++;
                 }
             }
+
+            else if(!advancedVideoSelection && !basicVideoSelection){
+              //do nothing because video selection is disabled
+            }
             
             //error
             else{
@@ -590,6 +603,10 @@ $(document).ready(function(){
                 }
             }
             
+            else if (!advancedVideoSelection && !basicVideoSelection) {
+              //do nothing because video selection is disabled
+            }
+
             //Error
             else{
                 console.error("Error:You cannot have both basic and advanced video selection enabled.");
@@ -604,16 +621,16 @@ $(document).ready(function(){
 //    	video_selector.val(videoLeftMain);
 //    	video_selector2.val(videoRight);
 
-    }
+//    }
   
     //If video selection is disabled
-    else{
+//    else{
       //Hiding the Advanced video selection
-      document.getElementById('multi-parameter_section').style.display = 'none';
+//      document.getElementById('multi-parameter_section').style.display = 'none';
       
       //Hiding the Advanced video selection
-      document.getElementById('video_selection_section').style.display = 'none';
-    }  
+//      document.getElementById('video_selection_section').style.display = 'none';
+//    }  
 	
 	//Overlay Image Button
 	if(!enableOverlayImage){
