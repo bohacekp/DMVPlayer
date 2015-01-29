@@ -1,4 +1,4 @@
-/*DMVPlayer Copyright 2014 by ISD197 and Jared Poetter*/
+/*DMVPlayer Copyright 2014 by ISD197*/
 
 table,th,td
 {
@@ -6,6 +6,10 @@ font-family: "calibri";
 border-collapse:collapse;
 vertical-align:center;
 position: relative;
+  max-width: 980px;
+  width: "100%";
+  border: "0";
+  margin-top: 5px;
 }
 
 td
@@ -41,6 +45,12 @@ body
   font-weight: normal;
   font-style: normal;
 }
+
+p 
+{
+  font: 'MidoMedium', Arial, sans-serif;
+}
+
 h1 
 {
   font: 30px/1.2 'MidoMedium', Arial, sans-serif;

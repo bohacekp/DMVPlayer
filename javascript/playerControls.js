@@ -1,5 +1,3 @@
-//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
-
 //creates variable called percent
 var percent;
 //creates variable called oldVal
@@ -19,6 +17,10 @@ function goToEnteredFrame(){
 	//adds one to oldVal, so that it no longer equals newVal and the slider consequently updates (see scrubber.js)
 	++oldVal; 
 //	console.log("go to frame:"+thisFrame);
+  
+    //Deselecting the Go To Frame button and its text field
+    document.getElementById('FrameJump').blur();
+    document.getElementById('gotoframe').blur();
 }
 
 //isaac wrote this. listens for keydownn event and also for which key is pressed
@@ -51,7 +53,18 @@ function prevFrame(){
 	document.getElementById("frameprev").focus(); 
 	pause();
 	//gets current time to 5 decimal places
-	player.currentTime -=(1/30).toPrecision(5); 
+    if (numberOfVideos == 1 || numberOfVideos == 2){
+      player.currentTime -= (1/30).toPrecision(5);
+    }
+    if (numberOfVideos == 2){
+      player2.currentTime -= (1/30).toPrecision(5);
+    }
+	
+//	var frameNumber = player.currentTime / 30;
+//	console.log("(1/30).toPrecision(5): "+(1/30).toPrecision(5));
+//	console.log("current time: "+player.currentTime);
+//	console.log("current frame: "+frameNumber);
+	
 //	console.log("prev frame");
 	//deselects previous frame button
 	document.getElementById("frameprev").blur();
@@ -59,39 +72,67 @@ function prevFrame(){
 
 function playPause(){ 
 	//the next two lines deselct everything
-	document.getElementById("gotoframe").focus();
-	document.getElementById("gotoframe").blur();
-	
-	if (player.paused) {
+    if (goToFrameControlEnabled) {
+	   document.getElementById("gotoframe").focus();
+	   document.getElementById("gotoframe").blur();
+    }
+      
+	if (player.paused && player2.paused) {
 		play();
 	}
 	else {
 		doNotUpdate=1;
 		pause();
 	}
+  
+    //Deselecting the Play/Pause Button
+    document.getElementById('playorpause').blur();
 } 
 
 function pause(){
-	player.pause();
+    if (numberOfVideos == 1 || numberOfVideos == 2){
+      player.pause();
+    }
+    if (numberOfVideos == 2) {
+      player2.pause();
+    }
 //	console.log("pause");
 }
 function play(){
-	player.play();
+    if (numberOfVideos == 1 || numberOfVideos == 2){
+      player.play();
+    }
+    if (numberOfVideos == 2) {
+      player2.play();
+    }
 //	console.log("play");
 }
 //can be called by seek(10), seeks to 10 seconds
 function seek(time){ 
 	pause();
-	player.currentTime=time;
+    if (numberOfVideos == 1 || numberOfVideos == 2) {
+      player.currentTime=time;
+    }
+    if (numberOfVideos == 2) {
+      player2.currentTime = time;
+    }
 //	console.log("seek");
 }
 function goToTime(time){
-	player.currentTime=time;
+    if (numberOfVideos == 1 || numberOfVideos == 2) {
+      player.currentTime=time;
+    }
+    if (numberOfVideos == 2) {
+      player2.currentTime=time;
+    }
 //	console.log("goToTime:" + time);
 }
 function firstFrame(){
 	++oldVal;
 	goToTime(0);
+    
+    //Deselecting the Rewind Button
+    document.getElementById('rewind').blur();
 }
 function fwdFrame(){
 	++oldVal;
@@ -103,7 +144,7 @@ function fwdFrame(){
 //		console.log("You are using chrome, I will skip by playing");
 		play();
 		//set timeout calls a function after a certain amount of time
-		setTimeout(function() {player.pause()}, (1000/framerate)); 
+		setTimeout(function() {player.pause(); player2.pause()}, (1000/framerate)); 
 //		console.log("fwd frame Chrome, time: "+player.currentTime);
 		doingSomethingElse=0;
 
@@ -111,13 +152,23 @@ function fwdFrame(){
 	else{
 //		console.log("Skip by setting time");
 		pause();
-		player.currentTime=player.currentTime+(1/framerate);
+        if (numberOfVideos == 1 || numberOfVideos == 2) {
+          player.currentTime=player.currentTime + (1/framerate);
+        }
+        if (numberOfVideos == 2) {
+          player2.currentTime = player2.currentTime + (1/framerate);
+        }
 //		console.log("fwd frame other browser, time: "+player.currentTime);
 		doingSomethingElse=0;
 
 	}
 	document.getElementById("framefwd").blur();
 //	console.log("fwd frame , time: "+player.currentTime);
+	
+//	var frameNumber = player.currentTime / 30;
+//	console.log("current time: "+player.currentTime);
+//	console.log("current frame: "+frameNumber);
+	
 }
 
 //Start button function
@@ -125,85 +176,3 @@ function start(){
 	play();
 	pause();
 }
-
-$(document).ready(function(){
-	
-//	$('.ui-slider-handle').backgroundColor("#FF0000"); 
-	
-	//Removing the reset tools buttons if it is turned off
-	if(!resetButton){
-		$("#resetTools").css("display", "none");
-	}
-	
-	//Drop down for the different videos
-	var video_selection = $("#video_selection");
-	var video_selector = $("#video_selector");
-	
-	//Removing the Video Selector if it is turned off
-	if(!videoSelection){
-		video_selection.css("display", "none");
-	}
-	
-	//Setting the default video
-	var dmv_player = document.getElementById("dmv_video");
-	var mp4_video = document.getElementById("mp4_video");
-	var ogg_video = document.getElementById("ogg_video");
-	
-	//Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
-	dmv_player.oncanplaythrough = 
-		function(){
-			console.log("video ready!");
-			dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
-		};
-	
-//	console.log("dmv_player.canPlayType('video/ogg') = " + dmv_player.canPlayType("video/ogg"));
-//	console.log("dmv_player.canPlayType('video/mp4') = " + dmv_player.canPlayType("video/mp4"));
-	
-	//Setting the video sources
-	if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-		$(ogg_video).attr('src', videoArray[0][_locationOGV]);
-	}
-	else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-		$(mp4_video).attr('src', videoArray[0][_locationMP4]);
-	}
-	
-	//Reload the dmv video
-	dmv_player.load();
-	
-	//Setting up the options in the video selection
-	var index = 0;
-	for(element in videoArray){
-		var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][_nameOfVideo]));
-		index++;
-	}
-	
-	//If the drop down changes
-	video_selector.change(function(){
-		var video_index = document.getElementById("video_selector").selectedIndex;
-		var dmv_player = document.getElementById("dmv_video");
-		var mp4_video = document.getElementById("mp4_video");
-		var ogg_video = document.getElementById("ogg_video");
-		
-		//Setting the video sources
-		if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-			$(ogg_video).attr('src', videoArray[video_index][_locationOGV]);
-		}
-		else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-			$(mp4_video).attr('src', videoArray[video_index][_locationMP4]);
-		}
-		
-		//Reload the dmv video
-		dmv_player.load();
-		
-		//Setting the slider back to the beginning
-		$("#slider").slider('value',0);
-		
-		//Hiding the overlay image
-		overlayImageVisible = false;
-		$("#overlayImageID").css("display", "none");
-		//Making sure the video is visible
-		$("#dmv_video").css("display", "initial");
-		//Switching the overlay image
-		document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
-	});
-});

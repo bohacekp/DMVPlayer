@@ -1,183 +1,4 @@
-//DMVPlayer Copyright 2014 by ISD197 and Jared Poetter
-
-$(document).ready(function(){
-	//Setting up the different tools
-	//Adding in the tools dynamically from the toolsArray
-	var index = 0;
-	//Getting the main div
-	var mainDiv = document.getElementById("main");
-	//Tool Button Table
-	var toolButtonTable = document.getElementById("button_table_2");
-	//Going through all the tools defined in the 
-	for(elements in toolsArray){
-		//HTML code for the tools
-		var toolHTML = '<div id="' + toolsArray[index][_elementID] + '" class="measurementToolClass" onmousedown="moveToTop(this.id)">' +
-						'<img id="' + toolsArray[index][_toolImageID] + '" src="">'+
-						'<p id="' + toolsArray[index][_elementID] + '_DragHelp" class="toolHelpText_Drag">Drag this into position</p>'+
-						'<p id="' + toolsArray[index][_elementID] + '_ResizeHelp" class="toolHelpText_Resize">Drag a corner or edge to calibrate</p>'+
-						'</div>';
-		//Appending the tool's HTML
-		mainDiv.insertAdjacentHTML("afterBegin", toolHTML);
-		
-		//HTML code for the tools button
-		var toolButtonHTML = 
-							 '<button ' +
-//							 'value="' + toolsArray[index][_toolButtonTitle] + '" ' +
-							 'id="' + toolsArray[index][_measureToolButton] + 
-							 '" class="measurementToolClass" ' + 
-//							 'style="padding: 25px 20px;" ' +
-							 'onclick="hideTool(\'#' + toolsArray[index][_elementID] + '\')">' +
-							 toolsArray[index][_toolButtonTitle] + '</button>';
-		//Appenging the tool's button HTML
-		toolButtonTable.insertAdjacentHTML("beforeEnd", toolButtonHTML);
-		
-		index++;
-	}
-	
-	//Reset Tool Button
-	//If there are any tools?
-	if(toolsArray.length == 1){
-		var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tool</button>';
-		toolButtonTable.insertAdjacentHTML("beforeEnd", resetButtonHTML);
-	}
-	else if(toolsArray.length > 1){
-		var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tools</button>';
-		toolButtonTable.insertAdjacentHTML("beforeEnd", resetButtonHTML);
-	}
-	
-	//Options are in the toolsArray array
-	var index = 0;
-	var tool;
-	var tool_jQuery;
-	
-	//Stopwatch
-	var stopWatch_Tool = $("#stopWatchTest");
-	
-	//Removing the stop watch if it disabled
-	if(!stopWatch){
-		stopWatch_Tool.css("display", "none");
-	}
-	
-	$(".measurementToolClass").hide();
-	
-//	var toolButton;
-//	//Hiding all the tools
-//	for(elements in allToolsArray){
-//		tool_jQuery = $(document.getElementById(allToolsArray[index][0]));
-//		tool_jQuery.css("display", "none");
-//		toolButton = $(document.getElementById(allToolsArray[index][1]));
-//		toolButton.css("display", "none");
-//		index++;
-//	}
-	
-	//Tools table
-	if(toolsArray.length == 0){
-		$("#button_table_2").css("display", "none");
-	}	
-	
-	index = 0;
-	//Showing only the tools that are defined in toolsArray
-	for(elements in toolsArray){
-		
-		//debug
-//		console.log("adding in the tools");
-//		console.log(toolsArray[index][0]);
-		
-		//Getting the tool
-		tool_jQuery = $(document.getElementById(toolsArray[index][_elementID]));
-		tool = document.getElementById(toolsArray[index][_elementID]);
-		toolButton = $(document.getElementById(toolsArray[index][_measureToolButton]));
-
-		//Setting the default location for the tool
-		tool.style.left = toolsArray[index][_positionLeft];
-		tool.style.top = toolsArray[index][_positionTop];
-
-		//Setting the default size of the tool
-		tool.style.height = toolsArray[index][_sizeHeight];
-		tool.style.width = toolsArray[index][_sizeWidth];
-
-		//Show the tool?
-		if(toolsArray[index][_show]){
-			tool_jQuery.css("display", "initial");
-		}
-
-		//Show the button for the tool
-		toolButton.css("display", "initial");
-		
-		//Draggable?
-		if(toolsArray[index][_draggable]){
-			if(toolsArray[index][_contained]){
-				tool_jQuery.draggable({containment:"body"});
-			}
-			else{
-				tool_jQuery.draggable();
-			}
-		}
-
-		//Resizable?
-		if(toolsArray[index][_resizable]){
-			tool_jQuery.resizable({
-									aspectRatio:toolsArray[index][_aspectRatioLocked],
-									handles:toolsArray[index][_resizableSides]
-									});
-		}
-
-		//Z-Index
-		tool_jQuery.css("z-index", toolsArray[index][_zIndex]);
-
-		//Position Attributes
-		tool_jQuery.css("position", "absolute");
-
-		//Color
-		tool_jQuery.css("background-color", toolsArray[index][_color]);
-		tool_jQuery.css("border", "1px solid black");
-
-		//Showing Help Text
-		//Draggable
-		if(!toolsArray[index][_draggableHelpText]){
-			$("#"+toolsArray[index][_elementID]+"_DragHelp").css("display", "none");
-		}
-		//Resizable
-		if(!toolsArray[index][_resizeHelpText]){
-			$("#"+toolsArray[index][_elementID]+"_ResizeHelp").css("display", "none");
-		}
-		
-		//Binding the tools to the drag and resize callbacks
-		tool_jQuery.on( "drag", function( event, ui ) {$("#"+this.id+"_DragHelp").css("display", "none");} );
-		tool_jQuery.on( "resize", function( event, ui ) {$("#"+this.id+"_ResizeHelp").css("display", "none");} );
-		
-		//Setting up the images for the tool
-		document.getElementById(toolsArray[index][_toolImageID]).src = toolsArray[index][_toolImage];
-		
-		index++;
-	}
-	
-	//Setting the attributes for the measurement tools help text
-	//Drag Text
-	var toolDragText = document.getElementsByClassName('toolHelpText_Drag');
-	for(var i = 0; i < toolDragText.length; i++) {
-		toolDragText[i].style.fontSize = toolHelpTextSize;
-		toolDragText[i].style.color = toolHelpTextColor;
-	}
-	//Resize Text
-	var toolResizeText = document.getElementsByClassName('toolHelpText_Resize');
-	for(var i = 0; i < toolResizeText.length; i++) {
-		toolResizeText[i].style.fontSize = toolHelpTextSize;
-		toolResizeText[i].style.color = toolHelpTextColor;
-	}
-	
-	//Overlay Image Button
-	if(!enableOverlayImage){
-		$("#overlayImageButton").css("display", "none");
-	}
-	else{
-		console.log(document.getElementById("video_selector").selectedIndex);
-		document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
-		$("#overlayImageID").css("display", "none");
-	}
-});
-
-function resetTools(){
+function resetTools(){  
 	selectedTool = "";
 	var index = 0;
 	for(element in toolsArray){
@@ -186,9 +7,18 @@ function resetTools(){
 		tool.style.top = toolsArray[index][_positionTop];
 		tool.style.height = toolsArray[index][_sizeHeight];
 		tool.style.width = toolsArray[index][_sizeWidth];
-		tool.style.border = "1px solid black";
+        //Checking to see if the unselected outline is enabled
+        if(toolsArray[index][_unselectedOutlineEnabled]){
+            //Putting a the previous selected tool back to the default color
+            tool.style.border = toolsArray[index][_unselectedOutlineThickness] +
+                                " solid " +
+                                toolsArray[index][_unselectedOutlineColor];
+        }
 		index++;
 	}
+  
+    //Deselecting the Reset Tools button
+    document.getElementById('resetTools').blur();
 }
 
 //Nudging the measurement tool with the WASD keys
@@ -201,11 +31,11 @@ function nudgeTool(e){
 		//Current key's code
 		var keyCode = e.keyCode;
 		//Default value to nudge by
-		var nudgeValue = 10;
+		var nudgeValue = 1;
 		//Checking if one of the Shift keys are down
 		if(e.shiftKey){
 			//If the shift key is down change the nudging value
-			nudgeValue = 1;
+			nudgeValue = 10;
 		}
 		//WASD keys
 		//W
@@ -260,43 +90,241 @@ function hideTool(tool){
 	   toolsArray[index][_reshowResizeHelpText]){
 		$("#"+toolID+"_ResizeHelp").css("display", "initial");
 	}
+  
+    //Deselecting the tool button
+    document.getElementById(toolsArray[index][_measureToolButton]).blur();
 }
 
 //Moving the selected tool to the top
 var currentMaxZIndex = 100;
 var selectedTool;
 function moveToTop(tool){
-	//Putting a the previous selected tool back to the default color
-	$("#"+selectedTool).css("border", "1px solid black");
-	//Saving the last tool selected
-	selectedTool = tool;
-	//Putting a different colored border around the selected tool
-	$("#"+selectedTool).css("border", "2px solid red");
+    //getting the indexes for the currently selected tool and newly selected tool
+    var previousToolID = getToolIndex(selectedTool);
+    var nextToolID = getToolIndex(tool);
+        
+    //Checking to see if the unselected outline is enabled
+    if(previousToolID != -1 && toolsArray[previousToolID][_unselectedOutlineEnabled]){
+        //Putting a the previous selected tool back to the default color
+        $("#"+selectedTool).css("border", toolsArray[previousToolID][_unselectedOutlineThickness] +
+                                          " solid " +
+                                          toolsArray[previousToolID][_unselectedOutlineColor]);
+    }
 	
-	//Moving the selected tool to the top
-	$("#"+tool).css("z-index", currentMaxZIndex);
-	currentMaxZIndex++;
+    //Saving the last tool selected
+	selectedTool = tool;
+    
+    //check to see if the tool has the border enabled
+    if(toolsArray[nextToolID][_selectedOutlineEnabled]){
+        //Putting a different colored border around the selected tool
+        $("#"+selectedTool).css("border", toolsArray[nextToolID][_selectedOutlineThickness] +
+                                          " solid " +
+                                          toolsArray[nextToolID][_selectedOutlineColor]);
+
+        //Moving the selected tool to the top
+        $("#"+tool).css("z-index", currentMaxZIndex);
+        currentMaxZIndex++;
+    }
+}
+
+//Helper function to get the index for a given tool ID
+function getToolIndex(toolID){
+    //index number
+    var count = 0;
+    
+    //looping through the tools to find the one that was passed in
+    for(element in toolsArray){
+        if(toolID == toolsArray[count][_elementID]){
+            return count;
+        }
+        
+        //increment counter
+        count++;
+    }
+    
+    //returning -1 it was not able to find a valid tool ID
+    return -1;
 }
 
 //Variable to store the state of the Overlay Image
 var overlayImageVisible = false;
 //Toggleing the Overlay Image
 function toggleOverlayImage(){	
-	if(overlayImageVisible){
-		$("#overlayImageID").css("display", "none");
-		$("#dmv_video").css("display", "initial");
+	//1 Video
+	if(numberOfVideos == 1){
+		if(overlayImageVisible){
+			//Hiding the overlay image
+			$("#overlayImageID").css("display", "none");
+			//Showing the video
+			$("#dmv_video").css("display", "initial");
+		}
+		else{
+			//Showing the Overlay Image
+			$("#overlayImageID").css("display", "initial");
+			//Hiding the video
+			$("#dmv_video").css("display", "none");
+			//Putting the Overlay Image above everything
+			$("#overlayImageID").css("z-index", currentMaxZIndex);
+			currentMaxZIndex++;
+		}
 	}
-	else{
-		//Showing the Overlay Image
-		$("#overlayImageID").css("display", "initial");
-		//Hiding the video
-		$("#dmv_video").css("display", "none");
-		
-		//Putting the Overlay Image above everything
-		$("#overlayImageID").css("z-index", currentMaxZIndex);
-		currentMaxZIndex++;
+	else if(numberOfVideos == 2){
+		if(overlayImageVisible){
+			//Hiding the overlay images
+			$("#overlayImageID").css("display", "none");
+			$("#overlayImageID2").css("display", "none");
+			//Showing the videos
+			$("#dmv_video").css("display", "initial");
+			$("#dmv_video2").css("display", "initial");
+		}
+		else{
+			//Showing the Overlay Images
+			$("#overlayImageID").css("display", "initial");
+			$("#overlayImageID2").css("display", "initial");
+			//Hiding the videos
+			$("#dmv_video").css("display", "none");
+			$("#dmv_video2").css("display", "none");
+			//Putting the Overlay Image above everything
+			$("#overlayImageID").css("z-index", currentMaxZIndex);
+			$("#overlayImageID2").css("z-index", currentMaxZIndex);
+			currentMaxZIndex++;
+		}
 	}
 	
 	//Toggling the state
 	overlayImageVisible = !overlayImageVisible;
+
+  //Deselecting the Overlay Image button
+  document.getElementById('overlayImageButton').blur();
 }
+
+//Spawning marker
+var markerID = 1;
+var numMarkers = 0;
+function spawnMarker(){
+	//Checking to make sure we have not spawned the max amount of markers
+	if(numMarkers < maxNumMarkers){
+		console.log("spawn marker");
+
+		//Getting the main div
+		var mainDiv = document.getElementById("main");
+
+		//HTML code for the markers
+		var markerHTML = '<div id="marker' + markerID + '" class="markerClass" onmousedown="moveToTop(this.id)"></div>';
+
+		//Putting the marker html into the page
+		mainDiv.insertAdjacentHTML("afterBegin", markerHTML);
+
+		//Changing the settings of the marker
+		var currentMarker = $("#marker" + markerID);
+		currentMarker.css("display", "initial");
+		currentMarker.draggable();
+		currentMarker.css("z-index", '30');
+		currentMarker.css("position", "absolute");
+		currentMarker.css("background-color", markerColor);
+		currentMarker.css("top", markerTop);
+		currentMarker.css("left", markerLeft);
+		currentMarker.css("height", markerHeight);
+		currentMarker.css("width", markerWidth);
+
+		//Incrementing the marker id
+		markerID++;
+		//Incrementing the number of markers
+		numMarkers++;
+	}
+}
+
+//Remove selected marker
+function removeSelectedMarker(){
+	//Currently selected tool
+	var selectedToolDOM = document.getElementById(selectedTool);
+	
+	//Checking to make sure the selected tool is a marker
+	if(selectedToolDOM != null && selectedToolDOM.classList.contains('markerClass')){
+		//Removing the marker HTML
+		selectedToolDOM.remove();
+		
+		//Decrementing the marker index
+		numMarkers--;
+	}
+}
+
+//Removing all the markers
+function removeAllMarkers(){
+	//Getting all the markers
+	var markersArray = document.getElementsByClassName('markerClass');
+	
+	//Looping through the markers to remove them
+	for(var i = 0; i < markersArray.length; i = 0){
+		document.getElementById(markersArray[i].id).remove();
+	}
+	
+	//Setting the number of markers back to zero
+	numMarkers = 0;
+}
+
+//Deselect tool
+function deselectTool(){
+	if(selectedTool){
+		tool = document.getElementById(selectedTool);
+        var toolIndex = getToolIndex(selectedTool);
+        //Checking to see if the unselected outline is enabled
+        if(toolsArray[toolIndex][_unselectedOutlineEnabled]){
+            //Putting a the previous selected tool back to the default color
+            tool.style.border = toolsArray[toolIndex][_unselectedOutlineThickness] +
+                                " solid " +
+                                toolsArray[toolIndex][_unselectedOutlineColor];
+        }
+		selectedTool = "";
+	}
+  
+  //Deselecting the Deselect Tool
+  document.getElementById('deselectTool').blur();
+}
+
+//callback if the screen is resized
+resizeTools = function() {
+  //Getting the current size of the video tag
+  var currentVideoHeight = document.getElementById('dmv_video').offsetHeight;
+  var currentVideoWidth = document.getElementById('dmv_video').offsetWidth;
+  
+  var videoAspectRatio = currentVideoWidth / currentVideoHeight;
+  
+  //Checking to see if the videos aspect ratio
+  //------------------------------------------
+  //the aspect ratio of the video is perfect
+  if(videoAspectRatio == (16 / 9)){
+    //Do Nothing with the current width and height
+  }
+  //there is space on the left and right side of the video
+  if(videoAspectRatio > (16 / 9)){
+    currentVideoHeight = document.getElementById('dmv_video').offsetHeight;
+    currentVideoWidth = (16 / 9) * currentVideoHeight;
+  }
+  //there is space on the top and bottom of the video
+  if(videoAspectRatio < (16 / 9)){
+    currentVideoWidth = document.getElementById('dmv_video').offsetWidth;
+    currentVideoHeight = (9 / 16) * currentVideoWidth;
+  }
+  
+  //looping through all of the tools
+  var index = 0;
+  var currentTool;
+  for(elements in toolsArray){
+    //setting the current tool
+    currentTool = document.getElementById(toolsArray[index][_elementID]);
+
+    //checking to see if the height of the tool should change with the screen size change
+    if(toolsArray[index][_resizeHeightWithScreenChange]){
+      currentTool.style.height = currentVideoHeight * toolsArray[index][_toolAndVideoHeightRatio] + "px";
+    }
+
+    //checking to see if the width of the tool should change with the screen size change
+    if(toolsArray[index][_resizeWidthWithScreenChange]){
+      currentTool.style.width = currentVideoWidth * toolsArray[index][_toolAndVideoWidthRatio] + "px";
+    }
+
+    index++;
+  }
+}
+$(window).resize(resizeTools);

@@ -6,6 +6,11 @@ var _nameOfVideo = 0;
 var _locationOGV = 1;
 var _locationMP4 = 2;
 var _overlayImage = 3;
+var _videoFileName = 4;
+
+//advancedSelectionArray indexes
+var _advancedSelectionName = 0;
+var _advancedSelectionValue = 1;
 
 //toolsArray indexes
 var _elementID = 0;
@@ -29,3 +34,29 @@ var _reshowResizeHelpText = 17;
 var _toolImage = 18;
 var _toolImageID = 19;
 var _toolButtonTitle = 20;
+var _selectedOutlineEnabled = 21;
+var _selectedOutlineColor = 22;
+var _selectedOutlineThickness = 23;
+var _unselectedOutlineEnabled = 24;
+var _unselectedOutlineColor = 25;
+var _unselectedOutlineThickness = 26;
+var _resizeHeightWithScreenChange = 27;
+var _resizeWidthWithScreenChange = 28;
+var _toolAndVideoHeightRatio = 29;
+var _toolAndVideoWidthRatio = 30;
+
+//Video players
+var player = document.getElementById('dmv_video'); 
+var player2 = document.getElementById('dmv_video_2');
+
+//Video Selectors
+var videoSelectorIDArray;
+
+//Max Slider Value
+var maxSliderValue = 100000;
+
+//Measurement Tools
+//Max Size for the video
+var maxWidth1Video = "980px";
+var maxWidth2Videos = "490px";
+var maxHeightVideo = "490px";
