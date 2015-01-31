@@ -1,0 +1,155 @@
+/*DMVPlayer Copyright 2014 by ISD197*/
+
+table,th,td
+{
+font-family: "calibri";
+border-collapse:collapse;
+vertical-align:center;
+position: relative;
+  max-width: 980px;
+  width: "100%";
+  border: "0";
+  margin-top: 5px;
+}
+
+td
+{
+background-color:rgb(200,200,200);
+}
+
+th
+{
+background-color:rgb(230,230,230);
+}
+
+body, html 
+{
+  height: 100%;
+}
+
+div.wrapper 
+{
+  height: 100%;
+  overflow: hidden;
+}
+
+body
+{
+  overflow: hidden;
+}
+
+/* Type stuff ---------------------------------- */
+
+@font-face 
+{
+  font-weight: normal;
+  font-style: normal;
+}
+
+p 
+{
+  font: 'MidoMedium', Arial, sans-serif;
+}
+
+h1 
+{
+  font: 30px/1.2 'MidoMedium', Arial, sans-serif;
+  letter-spacing: 0;
+  clear: both;
+}
+
+h2 
+{
+	font: 20px/.3 'MidoMedium', Arial, sans-serif;
+	letter-spacing: 0;
+}
+
+a
+{
+  text-decoration: none;
+}
+
+#under { z-index: 10 }
+
+/*#horizontalRuler { z-index: 30 }*/
+
+#my_video_1 { z-index: 20 }
+
+#zindexTest #under {
+  position: absolute;
+  top:80px;
+  left: 10px;
+  background: #fff;
+  width: 500px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+#zindexTest #horizontalRuler {
+  position: absolute;
+  left: 10px; 
+  top:10px;
+  background: rgba(22,33,66,0.8);
+  width: 150px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+img 
+{ 
+  width: 100%;
+  height:100%; 
+}
+
+#vid {
+	width: 640px;
+	height: 360px;
+}
+
+#scrubber {
+	position: relative;
+	width: 100%;
+	height: 20px;
+}
+
+/*Help Text for the Tools*/
+.toolHelpText_Drag
+{
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.toolHelpText_Resize
+{
+	position: absolute;
+	top: 40%;
+	left: 5%;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#overlayImageID
+{
+	position: relative;
+}
+
+/*Changing the Slider's colors*/
+/*.ui-slider-range { background: #003bff; }*/
+/*.ui-widget-content { background: #00a7ff; }*/
+
+/*
+.ui-slider-horizontal {
+	height: 40px;
+}
+
+#slider .ui-slider-handle {
+    background: url(../images/blue_square.png);
+	height: 50px;
+	margin-bottom: -25px;
+	width: 50px;
+	margin-left: -25px;
+	background-size: 50px 50px;
+	border: none;
+}*/
