@@ -3,9 +3,9 @@
 //Flags//
 //-----//
 //Video Selection
-var enableVideoSelection = true;
+var enableVideoSelection = false;
 var basicVideoSelection = false;
-var advancedVideoSelection = true;
+var advancedVideoSelection = false;
 //Nudging Buttons
 var nudgeButtons = false;
 //Reset Button
@@ -322,6 +322,40 @@ toolsArray.push([
   "../images/hruler_100_white.png",
   "hRulerImg",
   "Horizontal Ruler",
+  false,
+  "#00FFFF",
+  "5px",
+  true,
+  "#00FF55",
+  "1px",
+  false,
+  false,
+  "",
+  ""
+]);
+
+toolsArray.push([
+  "horizontalRuler2", 
+  "250px",
+  "250px",
+  "60px",
+  "300px",
+  false,
+  true,
+  true,
+  false,
+  false,
+  "horiRulerButton2",
+  30,
+  "rgba(255, 255, 255, 0)",
+  "n, e, s, w, ne, se, sw, nw",
+  true,
+  true,
+  true,
+  true,
+  "../images/hruler_100_white.png",
+  "hRulerImg2",
+  "Horizontal Ruler2",
   false,
   "#00FFFF",
   "5px",
