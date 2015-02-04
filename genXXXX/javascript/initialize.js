@@ -647,3 +647,91 @@ $(document).ready(function(){
     }
   }
 });
+
+function videoSelectionSetup(){
+  //This variable will contain the HTML for the video selection
+  var videoSelectionHTML;
+
+  //Basic video selection
+  if(enableVideoSelection && basicVideoSelection && !advancedVideoSelection){
+  
+    //1 video
+    if(numberOfVideos == 1){
+      //HTML for the video selector
+      toolsTable += '<td>Pick a Video:<select id="video_selector"></select></td>';
+              
+      //Drop down for the video
+      var video_selector = $("#video_selector");
+    }
+    //2 videos
+    else if(numberOfVideos == 2){
+      //HTML for the video selectors
+      toolsTable += '<td>Video(Left):<select id="video_selector"></select></td>';
+      toolsTable += '<td>Video(Right):<select id="video_selector2"></select></td>';
+      
+      //Drop down for the different videos
+      var video_selector = $("#video_selector");
+      var video_selector2 = $("#video_selector2");
+    }
+  }
+  
+  //Advanced video selection
+  else if(enableVideoSelection && !basicVideoSelection && advancedVideoSelection){
+  
+    //Checking to see if the number of titles equal the number of options
+    if(advancedSelectionTitleArray.length != advancedSelectionArray.length){
+      console.error("Error: The number of titles and options for multiparameters need to equal. Check advancedSelectionTitleArray and advancedSelectionArray.");
+    }
+  
+    //1 video
+    if(numberOfVideos == 1){
+      //checking to see if the fileNameArray and advancedSelectionArray
+      if((fileNameArray.length - 1) < advancedSelectionArray.length){
+        console.error("Error:You have too many selections in the advancedSelectionArray");
+      }
+      if((fileNameArray.length - 1) > advancedSelectionArray.length){
+        console.error("Error:You have too many sections in the fileNameArray");
+      }
+  
+      var count = 0;
+      var videoSelector = "video_selector";
+      videoSelectorIDArray = new Array();
+  
+      toolsTable += '<td>Video Parameters:</td>';
+  
+      for(elements in advancedSelectionArray){
+        //saving the video selector ids for later
+        videoSelectorIDArray.push(videoSelector + count);
+  
+        toolsTable += '<td>';
+        //adding the dropdowns title
+        toolsTable += advancedSelectionTitleArray[count];
+        //adding the HTML for the video selector
+        toolsTable += '<select id=' + videoSelector + count + '>';
+  
+        //TODO: Looping through the video selection values
+  
+        //closing the selection tag
+        toolsTable += '</select>';
+        toolsTable += '</td>';
+  
+        count++;
+      }
+    }
+    //2 videos
+    else if(numberOfVideos == 2){
+      console.warn("Warning:Advanced video selection is currently not supported.");
+    }
+  }
+
+  else if(!enableVideoSelection){
+    //do nothing because video selection is disabled
+  }
+        
+  //Error
+  else{
+      console.error("Error:You cannot have both basic and advanced video selection enabled.");
+  }
+
+  return videoSelectionHTML;
+}
