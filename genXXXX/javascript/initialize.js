@@ -376,7 +376,7 @@ function videoSelectionSetup(){
   var videoSelectionHTML = "";
 
   //Advanced video selection
-  if(advancedVideoSelection){
+  if(enableVideoSelection){
   
     //Checking to see if the number of titles equal the number of options
     if(advancedSelectionTitleArray.length != advancedSelectionArray.length){
@@ -431,7 +431,7 @@ function videoSelectionSetup(){
 function videoSelectionPopulateOptions(){
   if(numberOfVideos == 1 || numberOfVideos == 2){
     //Player 1            
-    if(advancedVideoSelection){
+    if(enableVideoSelection){
       //indexes
       var selectionIndex = 0;
       var optionIndex = 0;
@@ -468,7 +468,7 @@ function videoSelectionPopulateOptions(){
     var ogg_video = document.getElementById("ogg_video");
             
     //advanced
-    if(advancedVideoSelection){
+    if(enableVideoSelection){
       //figuring out the index for the video they want
       var fileName = "";
       var index = 0;
@@ -556,7 +556,7 @@ function videoSelectionPopulateOptions(){
   //Setting the drop down positions for the video parameters
   if(numberOfVideos == 1 || numberOfVideos == 2){
     //advanced video selection
-    if(advancedVideoSelection){
+    if(enableVideoSelection){
       //assign all the videoSelectorIDArray selectors to the videoSelectorFunction
       var count = 0;
       for(elements in videoSelectorIDArray){

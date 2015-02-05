@@ -3,9 +3,7 @@
 //Flags//
 //-----//
 //Video Selection
-var enableVideoSelection = false;
-var basicVideoSelection = false;
-var advancedVideoSelection = true;
+var enableVideoSelection = true;
 //Nudging Buttons
 var nudgeButtons = false;
 //Reset Button
