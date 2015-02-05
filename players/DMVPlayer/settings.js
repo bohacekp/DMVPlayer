@@ -1,9 +1,12 @@
 //Settings for the page
+//Page Title of the Player
+var pageTitle = "DMVPlayer";
+
 //-----//
 //Flags//
 //-----//
 //Video Selection
-var enableVideoSelection = true;
+var enableVideoSelection = false;
 //Nudging Buttons
 var nudgeButtons = false;
 //Reset Button
