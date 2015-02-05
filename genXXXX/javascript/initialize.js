@@ -109,91 +109,11 @@ $(document).ready(function(){
   ////////////////////////////////
   //Creating the video selectors//
   ////////////////////////////////
-//  if(enableVideoSelection){
-  //Basic video selection
-  if(enableVideoSelection && basicVideoSelection && !advancedVideoSelection){
-  
-    //1 video
-    if(numberOfVideos == 1){
-      //HTML for the video selector
-      toolsTable += '<td>Pick a Video:<select id="video_selector"></select></td>';
-              
-      //Drop down for the video
-      var video_selector = $("#video_selector");
-    }
-    //2 videos
-    else if(numberOfVideos == 2){
-      //HTML for the video selectors
-      toolsTable += '<td>Video(Left):<select id="video_selector"></select></td>';
-      toolsTable += '<td>Video(Right):<select id="video_selector2"></select></td>';
-      
-      //Drop down for the different videos
-      var video_selector = $("#video_selector");
-      var video_selector2 = $("#video_selector2");
-    }
-  }
-  
-  //Advanced video selection
-  else if(enableVideoSelection && !basicVideoSelection && advancedVideoSelection){
-  
-    //Checking to see if the number of titles equal the number of options
-    if(advancedSelectionTitleArray.length != advancedSelectionArray.length){
-      console.error("Error: The number of titles and options for multiparameters need to equal. Check advancedSelectionTitleArray and advancedSelectionArray.");
-    }
-  
-    //1 video
-    if(numberOfVideos == 1){
-      //checking to see if the fileNameArray and advancedSelectionArray
-      if((fileNameArray.length - 1) < advancedSelectionArray.length){
-        console.error("Error:You have too many selections in the advancedSelectionArray");
-      }
-      if((fileNameArray.length - 1) > advancedSelectionArray.length){
-        console.error("Error:You have too many sections in the fileNameArray");
-      }
-  
-      var count = 0;
-      var videoSelector = "video_selector";
-      videoSelectorIDArray = new Array();
-  
-      toolsTable += '<td>Video Parameters:</td>';
-  
-      for(elements in advancedSelectionArray){
-        //saving the video selector ids for later
-        videoSelectorIDArray.push(videoSelector + count);
-  
-        toolsTable += '<td>';
-        //adding the dropdowns title
-        toolsTable += advancedSelectionTitleArray[count];
-        //adding the HTML for the video selector
-        toolsTable += '<select id=' + videoSelector + count + '>';
-  
-        //TODO: Looping through the video selection values
-  
-        //closing the selection tag
-        toolsTable += '</select>';
-        toolsTable += '</td>';
-  
-        count++;
-      }
-    }
-    //2 videos
-    else if(numberOfVideos == 2){
-      console.warn("Warning:Advanced video selection is currently not supported.");
-    }
-  }
+  toolsTable += videoSelectionSetup();
 
-  else if(!enableVideoSelection){
-    //do nothing because video selection is disabled
-  }
-        
-  //Error
-  else{
-      console.error("Error:You cannot have both basic and advanced video selection enabled.");
-  }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //----------------------------------------------//
-  //Measurement Tools                             //
-  //----------------------------------------------//
+  /////////////////////
+  //Measurement Tools//
+  /////////////////////
   //Currently selected tool
   var selectedTool = "";
 
@@ -293,16 +213,6 @@ $(document).ready(function(){
   }
 
   $(".measurementToolClass").hide();
-
-//  var toolButton;
-//  //Hiding all the tools
-//  for(elements in allToolsArray){
-//      tool_jQuery = $(document.getElementById(allToolsArray[index][0]));
-//      tool_jQuery.css("display", "none");
-//      toolButton = $(document.getElementById(allToolsArray[index][1]));
-//      toolButton.css("display", "none");
-//      index++;
-//  }
 
   //Tools table
   if(toolsArray.length == 0){
@@ -424,19 +334,104 @@ $(document).ready(function(){
   //////////////////////////////////////////////////
   //PUTTING IN THE OPTIONS FOR THE VIDEO SELECTORS//
   //////////////////////////////////////////////////
-  if(numberOfVideos == 1 || numberOfVideos == 2){
-    //Player 1
-    //check to see if they want basic video selection
-    if(basicVideoSelection && !advancedVideoSelection){
-      var index = 0;
-      for(element in videoArray){
-        var option = video_selector.append($("<option></option>").attr("value",index).text(videoArray[index][_nameOfVideo]));
-        index++;
+  videoSelectionPopulateOptions();
+    
+  //Overlay Image Button
+  if(!enableOverlayImage){
+    $("#overlayImageButton").css("display", "none");
+  }
+  else{
+    if(numberOfVideos == 1 || numberOfVideos == 2){
+      document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
+      $("#overlayImageID").css("display", "none");
+    }
+    if(numberOfVideos == 2){
+      document.getElementById("overlayImageID2").src = videoArray2[document.getElementById("video_selector2").selectedIndex][_overlayImage];
+      $("#overlayImageID2").css("display", "none");
+    }
+  }
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function videoSelectionSetup(){
+  //This variable will contain the HTML for the video selection
+  var videoSelectionHTML = "";
+
+  //Advanced video selection
+  if(advancedVideoSelection){
+  
+    //Checking to see if the number of titles equal the number of options
+    if(advancedSelectionTitleArray.length != advancedSelectionArray.length){
+      console.error("Error: The number of titles and options for multiparameters need to equal. " + 
+                            "Check advancedSelectionTitleArray and advancedSelectionArray.");
+    }
+  
+    //1 video
+    if(numberOfVideos == 1){
+      //checking to see if the fileNameArray and advancedSelectionArray
+      if((fileNameArray.length - 1) < advancedSelectionArray.length){
+        console.error("Error:You have too many selections in the advancedSelectionArray");
+      }
+      if((fileNameArray.length - 1) > advancedSelectionArray.length){
+        console.error("Error:You have too many sections in the fileNameArray");
+      }
+  
+      var count = 0;
+      var videoSelector = "video_selector";
+      videoSelectorIDArray = new Array();
+  
+      videoSelectionHTML += '<td>Video Parameters:</td>';
+  
+      for(elements in advancedSelectionArray){
+        //saving the video selector ids for later
+        videoSelectorIDArray.push(videoSelector + count);
+  
+        videoSelectionHTML += '<td>';
+        //adding the dropdowns title
+        videoSelectionHTML += advancedSelectionTitleArray[count];
+        //adding the HTML for the video selector
+        videoSelectionHTML += '<select id=' + videoSelector + count + '>';
+  
+        //TODO: Looping through the video selection values
+  
+        //closing the selection tag
+        videoSelectionHTML += '</select>';
+        videoSelectionHTML += '</td>';
+  
+        count++;
       }
     }
-            
-    //check to see if they want advanced video selection
-    else if(advancedVideoSelection && !basicVideoSelection){
+    //2 videos
+    else if(numberOfVideos == 2){
+      console.warn("Warning: Advanced video selection is currently not supported.");
+    }
+  }
+
+  return videoSelectionHTML;
+}
+
+function videoSelectionPopulateOptions(){
+  if(numberOfVideos == 1 || numberOfVideos == 2){
+    //Player 1            
+    if(advancedVideoSelection){
       //indexes
       var selectionIndex = 0;
       var optionIndex = 0;
@@ -459,23 +454,10 @@ $(document).ready(function(){
         selectionIndex++;
       }
     }
-
-    else if(!advancedVideoSelection && !basicVideoSelection){
-      //do nothing because video selection is disabled
-    }
-            
-    //error
-    else{
-        console.error("Error:You cannot have both basic and advanced video selection enabled.");
-    }
   }
   if(numberOfVideos == 2){
     //Player 2
-    var index = 0;
-    for(element in videoArray2){
-      var option = video_selector2.append($("<option></option>").attr("value",index).text(videoArray2[index][_nameOfVideo]));
-      index++;
-    }
+    console.error("Error: Double video DMVPlayer is not supported yet.");
   }
 
   //If the drop down changes
@@ -484,18 +466,9 @@ $(document).ready(function(){
     var dmv_player = document.getElementById("dmv_video");
     var mp4_video = document.getElementById("mp4_video");
     var ogg_video = document.getElementById("ogg_video");
-
-    //checking to see if it is basic or advanced video selection
-    //basic
-    if(basicVideoSelection && !advancedVideoSelection){
-      var video_index = document.getElementById("video_selector").selectedIndex;
-      
-      //Deselecting the drop down
-      document.getElementById('video_selector').blur();
-    }
             
     //advanced
-    else if(advancedVideoSelection && !basicVideoSelection){
+    if(advancedVideoSelection){
       //figuring out the index for the video they want
       var fileName = "";
       var index = 0;
@@ -527,11 +500,6 @@ $(document).ready(function(){
         document.getElementById(videoSelectorIDArray[count]).blur();
         count++;
       }
-    }
-            
-    //error
-    else{
-      console.error("Error:You cannot have both basic and advanced video selection enabled.");
     }
     
     //Setting the video sources
@@ -569,31 +537,26 @@ $(document).ready(function(){
 
     //Hiding the overlay image
     overlayImageVisible = false;
-//            $("#overlayImageID").css("display", "none");
-//            $("#overlayImageID2").css("display", "none");
+    // $("#overlayImageID").css("display", "none");
+    // $("#overlayImageID2").css("display", "none");
     //Making sure the video is visible
     $("#dmv_video").css("display", "initial");
     //checking the number of videos
     if(numberOfVideos == 2){
       $("#dmv_video2").css("display", "initial");
     }
-//            //Switching the overlay image
-//            document.getElementById("overlayImageID").src = videoArray[video_index][_overlayImage];
-//            //checking the number of videos
-//            if(numberOfVideos == 2){
-//                document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
-//            }
+   //Switching the overlay image
+   // document.getElementById("overlayImageID").src = videoArray[video_index][_overlayImage];
+   // //checking the number of videos
+   // if(numberOfVideos == 2){
+   //  document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
+   // }
   }
 
+  //Setting the drop down positions for the video parameters
   if(numberOfVideos == 1 || numberOfVideos == 2){
-    //basic video selection
-    if(basicVideoSelection && !advancedVideoSelection){
-      video_selector.change(videoSelectorFunction);
-      video_selector.val(videoLeftMain);
-    }
-            
     //advanced video selection
-    else if(advancedVideoSelection && !basicVideoSelection){
+    if(advancedVideoSelection){
       //assign all the videoSelectorIDArray selectors to the videoSelectorFunction
       var count = 0;
       for(elements in videoSelectorIDArray){
@@ -602,136 +565,8 @@ $(document).ready(function(){
         count++;
       }
     }
-            
-    else if (!advancedVideoSelection && !basicVideoSelection) {
-      //do nothing because video selection is disabled
-    }
-
-    //Error
-    else{
-      console.error("Error:You cannot have both basic and advanced video selection enabled.");
-    }
   }
   if(numberOfVideos == 2){
-    video_selector2.change(videoSelectorFunction);
-    video_selector2.val(videoRight);
+    console.error("Error: Double video DMVPlayer is not supported yet.");
   }
-
-        //Changing the currently selected video
-//      video_selector.val(videoLeftMain);
-//      video_selector2.val(videoRight);
-
-//    }
-  
-    //If video selection is disabled
-//    else{
-      //Hiding the Advanced video selection
-//      document.getElementById('multi-parameter_section').style.display = 'none';
-      
-      //Hiding the Advanced video selection
-//      document.getElementById('video_selection_section').style.display = 'none';
-//    }  
-    
-  //Overlay Image Button
-  if(!enableOverlayImage){
-    $("#overlayImageButton").css("display", "none");
-  }
-  else{
-    if(numberOfVideos == 1 || numberOfVideos == 2){
-      document.getElementById("overlayImageID").src = videoArray[document.getElementById("video_selector").selectedIndex][_overlayImage];
-      $("#overlayImageID").css("display", "none");
-    }
-    if(numberOfVideos == 2){
-      document.getElementById("overlayImageID2").src = videoArray2[document.getElementById("video_selector2").selectedIndex][_overlayImage];
-      $("#overlayImageID2").css("display", "none");
-    }
-  }
-});
-
-function videoSelectionSetup(){
-  //This variable will contain the HTML for the video selection
-  var videoSelectionHTML;
-
-  //Basic video selection
-  if(enableVideoSelection && basicVideoSelection && !advancedVideoSelection){
-  
-    //1 video
-    if(numberOfVideos == 1){
-      //HTML for the video selector
-      toolsTable += '<td>Pick a Video:<select id="video_selector"></select></td>';
-              
-      //Drop down for the video
-      var video_selector = $("#video_selector");
-    }
-    //2 videos
-    else if(numberOfVideos == 2){
-      //HTML for the video selectors
-      toolsTable += '<td>Video(Left):<select id="video_selector"></select></td>';
-      toolsTable += '<td>Video(Right):<select id="video_selector2"></select></td>';
-      
-      //Drop down for the different videos
-      var video_selector = $("#video_selector");
-      var video_selector2 = $("#video_selector2");
-    }
-  }
-  
-  //Advanced video selection
-  else if(enableVideoSelection && !basicVideoSelection && advancedVideoSelection){
-  
-    //Checking to see if the number of titles equal the number of options
-    if(advancedSelectionTitleArray.length != advancedSelectionArray.length){
-      console.error("Error: The number of titles and options for multiparameters need to equal. Check advancedSelectionTitleArray and advancedSelectionArray.");
-    }
-  
-    //1 video
-    if(numberOfVideos == 1){
-      //checking to see if the fileNameArray and advancedSelectionArray
-      if((fileNameArray.length - 1) < advancedSelectionArray.length){
-        console.error("Error:You have too many selections in the advancedSelectionArray");
-      }
-      if((fileNameArray.length - 1) > advancedSelectionArray.length){
-        console.error("Error:You have too many sections in the fileNameArray");
-      }
-  
-      var count = 0;
-      var videoSelector = "video_selector";
-      videoSelectorIDArray = new Array();
-  
-      toolsTable += '<td>Video Parameters:</td>';
-  
-      for(elements in advancedSelectionArray){
-        //saving the video selector ids for later
-        videoSelectorIDArray.push(videoSelector + count);
-  
-        toolsTable += '<td>';
-        //adding the dropdowns title
-        toolsTable += advancedSelectionTitleArray[count];
-        //adding the HTML for the video selector
-        toolsTable += '<select id=' + videoSelector + count + '>';
-  
-        //TODO: Looping through the video selection values
-  
-        //closing the selection tag
-        toolsTable += '</select>';
-        toolsTable += '</td>';
-  
-        count++;
-      }
-    }
-    //2 videos
-    else if(numberOfVideos == 2){
-      console.warn("Warning:Advanced video selection is currently not supported.");
-    }
-  }
-
-  else if(!enableVideoSelection){
-    //do nothing because video selection is disabled
-  }
-        
-  //Error
-  else{
-      console.error("Error:You cannot have both basic and advanced video selection enabled.");
-  }
-
-  return videoSelectionHTML;
 }

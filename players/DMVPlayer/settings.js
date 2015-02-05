@@ -5,7 +5,7 @@
 //Video Selection
 var enableVideoSelection = false;
 var basicVideoSelection = false;
-var advancedVideoSelection = false;
+var advancedVideoSelection = true;
 //Nudging Buttons
 var nudgeButtons = false;
 //Reset Button
