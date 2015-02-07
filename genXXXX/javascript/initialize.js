@@ -234,14 +234,6 @@ $(document).ready(function(){
     tool.style.left = toolsArray[index][_positionLeft];
     tool.style.top = toolsArray[index][_positionTop];
 
-    //Setting the default size of the tool      
-    //calculating the video height and width ratios
-    // Tool Size/Video Size
-    toolsArray[index][_toolAndVideoHeightRatio] = 
-      Number(toolsArray[index][_sizeHeight].replace("px", "")) / Number(maxHeightVideo.replace("px", ""));
-    toolsArray[index][_toolAndVideoWidthRatio] = 
-      Number(toolsArray[index][_sizeWidth].replace("px", "")) / Number(maxWidth1Video.replace("px", ""));
-
     //Setting the default size of the tool
     tool.style.height = toolsArray[index][_sizeHeight];
     tool.style.width = toolsArray[index][_sizeWidth];

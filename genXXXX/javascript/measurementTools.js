@@ -21,6 +21,9 @@ function resetTools(){
     index++;
   }
   
+  //Resizing the tools
+  resizeTools();
+
   //Deselecting the Reset Tools button
   document.getElementById('resetTools').blur();
 }

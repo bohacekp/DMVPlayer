@@ -303,8 +303,8 @@ toolsArray.push([
 var toolsArray = new Array();
 toolsArray.push([
   "horizontalRuler", 
-  "250px",
-  "250px",
+  "0px",
+  "0px",
   "60px",
   "300px",
   false,
@@ -336,14 +336,14 @@ toolsArray.push([
 ]);
 
 toolsArray.push([
-  "horizontalRuler2", 
-  "250px",
-  "250px",
+  "horizontalRulerCalibrated", 
+  "0px",
+  "0px",
   "60px",
   "300px",
   false,
   true,
-  true,
+  false,
   false,
   false,
   "horiRulerButton2",
@@ -351,20 +351,20 @@ toolsArray.push([
   "rgba(255, 255, 255, 0)",
   "n, e, s, w, ne, se, sw, nw",
   true,
+  false,
   true,
-  true,
-  true,
+  false,
   "images/hruler_100_white.png",
   "hRulerImg2",
-  "Horizontal Ruler2",
+  "Horizontal Ruler Calibrated",
   false,
   "#00FFFF",
   "5px",
   true,
-  "#00FF55",
+  "#FF0000",
   "1px",
   true,
   true,
-  "",
-  ""
+  0.10,
+  0.30
 ]);
