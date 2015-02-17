@@ -106,7 +106,7 @@ $(document).ready(function(){
   //////////////////////////////////////////////////////////////////////
   //Setting up the Table for the Video Selection and Measurement Tools//
   //////////////////////////////////////////////////////////////////////
-  var toolsTable = '<table width ="100%" border="0" style="margin-top:0px;"><th>';
+  var toolsTable = '<table id="measurementToolTable" border="0" style="margin-top:0px;"><th>';
   var endToolsTable = '</th></table>';
   
   ////////////////////////////////
@@ -550,3 +550,34 @@ function videoSelectionPopulateOptions(){
     console.error("Error: Double video DMVPlayer is not supported yet.");
   }
 }
+
+//Resizing the player to keep the aspect ratio and fit within the bounds of the browser window
+resizePlayer = function(){
+  //The video aspect ratio (16/9)
+  var aspectRatioHeight = 10;
+  var aspectRatioWidth = 16;
+
+  //getting the video to fit in the screen
+  if (window.innerWidth/window.innerHeight > aspectRatioWidth/aspectRatioHeight){
+    var temp = window.innerHeight * .80;
+    $('#main').css('height',temp+'px');
+    $('#main').css('width','auto');
+    $('#dmv_video').css('height',temp+'px');
+    $('#dmv_video').css('width','auto');
+  } else {
+    $('#main').css('width','100%');
+    $('#main').css('height','auto');
+    $('#dmv_video').css('width','100%');
+    $('#dmv_video').css('height','auto');
+  }
+
+  //getting the slider, player buttons and measurement tools to fit in screen
+  var widthOfPlayer = document.getElementById('dmv_video').offsetWidth+'px';
+  document.getElementById('slider').style.width = widthOfPlayer;
+  document.getElementById('button_table_1').style.width = widthOfPlayer;
+  document.getElementById('measurementToolTable').style.width = widthOfPlayer;
+
+  resizeTools();
+}
+$(window).resize(resizePlayer);
+$(window).load(resizePlayer);

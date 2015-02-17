@@ -1,27 +1,19 @@
 /*DMVPlayer Copyright 2014 by ISD197*/
 
-#wrapper
+#slider
 {
-  position: relative;
-  /*width: 100%;*/
-  height: 100%;
+  margin-top: 0px;
 }
 
-#wrapper:before
+#button_table_1
 {
-  content: "";
-  display: block;
-  /*padding-top: 75% !important;*/
-  padding-left: 0%;
+  margin-top: 5px;
 }
 
-#main
+.playerButtons
 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  height: 30px;
+  width: 40px;
 }
 
 table,th,td
@@ -30,39 +22,16 @@ table,th,td
   border-collapse:collapse;
   vertical-align:center;
   position: relative;
-  /*max-width: 980px;*/
-  width: "100%";
   border: "0";
   margin-top: 5px;
-}
-
-td
-{
-background-color:rgb(200,200,200);
-}
-
-th
-{
-background-color:rgb(230,230,230);
+  background-color:rgb(200,200,200);
 }
 
 body, html 
 {
   height: 100%;
-}
-
-div.wrapper 
-{
-  height: 100%;
   overflow: hidden;
 }
-
-body
-{
-  overflow: hidden;
-}
-
-/* Type stuff ---------------------------------- */
 
 @font-face 
 {
@@ -93,11 +62,13 @@ a
   text-decoration: none;
 }
 
+img 
+{ 
+  width: 100%;
+  height:100%; 
+}
+
 #under { z-index: 10 }
-
-/*#horizontalRuler { z-index: 30 }*/
-
-#my_video_1 { z-index: 20 }
 
 #zindexTest #under {
   position: absolute;
@@ -119,12 +90,6 @@ a
   text-align: left;
   margin: 0;
   padding: 0;
-}
-
-img 
-{ 
-  width: 100%;
-  height:100%; 
 }
 
 #vid {
@@ -154,26 +119,9 @@ img
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+/*Overlay Image*/
+/*This is not implemented yet.*/
 #overlayImageID
 {
 	position: relative;
 }
-
-/*Changing the Slider's colors*/
-/*.ui-slider-range { background: #003bff; }*/
-/*.ui-widget-content { background: #00a7ff; }*/
-
-/*
-.ui-slider-horizontal {
-	height: 40px;
-}
-
-#slider .ui-slider-handle {
-    background: url(../images/blue_square.png);
-	height: 50px;
-	margin-bottom: -25px;
-	width: 50px;
-	margin-left: -25px;
-	background-size: 50px 50px;
-	border: none;
-}*/

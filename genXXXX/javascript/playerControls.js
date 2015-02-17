@@ -86,6 +86,8 @@ function playPause(){
     doNotUpdate=1;
     pause();
   }
+
+  resizeTools();
   
   //Deselecting the Play/Pause Button
   document.getElementById('playorpause').blur();
@@ -163,6 +165,10 @@ function fwdFrame(){
   doingSomethingElse=1;
   mousePos=0;
   sliding = 0;
+
+  //selects previous frame button
+  document.getElementById("framefwd").focus(); 
+
   //isChrome set true or false in browser detect file
   if (isChrome){ 
     play();

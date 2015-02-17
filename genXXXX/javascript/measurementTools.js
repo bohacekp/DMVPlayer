@@ -368,4 +368,3 @@ resizeTools = function() {
     index++;
   }
 }
-$(window).resize(resizeTools);

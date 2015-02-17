@@ -36,12 +36,12 @@
     <div id='wrapper'>
       <div id="main" onclick="deselectTool()">
         <!-- Video tags -->
-        <video id="dmv_video" width="100%" height="75%" preload="auto" poster="../../genXXXX/images/loading_splash_screen.png">
+        <video id="dmv_video" preload="auto" poster="../../genXXXX/images/loading_splash_screen.png">
           <source id="mp4_video" src="" id="movie" type="video/mp4">
           <source id="ogg_video" src="" id="movie" type="video/ogg">
         </video>
         
-        <video id="dmv_video2" width="100%" height="75%" preload="auto" poster="../../genXXXX/images/loading_splash_screen.png">
+        <video id="dmv_video2" preload="auto" poster="../../genXXXX/images/loading_splash_screen.png">
           <source id="mp4_video2" src="" id="movie" type="video/mp4">
           <source id="ogg_video2" src="" id="movie" type="video/ogg">
         </video>
@@ -51,7 +51,7 @@
 <!--      <img id="overlayImageID2" src=""/>-->
 
         <!-- Slider -->
-        <div id="slider" style="margin-top:0px;"></div> 
+        <div id="slider"></div> 
           <script> 
             //creates an instance of the video player
             var player = document.getElementById('dmv_video'); 
@@ -77,26 +77,26 @@
           </script>
 
           <!-- Play Buttons Table -->
-          <table id="button_table_1" width ="100%" border="0" style="margin-top:5px;"> 
+          <table id="button_table_1"> 
             <th>
               <td>
-                <button title="Rewind the video" type="button" id="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
-                  <img src="../../genXXXX/images/firstframe.png" style="height: 18px; width: 25px">
+                <button class="playerButtons" title="Rewind the video" type="button" id="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
+                  <img src="../../genXXXX/images/firstframe.png"/>
                 </button>
               </td>
               <td>
-                <button title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
-                  <img src="../../genXXXX/images/frame back.png"  style="height:18px; width: 18px"  />
+                <button class="playerButtons" title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
+                  <img src="../../genXXXX/images/frame back.png"/>
                 </button>
               </td>
               <td>
-                <button title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
-                  <img src="../../genXXXX/images/playpause2.png" style="height:18px; width: 28px" />
+                <button class="playerButtons" title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
+                  <img src="../../genXXXX/images/playpause2.png"/>
                 </button>
               </td>
               <td>
-                <button title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
-                  <img src="../../genXXXX/images/frame advance.png" style="height:18px; width: 18px"/>
+                <button class="playerButtons" title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
+                  <img src="../../genXXXX/images/frame advance.png"/>
                 </button>
               </td>
               <td id='GoToFrameControls'>

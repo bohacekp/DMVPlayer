@@ -25,7 +25,7 @@ var numberOfVideos = 1;
 var videoLeftMain = 0;
 var videoRight = 0;
 //Go To Frame Enabled
-var goToFrameControlEnabled = false;
+var goToFrameControlEnabled = true;
 
 //---------//
 //Help Text//
