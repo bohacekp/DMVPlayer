@@ -89,6 +89,7 @@ videoArray.push([
 	2"location of the .mp4 video file", //This is the location of the .mp4 video file
 	3"Overlay Image",                   //This is the location of the overlay image
   4"file name without extension"      //This is the name of the file without the extension
+  5"file name for the video's instruction page" //This is the page that is brought up when the user selects help on this video
 ]);
 */
 var videoArray = new Array();
@@ -97,7 +98,8 @@ videoArray.push([
 	"videos/circleLab2/circle_0_30fps_clean.ogv",
 	"videos/circleLab2/circle_0_30fps_clean.mp4",
 	"",
-  "circle_0_30fps_clean"
+  "circle_0_30fps_clean",
+  "instructions/video1_instructions.html"
 ]);
 videoArray.push([
 	"junk",

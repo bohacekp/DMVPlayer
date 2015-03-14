@@ -316,7 +316,10 @@ function deselectTool(){
   }
   
   //Deselecting the Deselect Tool
-  document.getElementById('deselectTool').blur();
+  var deselectToolButton = document.getElementById('deselectTool');
+  if (deselectToolButton != null) {
+    deselectToolButton.blur();
+  };
 }
 
 //------------------------------------------------------------------//
