@@ -371,3 +371,18 @@ resizeTools = function() {
     index++;
   }
 }
+
+//------------------------------------------------------------------//
+//This //
+//------------------------------------------------------------------//
+function showVideoInstructions(){
+  //create a variable that will store the current video that is selected
+  //  need to remember that the player may not have the video selection turned on
+  //get the current video that is selected
+  //bring up the page in that index of the video that is on display
+  //save a 
+
+  
+
+  console.log("showing video instruction page");
+}

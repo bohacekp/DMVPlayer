@@ -78,32 +78,40 @@
 
           <!-- Play Buttons Table -->
           <table id="button_table_1"> 
-            <th>
-              <td>
-                <button class="playerButtons" title="Rewind the video" type="button" id="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
-                  <img src="../../genXXXX/images/firstframe.png"/>
-                </button>
-              </td>
-              <td>
-                <button class="playerButtons" title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
-                  <img src="../../genXXXX/images/frame back.png"/>
-                </button>
-              </td>
-              <td>
-                <button class="playerButtons" title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
-                  <img src="../../genXXXX/images/playpause2.png"/>
-                </button>
-              </td>
-              <td>
-                <button class="playerButtons" title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
-                  <img src="../../genXXXX/images/frame advance.png"/>
-                </button>
-              </td>
-              <td id='GoToFrameControls'>
-                <input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
-                <input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
-              </td>
-            </th>
+            <td class="playerButtonTableCell">
+              <button class="playerButtons" title="Rewind the video" type="button" id="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
+                <img src="../../genXXXX/images/firstframe.png"/>
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button class="playerButtons" title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
+                <img src="../../genXXXX/images/frame back.png"/>
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button class="playerButtons" title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
+                <img src="../../genXXXX/images/playpause2.png"/>
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button class="playerButtons" title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
+                <img src="../../genXXXX/images/frame advance.png"/>
+              </button>
+            </td>
+            <td class="playerButtonTableCell" id='GoToFrameControls'>
+              <input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
+              <input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
+            </td>
+            <td class="playerButtonTableCell">
+              <button title="Player Insctrucitons" type="button" id="playerInstructions" onclick="showPlayerInstructions()">
+                Player Instrcutions
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button title="Video Insctrucitons" type="button" id="videoInstructions" onclick="showVideoInstructions()">
+                Video Instrcutions
+              </button>
+            </td>
           </table>
 
           <!-- Overlay image button -->

@@ -16,6 +16,11 @@
   width: 40px;
 }
 
+.playerButtonTableCell
+{
+  width: 5%;
+}
+
 table,th,td
 {
   font-family: "calibri";
