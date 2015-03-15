@@ -74,24 +74,40 @@ $(document).ready(function(){
       dmv_player2.removeAttribute('poster');
     }
   });
+  
+  //Getting the file names for the selected video
+  if (numberOfVideos == 1 || numberOfVideos == 2) {
+    var videoFileName_LeftMain = getCurrentVideoName(LEFT_MAIN_VIDEO);
+  }
+  if (numberOfVideos == 2) {
+    var videoFileName_Right = getCurrentVideoName(RIGHT_VIDEO);
+  }
+  
+  //Looking up the index for the video that is selected
+  if (numberOfVideos == 1 || numberOfVideos == 2) {
+    var videoArrayIndex_LeftMain = getVideoIndex(videoFileName_LeftMain);
+  }
+  if (numberOfVideos == 2) {
+    var videoArrayIndex_Right = getVideoIndex(videoFileName_Right);
+  }
     
   //Setting the video sources
   //Player 1
   if (numberOfVideos == 1 || numberOfVideos == 2) {
     if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-      $(ogg_video).attr('src', videoArray[videoLeftMain][_locationOGV]);
+      $(ogg_video).attr('src', videoArray[videoArrayIndex_LeftMain][_locationOGV]);
     }
     else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-      $(mp4_video).attr('src', videoArray[videoLeftMain][_locationMP4]);
+      $(mp4_video).attr('src', videoArray[videoArrayIndex_LeftMain][_locationMP4]);
     }
   }
   //Player 2
   if (numberOfVideos == 2) {
     if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
-      $(ogg_video2).attr('src', videoArray2[videoRight][_locationOGV]);
+      $(ogg_video2).attr('src', videoArray2[videoArrayIndex_Right][_locationOGV]);
     }
     else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
-      $(mp4_video2).attr('src', videoArray2[videoRight][_locationMP4]);
+      $(mp4_video2).attr('src', videoArray2[videoArrayIndex_Right][_locationMP4]);
     }
   }
     
@@ -412,6 +428,11 @@ function videoSelectionPopulateOptions(){
   if(numberOfVideos == 1 || numberOfVideos == 2){
     //Player 1            
     if(enableVideoSelection){
+      //Checking to see if the user has specified the right number of selection positions
+      if(currentVideoLeft_Main.length != advancedSelectionArray.length) {
+        console.error("Error:You do not have the correct number of initial video selection indexes");
+      }
+      
       //indexes
       var selectionIndex = 0;
       var optionIndex = 0;
@@ -462,17 +483,9 @@ function videoSelectionPopulateOptions(){
         
         index++;
       }
-                      
-      //looking up the video's index in the video array
-      var index = 0;
-      video_index = -1;
-      for(elements in videoArray){
-        if(videoArray[index][_videoFileName] == fileName){
-          video_index = index;
-          break;
-        }
-        index++;
-      }                
+      
+      //Getting the index of the video
+      var video_index = getVideoIndex(fileName);
     
       //Deselecting the video selection drop downs
       var count = 0;
@@ -531,9 +544,12 @@ function videoSelectionPopulateOptions(){
    // if(numberOfVideos == 2){
    //  document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
    // }
+    
+    //Saving the video selection indexes
+    saveCurrenyltSelectedVideos();
   }
 
-  //Setting the drop down positions for the video parameters
+  //Setting the drop down positions for the video parameters and the call back function when the selector changes value
   if(numberOfVideos == 1 || numberOfVideos == 2){
     //advanced video selection
     if(enableVideoSelection){
@@ -542,6 +558,7 @@ function videoSelectionPopulateOptions(){
       for(elements in videoSelectorIDArray){
         var temp = $("#" + videoSelectorIDArray[count]);
         temp.change(videoSelectorFunction);
+        document.getElementById(videoSelectorIDArray[count]).selectedIndex = "" + currentVideoLeft_Main[count];
         count++;
       }
     }

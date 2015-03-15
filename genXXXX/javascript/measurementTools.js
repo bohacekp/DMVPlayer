@@ -373,16 +373,18 @@ resizeTools = function() {
 }
 
 //------------------------------------------------------------------//
-//This //
+//This method is called when the video instrcution button is        //
+// pressed. It will close the current video instruction page that is//
+// opened and open the new one.                                     //
 //------------------------------------------------------------------//
 function showVideoInstructions(){
-  //create a variable that will store the current video that is selected
-  //  need to remember that the player may not have the video selection turned on
-  //get the current video that is selected
-  //bring up the page in that index of the video that is on display
-  //save a 
-
+  //Close the current video instructions page
+  if (videoInstructionWindow != null) {
+    videoInstructionWindow.close();
+  }
   
-
-  console.log("showing video instruction page");
+  //Getting the current videos index in the videoArray
+  var videoIndex = getVideoIndex(getCurrentVideoName(LEFT_MAIN_VIDEO));
+  
+  videoInstructionWindow = window.open(videoArray[videoIndex][_videoInstructionsPage]);
 }

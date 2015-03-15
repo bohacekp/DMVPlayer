@@ -1,12 +1,17 @@
 //definitions.js
 //This file contains all of the constants and definitions for the DMVPlayer
 
+//Definitions
+var LEFT_MAIN_VIDEO = 0;
+var RIGHT_VIDEO = 1;
+
 //videoArray indexes
 var _nameOfVideo = 0;
 var _locationOGV = 1;
 var _locationMP4 = 2;
 var _overlayImage = 3;
 var _videoFileName = 4;
+var _videoInstructionsPage = 5;
 
 //advancedSelectionArray indexes
 var _advancedSelectionName = 0;
@@ -51,7 +56,10 @@ var player2 = document.getElementById('dmv_video_2');
 var framerate = 30;
 
 //Video Selectors
-var videoSelectorIDArray;
+var videoSelectorIDArray; //Left/Main
+
+//Video Instructions Window
+var videoInstructionWindow;
 
 //Max Slider Value
 var maxSliderValue = 100000;
