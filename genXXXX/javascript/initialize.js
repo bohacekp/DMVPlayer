@@ -11,6 +11,16 @@ $(document).ready(function(){
   //----------------------------------------------//
   //Player Controls                               //
   //----------------------------------------------//
+  //Removing the Player Instructions button if it is turned off
+  if(!enablePlayerInsctructions) {
+    $("#playerInstructions").css("display", "none");
+  }
+  
+  //Removing the Video Instructions button is it is turned off
+  if(!enableVideoInstructions) {
+    $("#videoInstructions").css("display", "none");
+  }
+  
   //Removing the reset tools buttons if it is turned off
   if(!resetButton){
     $("#resetTools").css("display", "none");

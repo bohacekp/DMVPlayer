@@ -22,6 +22,15 @@ var enableMarkers = false;
 //Go To Frame Enabled
 // Enabling the 'Go to Frame' option to allow the user to manually select the frame of the video.
 var goToFrameControlEnabled = true;
+//Enable Player Instructions Page
+// This will show a button to bring up a Player Instructions page.
+// This help page will be general information about how to use the DMVPlayer.
+var enablePlayerInsctructions = false;
+//Enable Video Instructions Page
+// This will show a button to bring up a Video Instructions page.
+// Thie help page will be information to help the user figure out the physics problem the currently selected video.
+// You are able to specify a different instructions page for each video.
+var enableVideoInstructions = false;
 
 //Features that are not implemented.
 //Stop Watch
