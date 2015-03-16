@@ -373,6 +373,14 @@ resizeTools = function() {
 }
 
 //------------------------------------------------------------------//
+//This method is called when the player instruction button is       //
+// pressed.                                                         //
+//------------------------------------------------------------------//
+function showPlayerInstructions(){
+  window.open(playerInstrucitonsPage);
+}
+
+//------------------------------------------------------------------//
 //This method is called when the video instrcution button is        //
 // pressed. It will close the current video instruction page that is//
 // opened and open the new one.                                     //

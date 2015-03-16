@@ -2,6 +2,9 @@
 //Page Title of the Player
 // This is the title that will show up at the top of the web browser
 var pageTitle = "DMVPlayer";
+//Player Instrctions Page
+// This is the page that is opened when the player instructions button is pressed.
+var playerInstrucitonsPage = "instructions/video_instructions.html";
 
 //-----//
 //Flags//
@@ -25,12 +28,12 @@ var goToFrameControlEnabled = true;
 //Enable Player Instructions Page
 // This will show a button to bring up a Player Instructions page.
 // This help page will be general information about how to use the DMVPlayer.
-var enablePlayerInsctructions = false;
+var enablePlayerInsctructions = true;
 //Enable Video Instructions Page
 // This will show a button to bring up a Video Instructions page.
 // Thie help page will be information to help the user figure out the physics problem the currently selected video.
 // You are able to specify a different instructions page for each video.
-var enableVideoInstructions = false;
+var enableVideoInstructions = true;
 
 //Features that are not implemented.
 //Stop Watch
