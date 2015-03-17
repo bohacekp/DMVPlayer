@@ -58,6 +58,9 @@ var framerate = 30;
 //Video Selectors
 var videoSelectorIDArray; //Left/Main
 
+//Player Instructions Window
+var playerInstructionWindow;
+
 //Video Instructions Window
 var videoInstructionWindow;
 

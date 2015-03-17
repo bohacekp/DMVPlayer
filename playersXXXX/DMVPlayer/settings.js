@@ -4,7 +4,7 @@
 var pageTitle = "DMVPlayer";
 //Player Instrctions Page
 // This is the page that is opened when the player instructions button is pressed.
-var playerInstrucitonsPage = "instructions/video_instructions.html";
+var playerInstrucitonsPage = "../../genXXXX/instructions/playerInstructions.html";
 
 //-----//
 //Flags//

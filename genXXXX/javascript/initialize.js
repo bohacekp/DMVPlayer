@@ -557,6 +557,11 @@ function videoSelectionPopulateOptions(){
     
     //Saving the video selection indexes
     saveCurrenyltSelectedVideos();
+    
+    //Close the current Video Instructions page if it is open
+    if (videoInstructionWindow != null) {
+      videoInstructionWindow.close();
+    }
   }
 
   //Setting the drop down positions for the video parameters and the call back function when the selector changes value
@@ -608,3 +613,4 @@ resizePlayer = function(){
 }
 $(window).resize(resizePlayer);
 $(window).load(resizePlayer);
+$(window).unload(closeInstructionWindows);

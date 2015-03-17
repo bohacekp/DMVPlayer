@@ -377,7 +377,12 @@ resizeTools = function() {
 // pressed.                                                         //
 //------------------------------------------------------------------//
 function showPlayerInstructions(){
-  window.open(playerInstrucitonsPage);
+  //Checking to see the Player Instructions page is opened already
+  if (playerInstructionWindow != null) {
+    playerInstructionWindow.close();
+  }
+  
+  playerInstructionWindow = window.open(playerInstrucitonsPage);
 }
 
 //------------------------------------------------------------------//
@@ -395,4 +400,18 @@ function showVideoInstructions(){
   var videoIndex = getVideoIndex(getCurrentVideoName(LEFT_MAIN_VIDEO));
   
   videoInstructionWindow = window.open(videoArray[videoIndex][_videoInstructionsPage]);
+}
+
+//------------------------------------------------------------------//
+//This method is called when the player is closed. It will close    //
+// the Player and Video Instructions windows.                       //
+//------------------------------------------------------------------//
+function closeInstructionWindows(){
+  if (playerInstrucitonWindow != null) {
+    playerInstructionWindow.close();
+  }
+  
+  if (videoInstructionWindow != null) {
+    videoInstructionWindow.close();
+  }
 }
