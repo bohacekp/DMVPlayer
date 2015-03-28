@@ -368,10 +368,10 @@ toolsArray.push([
 var toolsArray = new Array();
 toolsArray.push([
   "horizontalRuler", 
-  "0px",
-  "0px",
-  "60px",
-  "300px",
+  "0px",        ////this value needs to be a percentage of the video size.
+  "0px",        ////this value needs to be a percentage of the video size.
+  "60px",       ////this value needs to be a percentage of the video size.
+  "300px",      ////this value needs to be a percentage of the video size.
   false,
   true,
   true,
@@ -396,8 +396,8 @@ toolsArray.push([
   "1px",
   false,
   false,
-  "",
-  ""
+  0.5,
+  0.5
 ]);
 
 toolsArray.push([

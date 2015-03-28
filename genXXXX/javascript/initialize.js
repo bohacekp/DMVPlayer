@@ -256,13 +256,18 @@ $(document).ready(function(){
     tool = document.getElementById(toolsArray[index][_elementID]);
     toolButton = $(document.getElementById(toolsArray[index][_measureToolButton]));
 
+    //Absolute Value for the Size and Position of the Measurement Tools
     //Setting the default location for the tool
     tool.style.left = toolsArray[index][_positionLeft];
     tool.style.top = toolsArray[index][_positionTop];
-
     //Setting the default size of the tool
     tool.style.height = toolsArray[index][_sizeHeight];
     tool.style.width = toolsArray[index][_sizeWidth];
+    
+    //Relative Value for the Size and Position of the Measurement Tools
+    //Setting the default location for the tool
+    
+    //Setting the default size of the tool
   
     //Resizing the tools for the current size of the screen
     resizeTools();

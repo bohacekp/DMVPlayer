@@ -7,10 +7,13 @@ function resetTools(){
   var index = 0;
   for(element in toolsArray){
     tool = document.getElementById(toolsArray[index][_elementID]);
+
+    //Absolute Value Tool Position and Size
     tool.style.left = toolsArray[index][_positionLeft];
     tool.style.top = toolsArray[index][_positionTop];
     tool.style.height = toolsArray[index][_sizeHeight];
     tool.style.width = toolsArray[index][_sizeWidth];
+    
     //Checking to see if the unselected outline is enabled
     if(toolsArray[index][_unselectedOutlineEnabled]){
       //Putting a the previous selected tool back to the default color
