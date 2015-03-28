@@ -30,6 +30,18 @@ function setFrameZero(frame) {
   updateStopwatch();
 }
 
+//------------------------------------------------------------------//
+//This function will toggle the stopwatch from being shown.         //
+//------------------------------------------------------------------//
+function toggleStopWatch(){
+  $('#stopwatch').toggle("highlight");
+}
+
+//------------------------------------------------------------------//
+//This function will disable all of the controls except the play    //
+// pause button.
+//------------------------------------------------------------------//
+
 var percent;
 var oldVal;
 //------------------------------------------------------------------//

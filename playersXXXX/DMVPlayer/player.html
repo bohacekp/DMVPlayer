@@ -125,14 +125,19 @@
               <input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
               <input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
             </td>
-            <td class="playerButtonTableCell" id="playerInstructions">
-              <button title="Player Insctrucitons" type="button" onclick="showPlayerInstructions()">
-                Player Instrcutions
+            <td class="playerButtonTableCell" id='StopWatchToolBarButton'>
+              <button title="StopWatch" type="button" id="StopWatchButton" onclick="toggleStopWatch()">
+                StopWatch
               </button>
             </td>
             <td class="playerButtonTableCell" id="videoInstructions">
               <button title="Video Insctrucitons" type="button" onclick="showVideoInstructions()">
                 Video Instrcutions
+              </button>
+            </td>
+            <td class="playerButtonTableCell" id="playerInstructions">
+              <button title="Player Insctrucitons" type="button" onclick="showPlayerInstructions()">
+                Player Instrcutions
               </button>
             </td>
           </table>

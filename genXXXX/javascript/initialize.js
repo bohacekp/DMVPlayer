@@ -13,6 +13,11 @@ $(document).ready(function(){
   //----------------------------------------------//
   //checks to see if the frame counter is enabled (set in settings.js)
   if(enableStopwatch === true) {
+    //hiding the stopwatch if it should not be shown at the start
+    if(!showStopWatchAtStart) {
+      document.getElementById("stopwatch").style.visibility = "hidden";
+    }
+    
     if(stopwatchDraggable === true) {
       //makes frame counter box draggable
       $(document.getElementById("stopwatch")).draggable({containment:"body"});
@@ -30,6 +35,9 @@ $(document).ready(function(){
   else {
     //hides frame counter
     document.getElementById("stopwatch").style.visibility = "hidden";
+    
+    //hiding the stopwatch toolbar button
+    document.getElementById("StopWatchToolBarButton").style.visibility = "hidden";
   }
 
   //Removing the Player Instructions button if it is turned off

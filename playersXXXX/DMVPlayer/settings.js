@@ -38,6 +38,8 @@ var enableVideoInstructions = true;
 //Enable the draggable frame counter;
 //Enables a box that displays ellapsed time and frames from a user set starting point
 var enableStopwatch = true;
+//Show the stopwatch at the start of the player
+var showStopWatchAtStart = false;
 //allows stopwatch to show ellapsed time
 var showTime = true;
 //allows stopwatch to show ellapsed frames
@@ -95,7 +97,9 @@ videoArray.push([
   ".ogv file path",
   ".mp4 file path",
   "overlay image file path",
-  "file name without extension"
+  "file name without extension",
+  frame rate of the video,
+  "location of the video's instruction page"
 ]);
 2 - paste it after the 'var videoArray = new Array();' line
 3 - change all of the values to match your video information
