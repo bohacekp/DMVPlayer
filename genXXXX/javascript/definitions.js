@@ -11,7 +11,8 @@ var _locationOGV = 1;
 var _locationMP4 = 2;
 var _overlayImage = 3;
 var _videoFileName = 4;
-var _videoInstructionsPage = 5;
+var _videoFramerate = 5;
+var _videoInstructionsPage = 6;
 
 //advancedSelectionArray indexes
 var _advancedSelectionName = 0;
@@ -53,7 +54,8 @@ var _toolAndVideoWidthRatio = 30;
 //Video players
 var player = document.getElementById('dmv_video'); 
 var player2 = document.getElementById('dmv_video_2');
-var framerate = 30;
+var framerate;
+var frameZero = 0;    //frame that represents frame 0
 
 //Video Selectors
 var videoSelectorIDArray; //Left/Main

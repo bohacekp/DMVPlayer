@@ -11,6 +11,27 @@ $(document).ready(function(){
   //----------------------------------------------//
   //Player Controls                               //
   //----------------------------------------------//
+  //checks to see if the frame counter is enabled (set in settings.js)
+  if(enableStopwatch === true) {
+    if(stopwatchDraggable === true) {
+      //makes frame counter box draggable
+      $(document.getElementById("stopwatch")).draggable({containment:"body"});
+    }
+    //Starts a 1/30 second interval to refresh the frame counter box
+    setInterval(updateStopwatch, 33.33333);
+    
+    if(showTime === false) {
+      document.getElementById("timeInfo").style.display = "none";
+    }
+    if(showFrame === false) {
+      document.getElementById("frameInfo").style.display = "none";
+    }
+  }
+  else {
+    //hides frame counter
+    document.getElementById("stopwatch").style.visibility = "hidden";
+  }
+
   //Removing the Player Instructions button if it is turned off
   if(!enablePlayerInsctructions) {
     $("#playerInstructions").css("display", "none");
@@ -129,6 +150,10 @@ $(document).ready(function(){
     dmv_player2.load();
   }
     
+  //passes framerate of video from video array
+  //used to calculate ellapsed time
+  framerate = videoArray[videoArrayIndex_LeftMain][_videoFramerate]; 
+  
   //////////////////////////////////////////////////////////////////////
   //Setting up the Table for the Video Selection and Measurement Tools//
   //////////////////////////////////////////////////////////////////////
@@ -518,6 +543,11 @@ function videoSelectionPopulateOptions(){
       $(mp4_video).attr('src', videoArray[video_index][_locationMP4]);
     }
 
+    //passes framerate of video from video array
+    //used to calculate ellapsed time
+    framerate = videoArray[video_index][_videoFramerate];
+    
+    
     //Reload the dmv video
     dmv_player.load();
 
