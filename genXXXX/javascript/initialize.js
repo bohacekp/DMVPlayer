@@ -13,14 +13,16 @@ $(document).ready(function(){
   //----------------------------------------------//
   //checks to see if the frame counter is enabled (set in settings.js)
   if(enableStopwatch === true) {
+    var stopWatch = document.getElementById("stopwatch");
+    
     //hiding the stopwatch if it should not be shown at the start
     if(!showStopWatchAtStart) {
-      document.getElementById("stopwatch").style.visibility = "hidden";
+      stopWatch.style.display = "none";
     }
     
     if(stopwatchDraggable === true) {
       //makes frame counter box draggable
-      $(document.getElementById("stopwatch")).draggable({containment:"body"});
+      $(stopWatch).draggable({containment:"body"});
     }
     //Starts a 1/30 second interval to refresh the frame counter box
     setInterval(updateStopwatch, 33.33333);
@@ -31,6 +33,9 @@ $(document).ready(function(){
     if(showFrame === false) {
       document.getElementById("frameInfo").style.display = "none";
     }
+    
+    //Setting the position of the stopwatch
+    setStopWatchPosition();
   }
   else {
     //hides frame counter
@@ -82,27 +87,27 @@ $(document).ready(function(){
   //Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
   var showedPlaySplashScreen = false;
   dmv_player.oncanplaythrough =  function(){
-      //resizing the tools
-      resizeTools();
+    //resizing the tools
+    resizeTools();
 
-      if(!showedPlaySplashScreen && enableClickToPlayOverlay){
-        if (numberOfVideos == 1 || numberOfVideos == 2) {
-          dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
-        }
-        if (numberOfVideos == 2) {
-          dmv_player2.setAttribute('poster', '../images/play_splash_screen.png');
-        }
+    if(!showedPlaySplashScreen && enableClickToPlayOverlay){
+      if (numberOfVideos == 1 || numberOfVideos == 2) {
+        dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
       }
-      else if(!showedPlaySplashScreen && !enableClickToPlayOverlay){
-        if (numberOfVideos == 1 || numberOfVideos == 2) {
-          dmv_player.setAttribute('poster', '');
-        }
-        if (numberOfVideos == 2) {
-          dmv_player2.setAttribute('poster', '');
-        }
+      if (numberOfVideos == 2) {
+        dmv_player2.setAttribute('poster', '../images/play_splash_screen.png');
       }
-      showedPlaySplashScreen = true;
-    };
+    }
+    else if(!showedPlaySplashScreen && !enableClickToPlayOverlay){
+      if (numberOfVideos == 1 || numberOfVideos == 2) {
+        dmv_player.setAttribute('poster', '');
+      }
+      if (numberOfVideos == 2) {
+        dmv_player2.setAttribute('poster', '');
+      }
+    }
+    showedPlaySplashScreen = true;
+  };
     
   //Setting the play callback to remove the video poster of 'click to play'
   $('#dmv_video').bind('play', function(){
@@ -652,6 +657,7 @@ resizePlayer = function(){
   document.getElementById('button_table_1').style.width = widthOfPlayer;
   document.getElementById('measurementToolTable').style.width = widthOfPlayer;
 
+  //TODO: here is where i would put the code to stop the resizing of the tools when the screen changes size.
   resizeTools();
 }
 $(window).resize(resizePlayer);

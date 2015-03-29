@@ -35,6 +35,42 @@ function setFrameZero(frame) {
 //------------------------------------------------------------------//
 function toggleStopWatch(){
   $('#stopwatch').toggle("highlight");
+  
+  //Deselecting the StopWatch button
+  document.getElementById('StopWatchToolBarButton').blur();
+}
+
+//------------------------------------------------------------------//
+//This function will set the position of the stopwatch based on the //
+// values that are in the settings.js file                          //
+//------------------------------------------------------------------//
+function setStopWatchPosition(){
+  var stopWatch = document.getElementById("stopwatch");
+  
+  /*
+  //Figuring out the size of the video
+  var windowWidth = window.innerWidth;
+  var windowHeight = window.innerHeight;
+  var windowAspectRatio = windowWidth / windowHeight;
+  
+  if (windowAspectRatio > (16 / 9)) {
+    
+  }
+  else if (windowAspectRatio < (16 / 9)) {
+    
+  }
+  
+  //Setting the position of the stopwatch
+  // Left
+  var currentVideoWidth = document.getElementById('dmv_video').offsetWidth;
+  stopWatch.style.left = stopWatchLeftPosition * currentVideoWidth + "px";
+  // Top
+  var currentVideoHeight = document.getElementById('dmv_video').offsetHeight;    
+  stopWatch.style.top = stopWatchTopPosition * currentVideoHeight + "px";
+  */
+  
+  stopWatch.style.left = stopWatchLeftPosition;
+  stopWatch.style.top = stopWatchTopPosition;
 }
 
 //------------------------------------------------------------------//

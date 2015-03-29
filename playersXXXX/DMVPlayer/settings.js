@@ -35,7 +35,7 @@ var enablePlayerInsctructions = true;
 // You are able to specify a different instructions page for each video.
 var enableVideoInstructions = true;
 
-//Enable the draggable frame counter;
+//StopWatch
 //Enables a box that displays ellapsed time and frames from a user set starting point
 var enableStopwatch = true;
 //Show the stopwatch at the start of the player
@@ -46,6 +46,9 @@ var showTime = true;
 var showFrame = true;
 //enables dragging for the stopwatch
 var stopwatchDraggable = true;
+//Position of the StopWatch
+var stopWatchLeftPosition = '50px';
+var stopWatchTopPosition = '100px';
 
 //Features that are not implemented.
 //Stop Watch
