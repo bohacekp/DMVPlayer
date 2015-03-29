@@ -75,8 +75,29 @@ function setStopWatchPosition(){
 
 //------------------------------------------------------------------//
 //This function will disable all of the controls except the play    //
-// pause button.
+// pause button.                                                    //
 //------------------------------------------------------------------//
+function disableAllControls() {
+  var arrayOfPlayerControls = document.getElementsByClassName("playerControl");
+  var i;
+  for (i = 0; i < arrayOfPlayerControls.length; i++) {
+    console.log(arrayOfPlayerControls[i].id);
+    if (!(arrayOfPlayerControls[i].id === 'playorpause')) {
+      arrayOfPlayerControls[i].disabled = true;
+    }
+  }
+}
+
+//------------------------------------------------------------------//
+//This function will enable all of the controls.                    //
+//------------------------------------------------------------------//
+function enableAllControls() {
+  var arrayOfPlayerControls = document.getElementsByClassName("playerControl");
+  var i;
+  for (i = 0; i < arrayOfPlayerControls.length; i++) {
+    arrayOfPlayerControls[i].disabled = false;
+  }
+}
 
 var percent;
 var oldVal;

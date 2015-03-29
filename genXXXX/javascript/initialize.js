@@ -7,7 +7,7 @@
 $(document).ready(function(){   
   //Setting the title for the player
   document.title = pageTitle;
-
+  
   //----------------------------------------------//
   //Player Controls                               //
   //----------------------------------------------//
@@ -87,6 +87,9 @@ $(document).ready(function(){
   //Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
   var showedPlaySplashScreen = false;
   dmv_player.oncanplaythrough =  function(){
+    //Enable the player controls
+    enableAllControls();
+    
     //resizing the tools
     resizeTools();
 
@@ -212,7 +215,7 @@ $(document).ready(function(){
                          '<button ' +
 //                           'value="' + toolsArray[index][_toolButtonTitle] + '" ' +
                          'id="' + toolsArray[index][_measureToolButton] + 
-                         '" class="measurementToolClass" ' + 
+                         '" class="measurementToolClass playerControl" ' + 
 //                           'style="padding: 25px 20px;" ' +
                          'onclick="hideTool(\'#' + toolsArray[index][_elementID] + '\')">' +
                          toolsArray[index][_toolButtonTitle] + '</button>';
@@ -227,13 +230,13 @@ $(document).ready(function(){
   //Reset Tool Button
   //If there are any tools?
   if(toolsArray.length == 1){
-    var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tool</button>';
+    var resetButtonHTML = '<button id="resetTools" class="playerControl" onclick="resetTools()">Reset Tool</button>';
     toolsTable += '<td>';
     toolsTable += resetButtonHTML;
     toolsTable += '</td>';
   }
   else if(toolsArray.length > 1){
-    var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tools</button>';
+    var resetButtonHTML = '<button id="resetTools" class="playerControl" onclick="resetTools()">Reset Tools</button>';
     toolsTable += '<td>';
     toolsTable += resetButtonHTML;
     toolsTable += '</td>';
@@ -241,7 +244,7 @@ $(document).ready(function(){
 
   //Deselect measurement tool button
   if(toolsArray.length >= 1){
-    var deselectToolButtonHTML = '<button id="deselectTool" onclick="deselectTool()">Deselect Tool</button>';
+    var deselectToolButtonHTML = '<button id="deselectTool" class="playerControl" onclick="deselectTool()">Deselect Tool</button>';
     toolsTable += '<td>';
     toolsTable += deselectToolButtonHTML;
     toolsTable += '</td>';
@@ -250,9 +253,9 @@ $(document).ready(function(){
   //Putting in the marker buttons
   if(enableMarkers){
     //Creating the HTML for the marker buttons
-    var markerSpawnButton = '<button id="spawnMarkerButton" onclick="spawnMarker()">Spawn Marker</button>';
-    var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
-    var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton" onclick="removeAllMarkers()">Remove All Markers</button>';
+    var markerSpawnButton = '<button id="spawnMarkerButton playerControl" onclick="spawnMarker()">Spawn Marker</button>';
+    var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton playerControl" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
+    var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton playerControl" onclick="removeAllMarkers()">Remove All Markers</button>';
 
     //Putting in the buttons
     toolsTable += '<td>';
@@ -414,6 +417,9 @@ $(document).ready(function(){
       $("#overlayImageID2").css("display", "none");
     }
   }
+  
+  //Disabling the player controls
+  disableAllControls();
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -457,7 +463,7 @@ function videoSelectionSetup(){
         //adding the dropdowns title
         videoSelectionHTML += advancedSelectionTitleArray[count];
         //adding the HTML for the video selector
-        videoSelectionHTML += '<select id=' + videoSelector + count + '>';
+        videoSelectionHTML += '<select class="playerControl" id=' + videoSelector + count + '>';
   
         //TODO: Looping through the video selection values
   
