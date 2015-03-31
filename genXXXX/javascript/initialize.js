@@ -86,7 +86,7 @@ $(document).ready(function(){
   
   //Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
   var showedPlaySplashScreen = false;
-  dmv_player.oncanplaythrough =  function(){
+  dmv_player.oncanplaythrough =  function(){    
     //Enable the player controls
     enableAllControls();
     
@@ -253,9 +253,9 @@ $(document).ready(function(){
   //Putting in the marker buttons
   if(enableMarkers){
     //Creating the HTML for the marker buttons
-    var markerSpawnButton = '<button id="spawnMarkerButton playerControl" onclick="spawnMarker()">Spawn Marker</button>';
-    var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton playerControl" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
-    var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton playerControl" onclick="removeAllMarkers()">Remove All Markers</button>';
+    var markerSpawnButton = '<button id="spawnMarkerButton" class="playerControl" onclick="spawnMarker()">Spawn Marker</button>';
+    var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton" class="playerControl" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
+    var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton" class="playerControl" onclick="removeAllMarkers()">Remove All Markers</button>';
 
     //Putting in the buttons
     toolsTable += '<td>';

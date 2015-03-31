@@ -81,11 +81,13 @@ function disableAllControls() {
   var arrayOfPlayerControls = document.getElementsByClassName("playerControl");
   var i;
   for (i = 0; i < arrayOfPlayerControls.length; i++) {
-    console.log(arrayOfPlayerControls[i].id);
     if (!(arrayOfPlayerControls[i].id === 'playorpause')) {
       arrayOfPlayerControls[i].disabled = true;
     }
   }
+  
+  //Disabling the scrubber/slider
+  $('#slider').slider('disable');
 }
 
 //------------------------------------------------------------------//
@@ -97,6 +99,9 @@ function enableAllControls() {
   for (i = 0; i < arrayOfPlayerControls.length; i++) {
     arrayOfPlayerControls[i].disabled = false;
   }
+  
+  //Enabling the scrubber/slider
+  $('#slider').slider('enable');
 }
 
 var percent;
