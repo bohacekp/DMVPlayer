@@ -6,7 +6,7 @@ function getCurrentFrame() {
 //Prints ellapsed time and frames from frame zero
 function updateStopwatch() {
   document.getElementById("framerate").innerHTML = "Framerate: " + framerate + " fps";
-  document.getElementById("timeInfo").innerHTML = "Time: " + ((getCurrentFrame() - frameZero)/framerate).toFixed(3) + " s";
+  document.getElementById("timeInfo").innerHTML = "Time: " + ((getCurrentFrame() - frameZero)/framerate).toFixed(stopWatchNumberOfDecimalValues) + " s";
   document.getElementById("frameInfo").innerHTML = "Frame: " + (getCurrentFrame() - frameZero);
   //DEBUG document.getElementById("frameCounter3").innerHTML = (player.currentTime * 29.97 ).toFixed(1);
 }
@@ -28,6 +28,9 @@ function setFrame(frame) {
 function setFrameZero(frame) {
   frameZero = frame;
   updateStopwatch();
+  
+  //Deselect the set to 0 frame button on the stopwatch
+  document.getElementById('zeroOutStopWatchButton').blur();
 }
 
 //------------------------------------------------------------------//

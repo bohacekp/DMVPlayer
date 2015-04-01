@@ -49,6 +49,8 @@ var stopwatchDraggable = true;
 //Position of the StopWatch
 var stopWatchLeftPosition = '50px';
 var stopWatchTopPosition = '100px';
+//Number of decimal values you want for the Time in the StopWatch; works for 0-4, if you need more ask the developer
+var stopWatchNumberOfDecimalValues = 4;
 
 //Features that are not implemented.
 //Stop Watch

@@ -386,6 +386,9 @@ function showPlayerInstructions(){
   }
   
   playerInstructionWindow = window.open(playerInstrucitonsPage);
+  
+  //Deselecting the Player Instructions button
+  document.getElementById('playerInstructions').blur();
 }
 
 //------------------------------------------------------------------//
@@ -403,6 +406,9 @@ function showVideoInstructions(){
   var videoIndex = getVideoIndex(getCurrentVideoName(LEFT_MAIN_VIDEO));
   
   videoInstructionWindow = window.open(videoArray[videoIndex][_videoInstructionsPage]);
+  
+  //Deselecting the Video Instructions button
+  document.getElementById('videoInstructions').blur();
 }
 
 //------------------------------------------------------------------//
