@@ -15,6 +15,14 @@ $(document).ready(function(){
   if(enableStopwatch === true) {
     var stopWatch = document.getElementById("stopwatch");
     
+    //Expanding the width of the stopwatch if there are more than 3 decimal point specified
+    if (stopWatchNumberOfDecimalValues > 3) {
+      stopWatch.width = 110 + ((stopWatchNumberOfDecimalValues - 4) * 10) + "px";
+    }
+    else {
+      stopWatch.width = 110 + "px";
+    }
+    
     //hiding the stopwatch if it should not be shown at the start
     if(!showStopWatchAtStart) {
       stopWatch.style.display = "none";
