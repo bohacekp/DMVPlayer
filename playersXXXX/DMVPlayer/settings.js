@@ -24,7 +24,7 @@ var resetButton = false;
 var enableMarkers = false;
 //Go To Frame Enabled
 // Enabling the 'Go to Frame' option to allow the user to manually select the frame of the video.
-var goToFrameControlEnabled = true;
+var goToFrameControlEnabled = false;
 //Enable Player Instructions Page
 // This will show a button to bring up a Player Instructions page.
 // This help page will be general information about how to use the DMVPlayer.

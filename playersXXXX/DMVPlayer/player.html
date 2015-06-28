@@ -34,7 +34,17 @@
   <body>
     <meta charset="utf-8">
     
-    <!--Draggable Frame Counter -->
+    <div id='debugWindow'>
+      <p id='videoProgress'>Video Progress:</p>
+      <p id='videoLoadProgress'></p>
+    </div>
+    
+    <!-- Loading DIV -->
+    <div id="loadingDIV">
+      Loading
+    </div>
+    
+    <!-- Draggable Frame Counter -->
     <div id='stopwatch'>
       <!-- p used for displaying various info-->
       <p id="timeInfo">
@@ -50,7 +60,7 @@
       -->
       <!--button sets current frame to frame zero-->
       <div style="margin: 5px 20%;">
-        <button id="zeroOutStopWatchButton" type="button" onclick="setFrameZero(getCurrentFrame())">
+        <button id="zeroOutStopWatchButton" class="playerControl" type="button" onclick="setFrameZero(getCurrentFrame())">
           Set to 0
         </button>
       </div>
@@ -74,7 +84,10 @@
 <!--      <img id="overlayImageID2" src=""/>-->
 
         <!-- Slider -->
-        <div id="slider"></div> 
+        <div id="slider">
+          <div id="sliderProgressDIV">
+          </div>
+        </div> 
           <script> 
             //creates an instance of the video player
             var player = document.getElementById('dmv_video'); 

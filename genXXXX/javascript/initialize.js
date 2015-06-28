@@ -5,8 +5,81 @@
 // components of the screen.                                        //
 //------------------------------------------------------------------//
 $(document).ready(function(){   
+  //Debug Window
+  if (_debugWindow) {
+    var playerJQuery = $('#dmv_video');
+    
+    var debugWindow = document.getElementById('debugWindow');
+    var debugWindowJQuery = $('#debugWindow');
+    debugWindowJQuery.draggable();
+    
+    var videoProgress = document.getElementById('videoProgress');
+    var videoLoadProgress = document.getElementById('videoLoadProgress');
+    var videoLoadProgressJQuery = $('#videoLoadProgress');
+    
+    var sliderProgressDIV = document.getElementById('sliderProgressDIV');
+    sliderProgressDIV.style.backgroundColor = "#de7676";
+    var slider = document.getElementById('slider');
+    
+    //subscribing to the different video events
+    player.onloadstart = function() {console.log("Video Progress: loadStart"); 
+                                     videoProgress.innerHTML = "Video Progress: loadStart";
+                                     loadingVideoFlag = true;
+                                     $('#loadingDIV').show();};
+    player.oncanplay = function() {console.log("Video Progress: canPlay");
+                                   videoProgress.innerHTML = "Video Progress: canPlay"};
+//    player.oncanplaythrough = function() {console.log("Video Progress: canPlayThrough");
+//                                          videoProgress.innerHTML = "Video Progress: canPlayThrough"};
+    player.ondurationchange = function() {console.log("Video Progrss: durationChange");
+                                          videoProgress.innerHTML = "Video Progrss: durationChange"};
+//    player.onprogress = function() {console.log("Video Progress: progress");
+//                                    videoProgress.innerHTML = "Video Progress: progress";
+//                                    if (player.buffered.length == 1) {
+//                                    videoLoadProgress.innerHTML = "Video Load Amount: " + (player.buffered.end(0) / player.duration);
+//                                    console.log("width: " + (player.buffered.end(0) / player.duration) * slider.offsetWidth);
+//                                    sliderProgressDIV.style.width = (player.buffered.end(0) / player.duration) * slider.offsetWidth + "px"
+//                                    }
+//                                   };
+    player.onratechange = function() {console.log("Video Progress: rateChange");
+                                      videoProgress.innerHTML = "Video Progress: rateChange"};
+    player.onseeked = function() {console.log("Video Progress: seeked");
+                                  videoProgress.innerHTML = "Video Progress: seeked"};
+    player.onseeking = function() {console.log("Video Progress: seeking");
+                                   videoProgress.innerHTML = "Video Progress: seeking"};
+    player.onstalled = function() {console.log("Video Progress: stalled");
+                                   videoProgress.innerHTML = "Video Progress: stalled"};
+    player.onsuspend = function() {console.log("Video Progress: suspend");
+                                   videoProgress.innerHTML = "Video Progress: suspend"};
+    player.ontimeupdate = function() {console.log("Video Progress: timeUpdate");
+                                      videoProgress.innerHTML = "Video Progress: timeUpdate";
+//                                      updateStopwatch();
+                                     };
+    player.onwaiting = function() {console.log("Video Progress: waiting");
+                                   videoProgress.innerHTML = "Video Progress: waiting";
+                                   loadingVideoFlag = true;
+                                   $('#loadingDIV').show();};
+  }
+  else {
+    document.getElementById('debugWindow').style.display = 'none';
+  }
+  
+  //Setting up the Loading DIV
+  $('#loadingDIV').hide();
+  
   //Setting the title for the player
   document.title = pageTitle;
+  
+  //Video Progress Bar
+  var sliderProgressDIV = document.getElementById('sliderProgressDIV');
+  sliderProgressDIV.style.backgroundColor = "#de7676";
+  var slider = document.getElementById('slider');
+
+  player.onprogress = function() {
+                                  if (player.buffered.length == 1) {
+                                    videoLoadProgress.innerHTML = "Video Load Amount: " + (player.buffered.end(0) / player.duration);
+                                    sliderProgressDIV.style.width = (player.buffered.end(0) / player.duration) * 100 + "%";
+                                  }
+                                 };
   
   //----------------------------------------------//
   //Player Controls                               //
@@ -72,6 +145,11 @@ $(document).ready(function(){
   if(goToFrameControlEnabled == false){
     document.getElementById('FrameJump').style.display = 'none';
     document.getElementById('gotoframe').style.display = 'none';
+    
+//    document.getElementById('FrameJump').disabled = true;
+//    document.getElementById('gotoframe').disabled = true;
+    
+//    document.getElementById('GoToFrameControls').style.display = 'none';
   }
     
   //Setting the default video
@@ -94,9 +172,17 @@ $(document).ready(function(){
   
   //Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
   var showedPlaySplashScreen = false;
-  dmv_player.oncanplaythrough =  function(){    
+  dmv_player.oncanplaythrough =  function(){ 
+    console.log("Video Progress: canPlayThrough");
+    videoProgress.innerHTML = "Video Progress: canPlayThrough";
+    
     //Enable the player controls
     enableAllControls();
+    
+    loadingVideoFlag = false;
+    
+    //Hiding the Loading DIV
+    $('#loadingDIV').hide();
     
     //resizing the tools
     resizeTools();

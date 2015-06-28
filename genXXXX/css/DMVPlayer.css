@@ -1,5 +1,41 @@
 /*DMVPlayer Copyright 2014 by ISD197*/
 
+#debugWindow
+{
+  background-color: #303030;
+  position: fixed;
+  border: 2px solid black;
+  border-radius: 9px;
+  padding: 7px;
+  z-index: 100002;
+  font-family: arial, sans-serif;
+  font-size: 1em;
+  opacity: 0.8;
+  color: #FFFFFF;
+}
+
+#loadingDIV
+{
+  background-color: #303030;
+  position: fixed;
+  border: 2px solid black;
+  border-radius: 9px;
+  padding: 7px;
+  z-index: 100001;
+  font-family: arial, sans-serif;
+  font-size: 10em;
+  opacity: 0.5;
+  color: #FFFFFF;
+  top: 20%;
+  left: 20%;
+}
+
+#sliderProgressDIV
+{
+  color: #de7676;
+  height: inherit;
+}
+
 #stopwatch
 {
   background-color: #303030;
@@ -7,10 +43,10 @@
   border: 2px solid black;
   border-radius: 9px;
   padding: 7px;
-  z-index: 1000;
+  z-index: 100000;
   font-family: arial, sans-serif;
   font-size: 1em;
-  opacity: 1;
+  opacity: 0.8;
   color: #FFFFFF;
 }
 
