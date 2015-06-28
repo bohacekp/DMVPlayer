@@ -1,9 +1,6 @@
 //definitions.js
 //This file contains all of the constants and definitions for the DMVPlayer
 
-//Debug Window
-var _debugWindow = true;
-
 //Definitions
 var LEFT_MAIN_VIDEO = 0;
 var RIGHT_VIDEO = 1;
@@ -59,10 +56,6 @@ var player = document.getElementById('dmv_video');
 var player2 = document.getElementById('dmv_video_2');
 var framerate;
 var frameZero = 0;    //frame that represents frame 0
-
-//This flag will be used to let the other parts of the player know the video is loading
-//When the video is loading then we do not want the user to play the video or use the frame advance/previous features
-var loadingVideoFlag;
 
 //Video Selectors
 var videoSelectorIDArray; //Left/Main

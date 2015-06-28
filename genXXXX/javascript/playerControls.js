@@ -5,13 +5,10 @@ function getCurrentFrame() {
 
 //Prints ellapsed time and frames from frame zero
 function updateStopwatch() {
-  //Checking tot see if the video is loading
-  if (!loadingVideoFlag) {
-    document.getElementById("framerate").innerHTML = "Framerate: " + framerate + " fps";
-    document.getElementById("timeInfo").innerHTML = "Time: " + ((getCurrentFrame() - frameZero)/framerate).toFixed(stopWatchNumberOfDecimalValues) + " s";
-    document.getElementById("frameInfo").innerHTML = "Frame: " + (getCurrentFrame() - frameZero);
-    //DEBUG document.getElementById("frameCounter3").innerHTML = (player.currentTime * 29.97 ).toFixed(1);
-  }
+  document.getElementById("framerate").innerHTML = "Framerate: " + framerate + " fps";
+  document.getElementById("timeInfo").innerHTML = "Time: " + ((getCurrentFrame() - frameZero)/framerate).toFixed(stopWatchNumberOfDecimalValues) + " s";
+  document.getElementById("frameInfo").innerHTML = "Frame: " + (getCurrentFrame() - frameZero);
+  //DEBUG document.getElementById("frameCounter3").innerHTML = (player.currentTime * 29.97 ).toFixed(1);
 }
 
 //sets the player in the middle of the passed frame
@@ -43,11 +40,7 @@ function toggleStopWatch(){
   $('#stopwatch').toggle("highlight");
   
   //Deselecting the StopWatch button
-  document.getElementById('StopWatchToolBarButton').focus();
   document.getElementById('StopWatchToolBarButton').blur();
-  
-  document.getElementById('playorpause').focus();
-  document.getElementById('playorpause').blur();
 }
 
 //------------------------------------------------------------------//
@@ -112,32 +105,6 @@ function enableAllControls() {
   
   //Enabling the scrubber/slider
   $('#slider').slider('enable');
-}
-
-//------------------------------------------------------------------//
-//This function will disable all of the controls that we do not     //
-// want enabled when the user is scrubbing to a new section in the  //
-// video.                                                           //
-//------------------------------------------------------------------//
-function disableControlsForSeeking() {
-  var arrayOfPlayerControls = document.getElementsByClassName("playerControl");
-  var i;
-  for (i = 0; i < arrayOfPlayerControls.length; i++) {
-    if (arrayOfPlayerControls[i].id === 'playorpause' || 
-        arrayOfPlayerControls[i].id === 'rewind' ||
-        arrayOfPlayerControls[i].id === 'frameprev' ||
-        arrayOfPlayerControls[i].id === 'playorpause' ||
-        arrayOfPlayerControls[i].id === 'framefwd' ||
-        arrayOfPlayerControls[i].id === 'rewind' || 
-        arrayOfPlayerControls[i].id === 'rewind' ||
-        arrayOfPlayerControls[i].id === 'rewind' ||
-        arrayOfPlayerControls[i].id === 'rewind') {
-      //skip and keep enabled
-    }
-    else {
-      arrayOfPlayerControls[i].disabled = true;
-    }
-  }
 }
 
 var percent;
@@ -213,8 +180,8 @@ function prevFrame(){
 function playPause(){ 
   //the next two lines deselct everything
   if (goToFrameControlEnabled) {
-    document.getElementById("gotoframe").focus();
-    document.getElementById("gotoframe").blur();
+   document.getElementById("gotoframe").focus();
+   document.getElementById("gotoframe").blur();
   }
       
   if (player.paused && player2.paused) {
@@ -303,21 +270,18 @@ function firstFrame(){
 //This function is used to move ahead a single frame in the video   //
 //------------------------------------------------------------------//
 function fwdFrame(){
-  //Checking to see if the video is loading
-  if(!loadingVideoFlag){
-    ++oldVal;
-    doingSomethingElse=1;
-    mousePos=0;
-    sliding = 0;
+  ++oldVal;
+  doingSomethingElse=1;
+  mousePos=0;
+  sliding = 0;
 
-    //selects previous frame button
-    document.getElementById("framefwd").focus(); 
+  //selects previous frame button
+  document.getElementById("framefwd").focus(); 
 
-    if(getCurrentFrame() < player.duration * 29.97) {
-        setFrame(getCurrentFrame() + 1);
-    }
-    doingSomethingElse=0;
+  if(getCurrentFrame() < player.duration * 29.97) {
+      setFrame(getCurrentFrame() + 1);
   }
+  doingSomethingElse=0;
 
   document.getElementById("framefwd").blur();
 }
