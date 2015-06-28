@@ -2,6 +2,9 @@
 //Page Title of the Player
 // This is the title that will show up at the top of the web browser
 var pageTitle = "DMVPlayer";
+//Player Instrctions Page
+// This is the page that is opened when the player instructions button is pressed.
+var playerInstrucitonsPage = "../../genXXXX/instructions/playerInstructions.html";
 
 //-----//
 //Flags//
@@ -22,6 +25,32 @@ var enableMarkers = false;
 //Go To Frame Enabled
 // Enabling the 'Go to Frame' option to allow the user to manually select the frame of the video.
 var goToFrameControlEnabled = true;
+//Enable Player Instructions Page
+// This will show a button to bring up a Player Instructions page.
+// This help page will be general information about how to use the DMVPlayer.
+var enablePlayerInsctructions = true;
+//Enable Video Instructions Page
+// This will show a button to bring up a Video Instructions page.
+// Thie help page will be information to help the user figure out the physics problem the currently selected video.
+// You are able to specify a different instructions page for each video.
+var enableVideoInstructions = true;
+
+//StopWatch
+//Enables a box that displays ellapsed time and frames from a user set starting point
+var enableStopwatch = true;
+//Show the stopwatch at the start of the player
+var showStopWatchAtStart = false;
+//allows stopwatch to show ellapsed time
+var showTime = true;
+//allows stopwatch to show ellapsed frames
+var showFrame = true;
+//enables dragging for the stopwatch
+var stopwatchDraggable = true;
+//Position of the StopWatch
+var stopWatchLeftPosition = '50px';
+var stopWatchTopPosition = '100px';
+//Number of decimal values you want for the Time in the StopWatch; valid 0-20, if you need more talk to W3
+var stopWatchNumberOfDecimalValues = 6;
 
 //Features that are not implemented.
 //Stop Watch
@@ -63,10 +92,6 @@ var maxNumMarkers = 4;
 //Number of Videos; 1 or 2
 // This variable tells the player how many videos you want for the player.
 var numberOfVideos = 1;
-//Video selection index to open with, starts at 0
-// These are the index of the video that you want the player to default at the start of the player.
-var videoLeftMain = 0;
-var videoRight = 0;
 
 //Video Selection Array
 /*
@@ -77,174 +102,222 @@ videoArray.push([
   ".ogv file path",
   ".mp4 file path",
   "overlay image file path",
-  "file name without extension"
+  "file name without extension",
+  frame rate of the video,
+  "location of the video's instruction page"
 ]);
 2 - paste it after the 'var videoArray = new Array();' line
 3 - change all of the values to match your video information
 
 Template for the videoArray values
 videoArray.push([
-	0"name of the video selection",     //NOT USED ANYMORE, REMOVE
-	1"location of the .ogv video file", //This is the location of the .ogv video file
-	2"location of the .mp4 video file", //This is the location of the .mp4 video file
-	3"Overlay Image",                   //This is the location of the overlay image
+  0"name of the video selection",     //NOT USED ANYMORE, REMOVE
+  1"location of the .ogv video file", //This is the location of the .ogv video file
+  2"location of the .mp4 video file", //This is the location of the .mp4 video file
+  3"Overlay Image",                   //This is the location of the overlay image
   4"file name without extension"      //This is the name of the file without the extension
+  5"filmed framerate of video"    //used the calculation of ellapsed time
+  6"file name for the video's instruction page" //This is the page that is brought up when the user selects help on this video
 ]);
 */
 var videoArray = new Array();
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_0_30fps_clean.ogv",
-	"videos/circleLab2/circle_0_30fps_clean.mp4",
-	"",
-  "circle_0_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_0_30fps_clean.ogv",
+  "videos/circleLab2/circle_0_30fps_clean.mp4",
+  "",
+  "circle_0_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_0_240fps_clean.ogv",
-	"videos/circleLab2/circle_0_240fps_clean.mp4",
-	"",
-  "circle_0_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_0_240fps_clean.ogv",
+  "videos/circleLab2/circle_0_240fps_clean.mp4",
+  "",
+  "circle_0_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_1_30fps_clean.ogv",
-	"videos/circleLab2/circle_1_30fps_clean.mp4",
-	"",
-  "circle_1_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_1_30fps_clean.ogv",
+  "videos/circleLab2/circle_1_30fps_clean.mp4",
+  "",
+  "circle_1_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_1_240fps_clean.ogv",
-	"videos/circleLab2/circle_1_240fps_clean.mp4",
-	"",
-  "circle_1_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_1_240fps_clean.ogv",
+  "videos/circleLab2/circle_1_240fps_clean.mp4",
+  "",
+  "circle_1_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_2_30fps_clean.ogv",
-	"videos/circleLab2/circle_2_30fps_clean.mp4",
-	"",
-  "circle_2_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_2_30fps_clean.ogv",
+  "videos/circleLab2/circle_2_30fps_clean.mp4",
+  "",
+  "circle_2_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_2_240fps_clean.ogv",
-	"videos/circleLab2/circle_2_240fps_clean.mp4",
-	"",
-  "circle_2_240fps_clean"
+  "junk",  
+  "videos/circleLab2/circle_2_240fps_clean.ogv",
+  "videos/circleLab2/circle_2_240fps_clean.mp4",
+  "",
+  "circle_2_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_3_30fps_clean.ogv",
-	"videos/circleLab2/circle_3_30fps_clean.mp4",
-	"",
-  "circle_3_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_3_30fps_clean.ogv",
+  "videos/circleLab2/circle_3_30fps_clean.mp4",
+  "",
+  "circle_3_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_3_240fps_clean.ogv",
-	"videos/circleLab2/circle_3_240fps_clean.mp4",
-	"",
-  "circle_3_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_3_240fps_clean.ogv",
+  "videos/circleLab2/circle_3_240fps_clean.mp4",
+  "",
+  "circle_3_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_4_30fps_clean.ogv",
-	"videos/circleLab2/circle_4_30fps_clean.mp4",
-	"",
-  "circle_4_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_4_30fps_clean.ogv",
+  "videos/circleLab2/circle_4_30fps_clean.mp4",
+  "",
+  "circle_4_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_4_240fps_clean.ogv",
-	"videos/circleLab2/circle_4_240fps_clean.mp4",
-	"",
-  "circle_4_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_4_240fps_clean.ogv",
+  "videos/circleLab2/circle_4_240fps_clean.mp4",
+  "",
+  "circle_4_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_5_30fps_clean.ogv",
-	"videos/circleLab2/circle_5_30fps_clean.mp4",
-	"",
-  "circle_5_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_5_30fps_clean.ogv",
+  "videos/circleLab2/circle_5_30fps_clean.mp4",
+  "",
+  "circle_5_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_5_240fps_clean.ogv",
-	"videos/circleLab2/circle_5_240fps_clean.mp4",
-	"",
-  "circle_5_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_5_240fps_clean.ogv",
+  "videos/circleLab2/circle_5_240fps_clean.mp4",
+  "",
+  "circle_5_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_6_30fps_clean.ogv",
-	"videos/circleLab2/circle_6_30fps_clean.mp4",
-	"",
-  "circle_6_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_6_30fps_clean.ogv",
+  "videos/circleLab2/circle_6_30fps_clean.mp4",
+  "",
+  "circle_6_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_6_240fps_clean.ogv",
-	"videos/circleLab2/circle_6_240fps_clean.mp4",
-	"",
-  "circle_6_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_6_240fps_clean.ogv",
+  "videos/circleLab2/circle_6_240fps_clean.mp4",
+  "",
+  "circle_6_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_7_30fps_clean.ogv",
-	"videos/circleLab2/circle_7_30fps_clean.mp4",
-	"",
-  "circle_7_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_7_30fps_clean.ogv",
+  "videos/circleLab2/circle_7_30fps_clean.mp4",
+  "",
+  "circle_7_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_7_240fps_clean.ogv",
-	"videos/circleLab2/circle_7_240fps_clean.mp4",
-	"",
-  "circle_7_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_7_240fps_clean.ogv",
+  "videos/circleLab2/circle_7_240fps_clean.mp4",
+  "",
+  "circle_7_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_8_30fps_clean.ogv",
-	"videos/circleLab2/circle_8_30fps_clean.mp4",
-	"",
-  "circle_8_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_8_30fps_clean.ogv",
+  "videos/circleLab2/circle_8_30fps_clean.mp4",
+  "",
+  "circle_8_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_8_240fps_clean.ogv",
-	"videos/circleLab2/circle_8_240fps_clean.mp4",
-	"",
-  "circle_8_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_8_240fps_clean.ogv",
+  "videos/circleLab2/circle_8_240fps_clean.mp4",
+  "",
+  "circle_8_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_9_30fps_clean.ogv",
-	"videos/circleLab2/circle_9_30fps_clean.mp4",
-	"",
-  "circle_9_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_9_30fps_clean.ogv",
+  "videos/circleLab2/circle_9_30fps_clean.mp4",
+  "",
+  "circle_9_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_9_240fps_clean.ogv",
-	"videos/circleLab2/circle_9_240fps_clean.mp4",
-	"",
-  "circle_9_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_9_240fps_clean.ogv",
+  "videos/circleLab2/circle_9_240fps_clean.mp4",
+  "",
+  "circle_9_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_10_30fps_clean.ogv",
-	"videos/circleLab2/circle_10_30fps_clean.mp4",
-	"",
-  "circle_10_30fps_clean"
+  "junk",
+  "videos/circleLab2/circle_10_30fps_clean.ogv",
+  "videos/circleLab2/circle_10_30fps_clean.mp4",
+  "",
+  "circle_10_30fps_clean",
+  30,
+  "instructions/video_instructions.html"
 ]);
 videoArray.push([
-	"junk",
-	"videos/circleLab2/circle_10_240fps_clean.ogv",
-	"videos/circleLab2/circle_10_240fps_clean.mp4",
-	"",
-  "circle_10_240fps_clean"
+  "junk",
+  "videos/circleLab2/circle_10_240fps_clean.ogv",
+  "videos/circleLab2/circle_10_240fps_clean.mp4",
+  "",
+  "circle_10_240fps_clean",
+  240,
+  "instructions/video_instructions.html"
 ]);
 
 //This video array is for the double video player but it is not implemented yet.
@@ -263,31 +336,37 @@ fileNameArray.push("_clean");
 // The advancedSelectionTitleArray contains the titles for each of the dropdowns in the player. If you don't want titles put in "".
 var advancedSelectionTitleArray = new Array();
 advancedSelectionTitleArray.push([
-    "title 1"
+  "title 1"
 ]);
 advancedSelectionTitleArray.push([
-    "title 2"
+  "title 2"
 ]);
 //Advanced Selection Array
 // Each entry ["drop down value", "file name value"]
 var advancedSelectionArray = new Array();
 advancedSelectionArray.push([
-    ["Speed 0", "0"],
-    ["Speed 1", "1"],
-    ["Speed 2", "2"],
-    ["Speed 3", "3"],
-    ["Speed 4", "4"],
-    ["Speed 5", "5"],
-    ["Speed 6", "6"],
-    ["Speed 7", "7"],
-    ["Speed 8", "8"],
-    ["Speed 9", "9"],
-    ["Speed 10", "10"],
+  ["Speed 0", "0"],
+  ["Speed 1", "1"],
+  ["Speed 2", "2"],
+  ["Speed 3", "3"],
+  ["Speed 4", "4"],
+  ["Speed 5", "5"],
+  ["Speed 6", "6"],
+  ["Speed 7", "7"],
+  ["Speed 8", "8"],
+  ["Speed 9", "9"],
+  ["Speed 10", "10"],
 ]);
 advancedSelectionArray.push([
-    ["30 FPS", "30fps"],
-    ["240 FPS", "240fps"]
+  ["30 FPS", "30fps"],
+  ["240 FPS", "240fps"]
 ]);
+
+//Initial Video
+//This will be the initial video that is shown when the player starts
+//The values are just a index number, NO quotes
+var currentVideoLeft_Main = [3, 1];
+var currentVideoRight = 0;
 
 //Tools Array
 /*
@@ -331,10 +410,10 @@ toolsArray.push([
 var toolsArray = new Array();
 toolsArray.push([
   "horizontalRuler", 
-  "0px",
-  "0px",
-  "60px",
-  "300px",
+  "0px",        ////this value needs to be a percentage of the video size.
+  "0px",        ////this value needs to be a percentage of the video size.
+  "60px",       ////this value needs to be a percentage of the video size.
+  "300px",      ////this value needs to be a percentage of the video size.
   false,
   true,
   true,
@@ -359,8 +438,8 @@ toolsArray.push([
   "1px",
   false,
   false,
-  "",
-  ""
+  0.5,
+  0.5
 ]);
 
 toolsArray.push([

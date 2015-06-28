@@ -1,3 +1,112 @@
+//Returns the Current Frame of the video
+function getCurrentFrame() {
+  return Math.floor(player.currentTime * 29.97);
+}
+
+//Prints ellapsed time and frames from frame zero
+function updateStopwatch() {
+  document.getElementById("framerate").innerHTML = "Framerate: " + framerate + " fps";
+  document.getElementById("timeInfo").innerHTML = "Time: " + ((getCurrentFrame() - frameZero)/framerate).toFixed(stopWatchNumberOfDecimalValues) + " s";
+  document.getElementById("frameInfo").innerHTML = "Frame: " + (getCurrentFrame() - frameZero);
+  //DEBUG document.getElementById("frameCounter3").innerHTML = (player.currentTime * 29.97 ).toFixed(1);
+}
+
+//sets the player in the middle of the passed frame
+function setFrame(frame) {
+  if (numberOfVideos == 1 || numberOfVideos == 2)
+  {
+    player.currentTime = frame/29.97 + 1/59.94;
+  }
+  if (numberOfVideos == 2)
+  {
+    player2.currentTime = frame/29.97 + 1/59.94;
+  }
+  updateStopwatch();
+}
+
+//sets frameZero to the passed frame and updates the frame counter
+function setFrameZero(frame) {
+  frameZero = frame;
+  updateStopwatch();
+  
+  //Deselect the set to 0 frame button on the stopwatch
+  document.getElementById('zeroOutStopWatchButton').blur();
+}
+
+//------------------------------------------------------------------//
+//This function will toggle the stopwatch from being shown.         //
+//------------------------------------------------------------------//
+function toggleStopWatch(){
+  $('#stopwatch').toggle("highlight");
+  
+  //Deselecting the StopWatch button
+  document.getElementById('StopWatchToolBarButton').blur();
+}
+
+//------------------------------------------------------------------//
+//This function will set the position of the stopwatch based on the //
+// values that are in the settings.js file                          //
+//------------------------------------------------------------------//
+function setStopWatchPosition(){
+  var stopWatch = document.getElementById("stopwatch");
+  
+  /*
+  //Figuring out the size of the video
+  var windowWidth = window.innerWidth;
+  var windowHeight = window.innerHeight;
+  var windowAspectRatio = windowWidth / windowHeight;
+  
+  if (windowAspectRatio > (16 / 9)) {
+    
+  }
+  else if (windowAspectRatio < (16 / 9)) {
+    
+  }
+  
+  //Setting the position of the stopwatch
+  // Left
+  var currentVideoWidth = document.getElementById('dmv_video').offsetWidth;
+  stopWatch.style.left = stopWatchLeftPosition * currentVideoWidth + "px";
+  // Top
+  var currentVideoHeight = document.getElementById('dmv_video').offsetHeight;    
+  stopWatch.style.top = stopWatchTopPosition * currentVideoHeight + "px";
+  */
+  
+  stopWatch.style.left = stopWatchLeftPosition;
+  stopWatch.style.top = stopWatchTopPosition;
+}
+
+//------------------------------------------------------------------//
+//This function will disable all of the controls except the play    //
+// pause button.                                                    //
+//------------------------------------------------------------------//
+function disableAllControls() {
+  var arrayOfPlayerControls = document.getElementsByClassName("playerControl");
+  var i;
+  for (i = 0; i < arrayOfPlayerControls.length; i++) {
+    if (!(arrayOfPlayerControls[i].id === 'playorpause')) {
+      arrayOfPlayerControls[i].disabled = true;
+    }
+  }
+  
+  //Disabling the scrubber/slider
+  $('#slider').slider('disable');
+}
+
+//------------------------------------------------------------------//
+//This function will enable all of the controls.                    //
+//------------------------------------------------------------------//
+function enableAllControls() {
+  var arrayOfPlayerControls = document.getElementsByClassName("playerControl");
+  var i;
+  for (i = 0; i < arrayOfPlayerControls.length; i++) {
+    arrayOfPlayerControls[i].disabled = false;
+  }
+  
+  //Enabling the scrubber/slider
+  $('#slider').slider('enable');
+}
+
 var percent;
 var oldVal;
 //------------------------------------------------------------------//
@@ -7,8 +116,8 @@ var oldVal;
 function goToEnteredFrame(){ 
   //gets value from textbox (named FrameJump) and sets it as a variable called thisFrame
   var thisFrame = document.getElementById("FrameJump").value; 
-  //convers frame number into a rounded decimal video time
-  seek(Math.round(((1/framerate)*(thisFrame)+(1/framerate))*100000)/100000); 
+  
+  setFrame(thisFrame); 
   //pause the video
   pause(); 
   //adds one to oldVal, so that it no longer equals newVal and the slider consequently updates (see scrubber.js)
@@ -55,13 +164,10 @@ function prevFrame(){
   //selects previous frame button
   document.getElementById("frameprev").focus(); 
   pause();
-  //gets current time to 5 decimal places
-    if (numberOfVideos == 1 || numberOfVideos == 2){
-      player.currentTime -= (1/30).toPrecision(5);
-    }
-    if (numberOfVideos == 2){
-      player2.currentTime -= (1/30).toPrecision(5);
-    }
+  
+  if(getCurrentFrame() > 0) {
+    setFrame(getCurrentFrame() - 1);
+  }
   //deselects previous frame button
   document.getElementById("frameprev").blur();
 }
@@ -97,12 +203,15 @@ function playPause(){
 //This function is the pause function that pauses the video(s)      //
 //------------------------------------------------------------------//
 function pause(){
-    if (numberOfVideos == 1 || numberOfVideos == 2){
-      player.pause();
-    }
-    if (numberOfVideos == 2) {
-      player2.pause();
-    }
+  if (numberOfVideos == 1 || numberOfVideos == 2){
+    player.pause();
+  }
+  if (numberOfVideos == 2) {
+    player2.pause();
+  }
+  
+  //ensures that the player pauses in the middle of a frame
+  setFrame(getCurrentFrame());
 }
 
 //------------------------------------------------------------------//
@@ -169,23 +278,11 @@ function fwdFrame(){
   //selects previous frame button
   document.getElementById("framefwd").focus(); 
 
-  //isChrome set true or false in browser detect file
-  if (isChrome){ 
-    play();
-    //set timeout calls a function after a certain amount of time
-    setTimeout(function() {player.pause(); player2.pause()}, (1000/framerate)); 
-    doingSomethingElse=0;
+  if(getCurrentFrame() < player.duration * 29.97) {
+      setFrame(getCurrentFrame() + 1);
   }
-  else{
-    pause();
-    if (numberOfVideos == 1 || numberOfVideos == 2) {
-      player.currentTime=player.currentTime + (1/framerate);
-    }
-    if (numberOfVideos == 2) {
-      player2.currentTime = player2.currentTime + (1/framerate);
-    }
-    doingSomethingElse=0;
-  }
+  doingSomethingElse=0;
+
   document.getElementById("framefwd").blur();
 }
 

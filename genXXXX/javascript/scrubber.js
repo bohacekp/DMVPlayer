@@ -68,13 +68,9 @@ $(function() {
       var value = $( "#slider" ).slider( "value" ); 
       
       //gets percentage value of the slider
-      if (numberOfVideos == 1 || numberOfVideos == 2) {
-        player.currentTime=player.duration*(value/maxSliderValue);
+      
+        setFrame(Math.floor(player.duration * 29.97 *(value/maxSliderValue)));
       }
-      if (numberOfVideos == 2) {
-        player2.currentTime = player2.duration * (value / maxSliderValue);
-      }
-    }
   });
   
   //sets varibale called newVal to the slider value

@@ -7,10 +7,62 @@
 $(document).ready(function(){   
   //Setting the title for the player
   document.title = pageTitle;
-
+  
   //----------------------------------------------//
   //Player Controls                               //
   //----------------------------------------------//
+  //checks to see if the frame counter is enabled (set in settings.js)
+  if(enableStopwatch === true) {
+    var stopWatch = document.getElementById("stopwatch");
+    
+    //Expanding the width of the stopwatch if there are more than 3 decimal point specified
+    if (stopWatchNumberOfDecimalValues > 3) {
+      stopWatch.width = 110 + ((stopWatchNumberOfDecimalValues - 4) * 10) + "px";
+    }
+    else {
+      stopWatch.width = 110 + "px";
+    }
+    
+    //hiding the stopwatch if it should not be shown at the start
+    if(!showStopWatchAtStart) {
+      stopWatch.style.display = "none";
+    }
+    
+    if(stopwatchDraggable === true) {
+      //makes frame counter box draggable
+      $(stopWatch).draggable({containment:"body"});
+    }
+    //Starts a 1/30 second interval to refresh the frame counter box
+    setInterval(updateStopwatch, 33.33333);
+    
+    if(showTime === false) {
+      document.getElementById("timeInfo").style.display = "none";
+    }
+    if(showFrame === false) {
+      document.getElementById("frameInfo").style.display = "none";
+    }
+    
+    //Setting the position of the stopwatch
+    setStopWatchPosition();
+  }
+  else {
+    //hides frame counter
+    document.getElementById("stopwatch").style.visibility = "hidden";
+    
+    //hiding the stopwatch toolbar button
+    document.getElementById("StopWatchToolBarButton").style.visibility = "hidden";
+  }
+
+  //Removing the Player Instructions button if it is turned off
+  if(!enablePlayerInsctructions) {
+    $("#playerInstructions").css("display", "none");
+  }
+  
+  //Removing the Video Instructions button is it is turned off
+  if(!enableVideoInstructions) {
+    $("#videoInstructions").css("display", "none");
+  }
+  
   //Removing the reset tools buttons if it is turned off
   if(!resetButton){
     $("#resetTools").css("display", "none");
@@ -42,28 +94,31 @@ $(document).ready(function(){
   
   //Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
   var showedPlaySplashScreen = false;
-  dmv_player.oncanplaythrough =  function(){
-      //resizing the tools
-      resizeTools();
+  dmv_player.oncanplaythrough =  function(){    
+    //Enable the player controls
+    enableAllControls();
+    
+    //resizing the tools
+    resizeTools();
 
-      if(!showedPlaySplashScreen && enableClickToPlayOverlay){
-        if (numberOfVideos == 1 || numberOfVideos == 2) {
-          dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
-        }
-        if (numberOfVideos == 2) {
-          dmv_player2.setAttribute('poster', '../images/play_splash_screen.png');
-        }
+    if(!showedPlaySplashScreen && enableClickToPlayOverlay){
+      if (numberOfVideos == 1 || numberOfVideos == 2) {
+        dmv_player.setAttribute('poster', '../images/play_splash_screen.png');
       }
-      else if(!showedPlaySplashScreen && !enableClickToPlayOverlay){
-        if (numberOfVideos == 1 || numberOfVideos == 2) {
-          dmv_player.setAttribute('poster', '');
-        }
-        if (numberOfVideos == 2) {
-          dmv_player2.setAttribute('poster', '');
-        }
+      if (numberOfVideos == 2) {
+        dmv_player2.setAttribute('poster', '../images/play_splash_screen.png');
       }
-      showedPlaySplashScreen = true;
-    };
+    }
+    else if(!showedPlaySplashScreen && !enableClickToPlayOverlay){
+      if (numberOfVideos == 1 || numberOfVideos == 2) {
+        dmv_player.setAttribute('poster', '');
+      }
+      if (numberOfVideos == 2) {
+        dmv_player2.setAttribute('poster', '');
+      }
+    }
+    showedPlaySplashScreen = true;
+  };
     
   //Setting the play callback to remove the video poster of 'click to play'
   $('#dmv_video').bind('play', function(){
@@ -74,24 +129,40 @@ $(document).ready(function(){
       dmv_player2.removeAttribute('poster');
     }
   });
+  
+  //Getting the file names for the selected video
+  if (numberOfVideos == 1 || numberOfVideos == 2) {
+    var videoFileName_LeftMain = getCurrentVideoName(LEFT_MAIN_VIDEO);
+  }
+  if (numberOfVideos == 2) {
+    var videoFileName_Right = getCurrentVideoName(RIGHT_VIDEO);
+  }
+  
+  //Looking up the index for the video that is selected
+  if (numberOfVideos == 1 || numberOfVideos == 2) {
+    var videoArrayIndex_LeftMain = getVideoIndex(videoFileName_LeftMain);
+  }
+  if (numberOfVideos == 2) {
+    var videoArrayIndex_Right = getVideoIndex(videoFileName_Right);
+  }
     
   //Setting the video sources
   //Player 1
   if (numberOfVideos == 1 || numberOfVideos == 2) {
     if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-      $(ogg_video).attr('src', videoArray[videoLeftMain][_locationOGV]);
+      $(ogg_video).attr('src', videoArray[videoArrayIndex_LeftMain][_locationOGV]);
     }
     else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-      $(mp4_video).attr('src', videoArray[videoLeftMain][_locationMP4]);
+      $(mp4_video).attr('src', videoArray[videoArrayIndex_LeftMain][_locationMP4]);
     }
   }
   //Player 2
   if (numberOfVideos == 2) {
     if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
-      $(ogg_video2).attr('src', videoArray2[videoRight][_locationOGV]);
+      $(ogg_video2).attr('src', videoArray2[videoArrayIndex_Right][_locationOGV]);
     }
     else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
-      $(mp4_video2).attr('src', videoArray2[videoRight][_locationMP4]);
+      $(mp4_video2).attr('src', videoArray2[videoArrayIndex_Right][_locationMP4]);
     }
   }
     
@@ -103,6 +174,10 @@ $(document).ready(function(){
     dmv_player2.load();
   }
     
+  //passes framerate of video from video array
+  //used to calculate ellapsed time
+  framerate = videoArray[videoArrayIndex_LeftMain][_videoFramerate]; 
+  
   //////////////////////////////////////////////////////////////////////
   //Setting up the Table for the Video Selection and Measurement Tools//
   //////////////////////////////////////////////////////////////////////
@@ -148,7 +223,7 @@ $(document).ready(function(){
                          '<button ' +
 //                           'value="' + toolsArray[index][_toolButtonTitle] + '" ' +
                          'id="' + toolsArray[index][_measureToolButton] + 
-                         '" class="measurementToolClass" ' + 
+                         '" class="measurementToolClass playerControl" ' + 
 //                           'style="padding: 25px 20px;" ' +
                          'onclick="hideTool(\'#' + toolsArray[index][_elementID] + '\')">' +
                          toolsArray[index][_toolButtonTitle] + '</button>';
@@ -163,13 +238,13 @@ $(document).ready(function(){
   //Reset Tool Button
   //If there are any tools?
   if(toolsArray.length == 1){
-    var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tool</button>';
+    var resetButtonHTML = '<button id="resetTools" class="playerControl" onclick="resetTools()">Reset Tool</button>';
     toolsTable += '<td>';
     toolsTable += resetButtonHTML;
     toolsTable += '</td>';
   }
   else if(toolsArray.length > 1){
-    var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tools</button>';
+    var resetButtonHTML = '<button id="resetTools" class="playerControl" onclick="resetTools()">Reset Tools</button>';
     toolsTable += '<td>';
     toolsTable += resetButtonHTML;
     toolsTable += '</td>';
@@ -177,7 +252,7 @@ $(document).ready(function(){
 
   //Deselect measurement tool button
   if(toolsArray.length >= 1){
-    var deselectToolButtonHTML = '<button id="deselectTool" onclick="deselectTool()">Deselect Tool</button>';
+    var deselectToolButtonHTML = '<button id="deselectTool" class="playerControl" onclick="deselectTool()">Deselect Tool</button>';
     toolsTable += '<td>';
     toolsTable += deselectToolButtonHTML;
     toolsTable += '</td>';
@@ -186,9 +261,9 @@ $(document).ready(function(){
   //Putting in the marker buttons
   if(enableMarkers){
     //Creating the HTML for the marker buttons
-    var markerSpawnButton = '<button id="spawnMarkerButton" onclick="spawnMarker()">Spawn Marker</button>';
-    var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
-    var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton" onclick="removeAllMarkers()">Remove All Markers</button>';
+    var markerSpawnButton = '<button id="spawnMarkerButton" class="playerControl" onclick="spawnMarker()">Spawn Marker</button>';
+    var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton" class="playerControl" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
+    var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton" class="playerControl" onclick="removeAllMarkers()">Remove All Markers</button>';
 
     //Putting in the buttons
     toolsTable += '<td>';
@@ -230,13 +305,18 @@ $(document).ready(function(){
     tool = document.getElementById(toolsArray[index][_elementID]);
     toolButton = $(document.getElementById(toolsArray[index][_measureToolButton]));
 
+    //Absolute Value for the Size and Position of the Measurement Tools
     //Setting the default location for the tool
     tool.style.left = toolsArray[index][_positionLeft];
     tool.style.top = toolsArray[index][_positionTop];
-
     //Setting the default size of the tool
     tool.style.height = toolsArray[index][_sizeHeight];
     tool.style.width = toolsArray[index][_sizeWidth];
+    
+    //Relative Value for the Size and Position of the Measurement Tools
+    //Setting the default location for the tool
+    
+    //Setting the default size of the tool
   
     //Resizing the tools for the current size of the screen
     resizeTools();
@@ -345,6 +425,9 @@ $(document).ready(function(){
       $("#overlayImageID2").css("display", "none");
     }
   }
+  
+  //Disabling the player controls
+  disableAllControls();
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -388,7 +471,7 @@ function videoSelectionSetup(){
         //adding the dropdowns title
         videoSelectionHTML += advancedSelectionTitleArray[count];
         //adding the HTML for the video selector
-        videoSelectionHTML += '<select id=' + videoSelector + count + '>';
+        videoSelectionHTML += '<select class="playerControl" id=' + videoSelector + count + '>';
   
         //TODO: Looping through the video selection values
   
@@ -412,6 +495,11 @@ function videoSelectionPopulateOptions(){
   if(numberOfVideos == 1 || numberOfVideos == 2){
     //Player 1            
     if(enableVideoSelection){
+      //Checking to see if the user has specified the right number of selection positions
+      if(currentVideoLeft_Main.length != advancedSelectionArray.length) {
+        console.error("Error:You do not have the correct number of initial video selection indexes");
+      }
+      
       //indexes
       var selectionIndex = 0;
       var optionIndex = 0;
@@ -462,17 +550,9 @@ function videoSelectionPopulateOptions(){
         
         index++;
       }
-                      
-      //looking up the video's index in the video array
-      var index = 0;
-      video_index = -1;
-      for(elements in videoArray){
-        if(videoArray[index][_videoFileName] == fileName){
-          video_index = index;
-          break;
-        }
-        index++;
-      }                
+      
+      //Getting the index of the video
+      var video_index = getVideoIndex(fileName);
     
       //Deselecting the video selection drop downs
       var count = 0;
@@ -490,6 +570,11 @@ function videoSelectionPopulateOptions(){
       $(mp4_video).attr('src', videoArray[video_index][_locationMP4]);
     }
 
+    //passes framerate of video from video array
+    //used to calculate ellapsed time
+    framerate = videoArray[video_index][_videoFramerate];
+    
+    
     //Reload the dmv video
     dmv_player.load();
 
@@ -531,9 +616,17 @@ function videoSelectionPopulateOptions(){
    // if(numberOfVideos == 2){
    //  document.getElementById("overlayImageID2").src = videoArray2[video_index2][_overlayImage];
    // }
+    
+    //Saving the video selection indexes
+    saveCurrenyltSelectedVideos();
+    
+    //Close the current Video Instructions page if it is open
+    if (videoInstructionWindow != null) {
+      videoInstructionWindow.close();
+    }
   }
 
-  //Setting the drop down positions for the video parameters
+  //Setting the drop down positions for the video parameters and the call back function when the selector changes value
   if(numberOfVideos == 1 || numberOfVideos == 2){
     //advanced video selection
     if(enableVideoSelection){
@@ -542,6 +635,7 @@ function videoSelectionPopulateOptions(){
       for(elements in videoSelectorIDArray){
         var temp = $("#" + videoSelectorIDArray[count]);
         temp.change(videoSelectorFunction);
+        document.getElementById(videoSelectorIDArray[count]).selectedIndex = "" + currentVideoLeft_Main[count];
         count++;
       }
     }
@@ -577,7 +671,9 @@ resizePlayer = function(){
   document.getElementById('button_table_1').style.width = widthOfPlayer;
   document.getElementById('measurementToolTable').style.width = widthOfPlayer;
 
+  //TODO: here is where i would put the code to stop the resizing of the tools when the screen changes size.
   resizeTools();
 }
 $(window).resize(resizePlayer);
 $(window).load(resizePlayer);
+$(window).unload(closeInstructionWindows);

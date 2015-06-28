@@ -7,10 +7,13 @@ function resetTools(){
   var index = 0;
   for(element in toolsArray){
     tool = document.getElementById(toolsArray[index][_elementID]);
+
+    //Absolute Value Tool Position and Size
     tool.style.left = toolsArray[index][_positionLeft];
     tool.style.top = toolsArray[index][_positionTop];
     tool.style.height = toolsArray[index][_sizeHeight];
     tool.style.width = toolsArray[index][_sizeWidth];
+    
     //Checking to see if the unselected outline is enabled
     if(toolsArray[index][_unselectedOutlineEnabled]){
       //Putting a the previous selected tool back to the default color
@@ -316,7 +319,10 @@ function deselectTool(){
   }
   
   //Deselecting the Deselect Tool
-  document.getElementById('deselectTool').blur();
+  var deselectToolButton = document.getElementById('deselectTool');
+  if (deselectToolButton != null) {
+    deselectToolButton.blur();
+  };
 }
 
 //------------------------------------------------------------------//
@@ -366,5 +372,55 @@ resizeTools = function() {
     }
 
     index++;
+  }
+}
+
+//------------------------------------------------------------------//
+//This method is called when the player instruction button is       //
+// pressed.                                                         //
+//------------------------------------------------------------------//
+function showPlayerInstructions(){
+  //Checking to see the Player Instructions page is opened already
+  if (playerInstructionWindow != null) {
+    playerInstructionWindow.close();
+  }
+  
+  playerInstructionWindow = window.open(playerInstrucitonsPage);
+  
+  //Deselecting the Player Instructions button
+  document.getElementById('playerInstructions').blur();
+}
+
+//------------------------------------------------------------------//
+//This method is called when the video instrcution button is        //
+// pressed. It will close the current video instruction page that is//
+// opened and open the new one.                                     //
+//------------------------------------------------------------------//
+function showVideoInstructions(){
+  //Close the current video instructions page
+  if (videoInstructionWindow != null) {
+    videoInstructionWindow.close();
+  }
+  
+  //Getting the current videos index in the videoArray
+  var videoIndex = getVideoIndex(getCurrentVideoName(LEFT_MAIN_VIDEO));
+  
+  videoInstructionWindow = window.open(videoArray[videoIndex][_videoInstructionsPage]);
+  
+  //Deselecting the Video Instructions button
+  document.getElementById('videoInstructions').blur();
+}
+
+//------------------------------------------------------------------//
+//This method is called when the player is closed. It will close    //
+// the Player and Video Instructions windows.                       //
+//------------------------------------------------------------------//
+function closeInstructionWindows(){
+  if (playerInstrucitonWindow != null) {
+    playerInstructionWindow.close();
+  }
+  
+  if (videoInstructionWindow != null) {
+    videoInstructionWindow.close();
   }
 }

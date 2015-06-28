@@ -15,14 +15,14 @@
     <link rel="stylesheet" href="../../genXXXX/css/DMVPlayer.css" type="text/css"/>
     
     <!-- Loading Javascript Files -->
-    <!-- Browser detection code -->
-    <script src="../../genXXXX/javascript/browserDetect.js"></script>
     <!-- Scrubber code-->
     <script src="../../genXXXX/javascript/scrubber.js"></script>
     <!-- PlayerControl Javascript -->
     <script src="../../genXXXX/javascript/playerControls.js"></script>
     <!-- MeasurementTool javascript -->
     <script src="../../genXXXX/javascript/measurementTools.js"></script>
+    <!-- VideoControl javascript -->
+    <script src="../../genXXXX/javascript/videoControls.js"></script>
     <!-- Variables -->
     <script src="settings.js"></script>
     <!-- Definitions -->
@@ -33,6 +33,29 @@
   
   <body>
     <meta charset="utf-8">
+    
+    <!--Draggable Frame Counter -->
+    <div id='stopwatch'>
+      <!-- p used for displaying various info-->
+      <p id="timeInfo">
+      </p>
+      <p id='frameInfo'>
+      </p>
+      <p id="framerate" style="font-size: .78em;">
+      </p>
+    
+      <!-- shows frames rounded to tenths place, used for debugging
+        <p id="frameCounter3">
+        </p>
+      -->
+      <!--button sets current frame to frame zero-->
+      <div style="margin: 5px 20%;">
+        <button id="zeroOutStopWatchButton" type="button" onclick="setFrameZero(getCurrentFrame())">
+          Set to 0
+        </button>
+      </div>
+    </div>
+    
     <div id='wrapper'>
       <div id="main" onclick="deselectTool()">
         <!-- Video tags -->
@@ -78,32 +101,45 @@
 
           <!-- Play Buttons Table -->
           <table id="button_table_1"> 
-            <th>
-              <td>
-                <button class="playerButtons" title="Rewind the video" type="button" id="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
-                  <img src="../../genXXXX/images/firstframe.png"/>
-                </button>
-              </td>
-              <td>
-                <button class="playerButtons" title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
-                  <img src="../../genXXXX/images/frame back.png"/>
-                </button>
-              </td>
-              <td>
-                <button class="playerButtons" title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
-                  <img src="../../genXXXX/images/playpause2.png"/>
-                </button>
-              </td>
-              <td>
-                <button class="playerButtons" title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
-                  <img src="../../genXXXX/images/frame advance.png"/>
-                </button>
-              </td>
-              <td id='GoToFrameControls'>
-                <input title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
-                <input title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
-              </td>
-            </th>
+            <td class="playerButtonTableCell">
+              <button class="playerButtons playerControl" title="Rewind the video" type="button" id="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
+                <img src="../../genXXXX/images/firstframe.png"/>
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button class="playerButtons playerControl" title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
+                <img src="../../genXXXX/images/frame back.png"/>
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button class="playerButtons playerControl" title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
+                <img src="../../genXXXX/images/playpause2.png"/>
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button class="playerButtons playerControl" title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
+                <img src="../../genXXXX/images/frame advance.png"/>
+              </button>
+            </td>
+            <td class="playerButtonTableCell" id='GoToFrameControls'>
+              <input class="playerControl" title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
+              <input class="playerControl" title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
+            </td>
+            <td class="playerButtonTableCell" id='StopWatchToolBarButton'>
+              <button class="playerControl" title="StopWatch" type="button" id="StopWatchButton" onclick="toggleStopWatch()">
+                StopWatch
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button id="videoInstructions" class="playerControl" title="Video Insctrucitons" type="button" onclick="showVideoInstructions()">
+                Instrcutions
+              </button>
+            </td>
+            <td class="playerButtonTableCell">
+              <button id="playerInstructions" class="playerControl" title="Player Insctrucitons" type="button" onclick="showPlayerInstructions()">
+                ?
+              </button>
+            </td>
           </table>
 
           <!-- Overlay image button -->
