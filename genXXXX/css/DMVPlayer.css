@@ -1,5 +1,39 @@
 /*DMVPlayer Copyright 2014 by ISD197*/
 
+#dialog {
+    top: 50px;
+    left: 50px;
+    z-index: 100;
+    background-color: white;
+    position: absolute;
+}
+
+#dialog > iframe {
+    width: 400px;
+    height: 500px;
+}
+
+#slider
+{
+  margin: 0;
+  border-radius: 0;
+  border: 1px solid #AAA;
+  height: 16px;
+}
+
+#sliderProgress {
+    border-radius: 0;
+    background: #AAA;
+}
+
+#sliderHandle {
+    border-radius: 8px;
+    height: 16px;
+    width: 16px;
+    margin-top: 4px;
+    border: 1px solid #AAA;
+}
+
 #stopwatch
 {
   background-color: #303030;
@@ -12,6 +46,7 @@
   font-size: 1em;
   opacity: 1;
   color: #FFFFFF;
+  min-width: 110px;
 }
 
 #stopwatch > p {
@@ -38,10 +73,7 @@
 }
 
 
-#slider
-{
-  margin-top: 0px;
-}
+
 
 #button_table_1
 {
@@ -138,12 +170,6 @@ img
 #vid {
   width: 640px;
   height: 360px;
-}
-
-#scrubber {
-  position: relative;
-  width: 100%;
-  height: 20px;
 }
 
 /*Help Text for the Tools*/

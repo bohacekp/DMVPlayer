@@ -380,15 +380,26 @@ resizeTools = function() {
 // pressed.                                                         //
 //------------------------------------------------------------------//
 function showPlayerInstructions(){
-  //Checking to see the Player Instructions page is opened already
-  if (playerInstructionWindow != null) {
-    playerInstructionWindow.close();
-  }
+    var wnd = document.getElementById("playerHelpDialog")
+
+    //create help box if not defined
+    if (wnd === null) {
+        wnd = document.createElement("div");
+        document.getElementById("wrapper").appendChild(wnd);
+        iframe = document.createElement("iframe");
+        wnd.appendChild(iframe);
+
+        wnd.id = "playerHelpDialog"
+        wnd.classList.add("dialog");
+        wnd.style.visibility = "hidden"
+
+        iframe.src = playerInstrucitonsPage;
+
+        $("#playerHelpDialog").draggable();
+    }
+
+    $("#playerHelpDialog").toggle();
   
-  playerInstructionWindow = window.open(playerInstrucitonsPage);
-  
-  //Deselecting the Player Instructions button
-  document.getElementById('playerInstructions').blur();
 }
 
 //------------------------------------------------------------------//
@@ -405,10 +416,7 @@ function showVideoInstructions(){
   //Getting the current videos index in the videoArray
   var videoIndex = getVideoIndex(getCurrentVideoName(LEFT_MAIN_VIDEO));
   
-  videoInstructionWindow = window.open(videoArray[videoIndex][_videoInstructionsPage]);
-  
-  //Deselecting the Video Instructions button
-  document.getElementById('videoInstructions').blur();
+  videoInstructionWindow = window.open(videoArray[videoIndex][_videoInstructionsPage], "_blank", "height=" + (screen.height * .85) + ",width=400,top=0, left=" + (screen.width - 430) + ",location=no, menubar=no, status=no, toolbar=no, scrollbars=yes, resizeable=yes");
 }
 
 //------------------------------------------------------------------//

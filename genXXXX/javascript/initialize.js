@@ -7,21 +7,13 @@
 $(document).ready(function(){   
   //Setting the title for the player
   document.title = pageTitle;
-  
+
   //----------------------------------------------//
   //Player Controls                               //
   //----------------------------------------------//
   //checks to see if the frame counter is enabled (set in settings.js)
   if(enableStopwatch === true) {
     var stopWatch = document.getElementById("stopwatch");
-    
-    //Expanding the width of the stopwatch if there are more than 3 decimal point specified
-    if (stopWatchNumberOfDecimalValues > 3) {
-      stopWatch.width = 110 + ((stopWatchNumberOfDecimalValues - 4) * 10) + "px";
-    }
-    else {
-      stopWatch.width = 110 + "px";
-    }
     
     //hiding the stopwatch if it should not be shown at the start
     if(!showStopWatchAtStart) {
@@ -94,10 +86,7 @@ $(document).ready(function(){
   
   //Setting the oncanplaythrough callback to change the video poster image to the 'click to play'
   var showedPlaySplashScreen = false;
-  dmv_player.oncanplaythrough =  function(){    
-    //Enable the player controls
-    enableAllControls();
-    
+  dmv_player.oncanplaythrough =  function(){
     //resizing the tools
     resizeTools();
 
@@ -149,20 +138,20 @@ $(document).ready(function(){
   //Setting the video sources
   //Player 1
   if (numberOfVideos == 1 || numberOfVideos == 2) {
-    if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-      $(ogg_video).attr('src', videoArray[videoArrayIndex_LeftMain][_locationOGV]);
+    if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
+        $(mp4_video).attr('src', videoArray[videoArrayIndex_LeftMain][_locationMP4]);
     }
-    else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
-      $(mp4_video).attr('src', videoArray[videoArrayIndex_LeftMain][_locationMP4]);
+    else if (dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
+        $(ogg_video).attr('src', videoArray[videoArrayIndex_LeftMain][_locationOGV]);
     }
   }
   //Player 2
   if (numberOfVideos == 2) {
-    if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
-      $(ogg_video2).attr('src', videoArray2[videoArrayIndex_Right][_locationOGV]);
+    if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
+        $(mp4_video2).attr('src', videoArray2[videoArrayIndex_Right][_locationMP4]);
     }
-    else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
-      $(mp4_video2).attr('src', videoArray2[videoArrayIndex_Right][_locationMP4]);
+    else if (dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
+        $(ogg_video2).attr('src', videoArray2[videoArrayIndex_Right][_locationOGV]);
     }
   }
     
@@ -223,7 +212,7 @@ $(document).ready(function(){
                          '<button ' +
 //                           'value="' + toolsArray[index][_toolButtonTitle] + '" ' +
                          'id="' + toolsArray[index][_measureToolButton] + 
-                         '" class="measurementToolClass playerControl" ' + 
+                         '" class="measurementToolClass" ' + 
 //                           'style="padding: 25px 20px;" ' +
                          'onclick="hideTool(\'#' + toolsArray[index][_elementID] + '\')">' +
                          toolsArray[index][_toolButtonTitle] + '</button>';
@@ -238,13 +227,13 @@ $(document).ready(function(){
   //Reset Tool Button
   //If there are any tools?
   if(toolsArray.length == 1){
-    var resetButtonHTML = '<button id="resetTools" class="playerControl" onclick="resetTools()">Reset Tool</button>';
+    var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tool</button>';
     toolsTable += '<td>';
     toolsTable += resetButtonHTML;
     toolsTable += '</td>';
   }
   else if(toolsArray.length > 1){
-    var resetButtonHTML = '<button id="resetTools" class="playerControl" onclick="resetTools()">Reset Tools</button>';
+    var resetButtonHTML = '<button id="resetTools" onclick="resetTools()">Reset Tools</button>';
     toolsTable += '<td>';
     toolsTable += resetButtonHTML;
     toolsTable += '</td>';
@@ -252,7 +241,7 @@ $(document).ready(function(){
 
   //Deselect measurement tool button
   if(toolsArray.length >= 1){
-    var deselectToolButtonHTML = '<button id="deselectTool" class="playerControl" onclick="deselectTool()">Deselect Tool</button>';
+    var deselectToolButtonHTML = '<button id="deselectTool" onclick="deselectTool()">Deselect Tool</button>';
     toolsTable += '<td>';
     toolsTable += deselectToolButtonHTML;
     toolsTable += '</td>';
@@ -261,9 +250,9 @@ $(document).ready(function(){
   //Putting in the marker buttons
   if(enableMarkers){
     //Creating the HTML for the marker buttons
-    var markerSpawnButton = '<button id="spawnMarkerButton" class="playerControl" onclick="spawnMarker()">Spawn Marker</button>';
-    var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton" class="playerControl" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
-    var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton" class="playerControl" onclick="removeAllMarkers()">Remove All Markers</button>';
+    var markerSpawnButton = '<button id="spawnMarkerButton" onclick="spawnMarker()">Spawn Marker</button>';
+    var markerRemoveSelectedButton = '<button id="removeSelectedMarkerButton" onclick="removeSelectedMarker()">Remove Selected Marker</button>';
+    var markerRemoveAllMarkersButton = '<button id="removeAllMarkersButton" onclick="removeAllMarkers()">Remove All Markers</button>';
 
     //Putting in the buttons
     toolsTable += '<td>';
@@ -425,9 +414,6 @@ $(document).ready(function(){
       $("#overlayImageID2").css("display", "none");
     }
   }
-  
-  //Disabling the player controls
-  disableAllControls();
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -471,7 +457,7 @@ function videoSelectionSetup(){
         //adding the dropdowns title
         videoSelectionHTML += advancedSelectionTitleArray[count];
         //adding the HTML for the video selector
-        videoSelectionHTML += '<select class="playerControl" id=' + videoSelector + count + '>';
+        videoSelectionHTML += '<select id=' + videoSelector + count + '>';
   
         //TODO: Looping through the video selection values
   
@@ -563,11 +549,11 @@ function videoSelectionPopulateOptions(){
     }
     
     //Setting the video sources
-    if(dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
-      $(ogg_video).attr('src', videoArray[video_index][_locationOGV]);
-    }
-    else if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
+    if(dmv_player.canPlayType("video/mp4") == "maybe" || dmv_player.canPlayType("video/mp4") == "probably") {
       $(mp4_video).attr('src', videoArray[video_index][_locationMP4]);
+    }
+    else if (dmv_player.canPlayType("video/ogg") == "maybe" || dmv_player.canPlayType("video/ogg") == "probably") {
+        $(ogg_video).attr('src', videoArray[video_index][_locationOGV]);
     }
 
     //passes framerate of video from video array
@@ -587,12 +573,13 @@ function videoSelectionPopulateOptions(){
       var ogg_video2 = document.getElementById("ogg_video2");
 
       //Setting the video sources
-      if(dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
-        $(ogg_video2).attr('src', videoArray2[video_index2][_locationOGV]);
-      }
-      else if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
+      if(dmv_player2.canPlayType("video/mp4") == "maybe" || dmv_player2.canPlayType("video/mp4") == "probably") {
         $(mp4_video2).attr('src', videoArray2[video_index2][_locationMP4]);
       }
+      else if (dmv_player2.canPlayType("video/ogg") == "maybe" || dmv_player2.canPlayType("video/ogg") == "probably") {
+          $(ogg_video2).attr('src', videoArray2[video_index2][_locationOGV]);
+      }
+
       //Reload the dmv video
       dmv_player2.load();
     }
@@ -666,10 +653,10 @@ resizePlayer = function(){
   }
 
   //getting the slider, player buttons and measurement tools to fit in screen
-  var widthOfPlayer = document.getElementById('dmv_video').offsetWidth+'px';
-  document.getElementById('slider').style.width = widthOfPlayer;
-  document.getElementById('button_table_1').style.width = widthOfPlayer;
-  document.getElementById('measurementToolTable').style.width = widthOfPlayer;
+  var widthOfPlayer = document.getElementById('dmv_video').offsetWidth;
+  document.getElementById('slider').style.width = (widthOfPlayer - 2) + 'px';
+  document.getElementById('button_table_1').style.width = widthOfPlayer + 'px';
+  document.getElementById('measurementToolTable').style.width = widthOfPlayer + 'px';
 
   //TODO: here is where i would put the code to stop the resizing of the tools when the screen changes size.
   resizeTools();

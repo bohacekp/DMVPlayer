@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <!--DMVPlayer Copyright 2014 by ISD197 and Developed by Jared Poetter-->
-<html id="DMVPlayer">
+<html id="Ball Rebound">
   <meta charset="utf-8">
   <head>
     <!-- Loading jQuery and jQuery UI -->
     <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script src="../../genXXXX/javascript/jquery-ui-1.10.4.min.js"></script>
+    <script src="../../gen3/javascript/jquery-ui-1.10.4.min.js"></script>
 
     <!-- Loading jQuery Touch Punch -->
-    <script src="../../genXXXX/javascript/jquery.ui.touch-punch.min.js"></script>
+    <script src="../../gen3/javascript/jquery.ui.touch-punch.min.js"></script>
   
     <!-- Loading CSS Files -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-    <link rel="stylesheet" href="../../genXXXX/css/DMVPlayer.css" type="text/css"/>
+    <link rel="stylesheet" href="../../gen3/css/DMVPlayer.css" type="text/css"/>
     
     <!-- Loading Javascript Files -->
     <!-- Scrubber code-->
-    <script src="../../genXXXX/javascript/scrubber.js"></script>
+    <script src="../../gen3/javascript/scrubber.js"></script>
     <!-- PlayerControl Javascript -->
-    <script src="../../genXXXX/javascript/playerControls.js"></script>
+    <script src="../../gen3/javascript/playerControls.js"></script>
     <!-- MeasurementTool javascript -->
-    <script src="../../genXXXX/javascript/measurementTools.js"></script>
+    <script src="../../gen3/javascript/measurementTools.js"></script>
     <!-- VideoControl javascript -->
-    <script src="../../genXXXX/javascript/videoControls.js"></script>
+    <script src="../../gen3/javascript/videoControls.js"></script>
     <!-- Variables -->
-    <script src="settings.js"></script>
+    <script src="settings_pingpong_ball_cannon.js"></script>
     <!-- Definitions -->
-    <script src="../../genXXXX/javascript/definitions.js"></script>
+    <script src="../../gen3/javascript/definitions.js"></script>
     <!-- Initialize -->
-    <script src="../../genXXXX/javascript/initialize.js"></script>
+    <script src="../../gen3/javascript/initialize.js"></script>
   </head>
   
   <body>
@@ -59,12 +59,12 @@
     <div id='wrapper'>
       <div id="main" onclick="deselectTool()">
         <!-- Video tags -->
-        <video id="dmv_video" preload="auto" poster="../../genXXXX/images/loading_splash_screen.png">
+        <video id="dmv_video" preload="auto" poster="../../gen3/images/loading_splash_screen.png">
           <source id="mp4_video" src="" id="movie" type="video/mp4">
           <source id="ogg_video" src="" id="movie" type="video/ogg">
         </video>
         
-        <video id="dmv_video2" preload="auto" poster="../../genXXXX/images/loading_splash_screen.png">
+        <video id="dmv_video2" preload="auto" poster="../../gen3/images/loading_splash_screen.png">
           <source id="mp4_video2" src="" id="movie" type="video/mp4">
           <source id="ogg_video2" src="" id="movie" type="video/ogg">
         </video>
@@ -103,28 +103,25 @@
           <table id="button_table_1"> 
             <td class="playerButtonTableCell">
               <button class="playerButtons playerControl" title="Rewind the video" type="button" id="rewind" value=" |<< " name="beginning" onclick="firstFrame()">
-                <img src="../../genXXXX/images/firstframe.png"/>
+                <img src="../../gen3/images/firstframe.png"/>
               </button>
             </td>
             <td class="playerButtonTableCell">
               <button class="playerButtons playerControl" title="Previous frame (left or down arrow button)" id="frameprev" onClick='prevFrame()'>
-                <img src="../../genXXXX/images/frame back.png"/>
+                <img src="../../gen3/images/frame back.png"/>
               </button>
             </td>
             <td class="playerButtonTableCell">
               <button class="playerButtons playerControl" title="Play or pause the video (spacebar)" id="playorpause" onClick='playPause()'>
-                <img src="../../genXXXX/images/playpause2.png"/>
+                <img src="../../gen3/images/playpause2.png"/>
               </button>
             </td>
             <td class="playerButtonTableCell">
               <button class="playerButtons playerControl" title="Next frame (right or up arrow button)" id="framefwd" onclick="fwdFrame()" >
-                <img src="../../genXXXX/images/frame advance.png"/>
+                <img src="../../gen3/images/frame advance.png"/>
               </button>
             </td>
-            <td class="playerButtonTableCell" id='GoToFrameControls'>
-              <input class="playerControl" title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
-              <input class="playerControl" title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
-            </td>
+            
             <td class="playerButtonTableCell" id='StopWatchToolBarButton'>
               <button class="playerControl" title="StopWatch" type="button" id="StopWatchButton" onclick="toggleStopWatch()">
                 StopWatch
@@ -139,6 +136,10 @@
               <button id="playerInstructions" class="playerControl" title="Player Insctrucitons" type="button" onclick="showPlayerInstructions()">
                 ?
               </button>
+            </td>
+            <td class="playerButtonTableCell" id='GoToFrameControls'>
+              <input class="playerControl" title="Enter a frame number and press 'Go!'" type="text" id="FrameJump" size="10"/>
+              <input class="playerControl" title="Go to the entered frame" type="button" value="Go!" id="gotoframe" name="goToFrameButton" onclick="goToEnteredFrame()"/>
             </td>
           </table>
 
