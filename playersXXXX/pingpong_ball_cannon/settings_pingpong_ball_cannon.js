@@ -4,7 +4,7 @@
 var pageTitle = "Pingpong Ball Cannon";
 //Player Instrctions Page
 // This is the page that is opened when the player instructions button is pressed.
-var playerInstrucitonsPage = "../../gen3/instructions/playerInstructions.html";
+var playerInstrucitonsPage = "../../genXXXX/instructions/playerInstructions.html";
 
 //-----//
 //Flags//
